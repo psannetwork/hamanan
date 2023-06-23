@@ -2,8 +2,8 @@ const password = "p-san";
 let isPasswordEntered = false;
 
 function executeCode() {
-  const minDelay = 15; // 最小待機時間（ミリ秒）
-  const maxDelay = 50; // 最大待機時間（ミリ秒）
+  const minDelay = 15; // min
+  const maxDelay = 50; // max
 
   const keyOverrides = {
     '\u00A0': ' '    
@@ -40,9 +40,8 @@ function executeCode() {
   }
 
   function calculateDelay(numChars, currentIndex, minDelay, maxDelay) {
-    // 文字数に応じて速さを調整するロジック
-    const progress = currentIndex / numChars; // 進捗率を計算
-    const speedMultiplier = 1 + progress; // 進捗率に応じて速度を調整
+    const progress = currentIndex / numChars; 
+    const speedMultiplier = 1 + progress; 
     const delay = Math.random() * (maxDelay - minDelay) + minDelay;
     return delay * speedMultiplier;
   }
@@ -64,6 +63,7 @@ function checkPassword() {
       if (input === password) {
         isPasswordEntered = true;
         localStorage.setItem("enteredPassword", input);
+        alert("ver2.0 hamanan typing club cheat. please but ok to start!")
         executeCode();
       } else {
         alert("パスワードが違います");
