@@ -63,7 +63,7 @@ function checkPassword() {
       if (input === password) {
         isPasswordEntered = true;
         localStorage.setItem("enteredPassword", input);
-        alert("ver2.0 hamanan typing club cheat. please but ok to start!")
+        alert("ver2.0\nhamanan typing club cheat. please press OK to start!\nDo not copy this code for your own benefit!");
         executeCode();
       } else {
         alert("パスワードが違います");
