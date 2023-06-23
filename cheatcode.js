@@ -1,6 +1,3 @@
-function executeCode() {
-  // 実行したいコードをここに書く
-
 //3
 const minDelay = 60;
 const maxDelay = 60;
@@ -36,15 +33,6 @@ async function autoPlay(finish) {
     await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
   }
   autoPlay(true);
-
-  // イベントリスナーを削除する
-  window.removeEventListener('load', executeCode);
-}
-
-// イベントリスナーを登録する
-window.addEventListener('load', executeCode);
-
-}
 
 
 
