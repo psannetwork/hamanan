@@ -1,7 +1,8 @@
 const password = "p-san";
+let isPasswordEntered = false;
 
 function executeCode() {
-  const minDelay = 19; // 最小待機時間（ミリ秒）
+  const minDelay = 15; // 最小待機時間（ミリ秒）
   const maxDelay = 50; // 最大待機時間（ミリ秒）
 
   const keyOverrides = {
@@ -29,12 +30,21 @@ function executeCode() {
 
   async function autoPlay(finish) {
     const chrs = getTargetCharacters();
-    for (let i = 0; i < chrs.length - (!finish); ++i) {
+    const numChars = chrs.length;
+    for (let i = 0; i < numChars - (!finish); ++i) {
       const c = chrs[i];
       recordKey(c);
-      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+      const delay = calculateDelay(numChars, i, minDelay, maxDelay);
       await sleep(delay);
     }
+  }
+
+  function calculateDelay(numChars, currentIndex, minDelay, maxDelay) {
+    // 文字数に応じて速さを調整するロジック
+    const progress = currentIndex / numChars; // 進捗率を計算
+    const speedMultiplier = 1 + progress; // 進捗率に応じて速度を調整
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    return delay * speedMultiplier;
   }
 
   autoPlay(true);
@@ -42,11 +52,16 @@ function executeCode() {
 }
 
 function checkPassword() {
-  const input = prompt("パスワードを入力してください:");
-  if (input === password) {
+  if (isPasswordEntered) {
     executeCode();
   } else {
-    alert("パスワードが違います");
+    const input = prompt("パスワードを入力してください:");
+    if (input === password) {
+      isPasswordEntered = true;
+      executeCode();
+    } else {
+      alert("パスワードが違います");
+    }
   }
 }
 
