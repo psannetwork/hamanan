@@ -1,4 +1,4 @@
-const password = "mypassword";
+const password = "p-san";
 
 function executeCode() {
   const minDelay = 60;
