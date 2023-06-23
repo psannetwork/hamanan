@@ -1,8 +1,8 @@
 const password = "p-san";
 
 function executeCode() {
-  const minDelay = 60;
-  const maxDelay = 60;
+  const minDelay = 30; // 最小待機時間（ミリ秒）
+  const maxDelay = 100; // 最大待機時間（ミリ秒）
 
   const keyOverrides = {
     '\u00A0': ' '    
@@ -32,7 +32,8 @@ function executeCode() {
     for (let i = 0; i < chrs.length - (!finish); ++i) {
       const c = chrs[i];
       recordKey(c);
-      await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
+      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+      await sleep(delay);
     }
   }
 
