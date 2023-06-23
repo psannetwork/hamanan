@@ -1,4 +1,7 @@
-//1
+const password = "mypassword";
+
+function executeCode() {
+
 const minDelay = 60;
 const maxDelay = 60;
 
@@ -34,4 +37,16 @@ async function autoPlay(finish) {
   }
 }
 
-autoPlay(true);
+autoPlay(true);  console.log("コードが実行されました");
+}
+
+function checkPassword() {
+  const input = prompt("パスワードを入力してください:");
+  if (input === password) {
+    executeCode();
+  } else {
+    console.log("パスワードが違います");
+  }
+}
+
+checkPassword();
