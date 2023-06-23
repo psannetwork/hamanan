@@ -33,6 +33,6 @@ async function autoPlay(finish) {
     await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
   }
   autoPlay(true);
-
+alert("まってね！")
 
 
