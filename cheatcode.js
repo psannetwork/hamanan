@@ -1,7 +1,7 @@
 const password = "p-san";
 
 function executeCode() {
-  const minDelay = 15; // 最小待機時間（ミリ秒）
+  const minDelay = 19; // 最小待機時間（ミリ秒）
   const maxDelay = 50; // 最大待機時間（ミリ秒）
 
   const keyOverrides = {
