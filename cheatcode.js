@@ -1,4 +1,4 @@
-//3
+//1
 const minDelay = 60;
 const maxDelay = 60;
 
@@ -32,5 +32,6 @@ async function autoPlay(finish) {
     recordKey(c);
     await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
   }
-  autoPlay(true);
+}
 
+autoPlay(true);
