@@ -55,14 +55,23 @@ function checkPassword() {
   if (isPasswordEntered) {
     executeCode();
   } else {
-    const input = prompt("パスワードを入力してください:");
-    if (input === password) {
+    const storedPassword = localStorage.getItem("enteredPassword");
+    if (storedPassword === password) {
       isPasswordEntered = true;
       executeCode();
     } else {
-      alert("パスワードが違います");
+      const input = prompt("パスワードを入力してください:");
+      if (input === password) {
+        isPasswordEntered = true;
+        localStorage.setItem("enteredPassword", input);
+        executeCode();
+      } else {
+        alert("パスワードが違います");
+      }
     }
   }
 }
+
+// 以下に追加のコードを書いてください
 
 checkPassword();
