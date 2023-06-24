@@ -46,8 +46,25 @@ function executeCode(option) {
     return delay * speedMultiplier;
   }
 
-  autoPlay(true);
-  console.log('コードが実行されました');
+  // パスワードの確認
+  const storedPassword = localStorage.getItem('enteredPassword');
+  if (storedPassword === password) {
+    isPasswordEntered = true;
+  } else {
+    const enteredPassword = prompt('パスワードを入力してください:');
+    if (enteredPassword === password) {
+      isPasswordEntered = true;
+      localStorage.setItem('enteredPassword', enteredPassword);
+    } else {
+      alert('パスワードが正しくありません');
+      return;
+    }
+  }
+
+  if (isPasswordEntered) {
+    autoPlay(true);
+    console.log('コードが実行されました');
+  }
 }
 
 function checkOptionAndExecuteCode() {
