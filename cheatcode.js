@@ -1,6 +1,11 @@
-const userInput = prompt('実行するコードを選択してください。\n1. typeCharacters() の実行\n2. パスワードを入力して autoPlay() の実行');
-
-if (userInput === '1') {
+const button1 = document.createElement('button');
+button1.textContent = '1. typeCharacters() の実行';
+button1.style.backgroundColor = 'blue'; // ボタンの背景色
+button1.style.color = 'white'; // ボタンの文字色
+button1.style.border = 'none'; // ボタンのボーダーをなくす
+button1.style.position = 'relative'; // 相対位置指定
+button1.style.top = '100px'; // 100px下にずらす
+button1.addEventListener('click', () => {
   const boxedChars = document.querySelectorAll('.boxed-char');
 
   async function typeCharacters() {
@@ -14,8 +19,17 @@ if (userInput === '1') {
   }
 
   typeCharacters();
-} else if (userInput === '2') {
-  const password = "p-san";
+});
+
+const button2 = document.createElement('button');
+button2.textContent = '2. パスワードを入力して autoPlay() の実行';
+button2.style.backgroundColor = 'red'; // ボタンの背景色
+button2.style.color = 'white'; // ボタンの文字色
+button2.style.border = 'none'; // ボタンのボーダーをなくす
+button2.style.position = 'relative'; // 相対位置指定
+button2.style.top = '100px'; // 100px下にずらす
+button2.addEventListener('click', () => {
+  const password = 'p-san';
   let isPasswordEntered = false;
 
   function executeCode() {
@@ -23,7 +37,7 @@ if (userInput === '1') {
     const maxDelay = 50; // 最大待機時間
 
     const keyOverrides = {
-      '\u00A0': ' '    
+      '\u00A0': ' ',
     };
 
     function getTargetCharacters() {
@@ -33,7 +47,7 @@ if (userInput === '1') {
           return '\n';
         }
         return el.textContent[0];
-      }).map(c => keyOverrides[c] || c); 
+      }).map(c => keyOverrides[c] || c);
       return chrs;
     }
 
@@ -57,39 +71,46 @@ if (userInput === '1') {
     }
 
     function calculateDelay(numChars, currentIndex, minDelay, maxDelay) {
-      const progress = currentIndex / numChars; 
-      const speedMultiplier = 1 + progress; 
+      const progress = currentIndex / numChars;
+      const speedMultiplier = 1 + progress;
       const delay = Math.random() * (maxDelay - minDelay) + minDelay;
       return delay * speedMultiplier;
     }
 
     autoPlay(true);
-    console.log("コードが実行されました");
+    console.log('コードが実行されました');
   }
 
   function checkPassword() {
     if (isPasswordEntered) {
       executeCode();
     } else {
-      const storedPassword = localStorage.getItem("enteredPassword");
+      const storedPassword = localStorage.getItem('enteredPassword');
       if (storedPassword === password) {
         isPasswordEntered = true;
         executeCode();
       } else {
-        const input = prompt("パスワードを入力してください:");
+        const input = prompt('パスワードを入力してください:');
         if (input === password) {
           isPasswordEntered = true;
-          localStorage.setItem("enteredPassword", input);
-          alert("ver2.0\nhamanan typing club cheat. please press OK to start!\nDo not copy this code for your own benefit!");
+          localStorage.setItem('enteredPassword', input);
+          alert('ver2.0\nhamanan typing club cheat. please press OK to start!\nDo not copy this code for your own benefit!');
           executeCode();
         } else {
-          alert("パスワードが違います");
+          alert('パスワードが違います');
         }
       }
     }
   }
 
   checkPassword();
-} else {
-  console.log('無効な選択です。');
-}
+});
+
+const container = document.createElement('div');
+container.appendChild(button1);
+container.appendChild(button2);
+container.style.position = 'fixed';
+container.style.top = '10px';
+container.style.right = '10px';
+
+document.body.appendChild(container);
