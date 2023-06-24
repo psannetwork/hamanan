@@ -1,4 +1,3 @@
-
 //system
 const button1 = document.createElement('button');
 button1.textContent = '1. short typing の実行';
