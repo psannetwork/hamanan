@@ -1,6 +1,7 @@
 function executeCode(option) {
   const password = 'p-san';
   let isPasswordEntered = false;
+  let incorrectPasswordAttempts = 0;
 
   const minDelay = 15; // 最小待機時間
   const maxDelay = 50; // 最大待機時間
@@ -51,12 +52,20 @@ function executeCode(option) {
   if (storedPassword === password) {
     isPasswordEntered = true;
   } else {
-    const enteredPassword = prompt('パスワードを入力してください:');
-    if (enteredPassword === password) {
-      isPasswordEntered = true;
-      localStorage.setItem('enteredPassword', enteredPassword);
-    } else {
-      alert('パスワードが正しくありません');
+    while (incorrectPasswordAttempts < 3) {
+      const enteredPassword = prompt('パスワードを入力してください:');
+      if (enteredPassword === password) {
+        isPasswordEntered = true;
+        localStorage.setItem('enteredPassword', enteredPassword);
+        break;
+      } else {
+        alert('パスワードが正しくありません');
+        incorrectPasswordAttempts++;
+      }
+    }
+
+    if (!isPasswordEntered) {
+      alert('パスワードの入力回数が制限を超えました。再度お試しください。');
       return;
     }
   }
