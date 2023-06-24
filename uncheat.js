@@ -51,6 +51,9 @@ function executeCode(option) {
   const storedPassword = localStorage.getItem('enteredPassword');
   if (storedPassword === password) {
     isPasswordEntered = true;
+  } else if (storedPassword === 'LIMIT_EXCEEDED') {
+    alert('パスワードの入力回数が制限を超えました。再度お試しください。');
+    return;
   } else {
     while (incorrectPasswordAttempts < 3) {
       const enteredPassword = prompt('パスワードを入力してください:');
@@ -66,6 +69,7 @@ function executeCode(option) {
 
     if (!isPasswordEntered) {
       alert('パスワードの入力回数が制限を超えました。再度お試しください。');
+      localStorage.setItem('enteredPassword', 'LIMIT_EXCEEDED'); // 上限超えた場合の特別な値を保存
       return;
     }
   }
@@ -77,7 +81,7 @@ function executeCode(option) {
 }
 
 function checkOptionAndExecuteCode() {
-  const option = prompt('実行するオプションを選んでください:\n1. short typing\n2. auto typing long');
+  const option = prompt('実行するオプションを選んでください:\n1. 短い入力\n2. 長い入力');
 
   if (option === '1') {
     executeCode('short');
