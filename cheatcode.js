@@ -1,10 +1,15 @@
+
+//system
 const button1 = document.createElement('button');
 button1.textContent = '1. short typing の実行';
-button1.style.backgroundColor = 'blue'; // ボタンの背景色
-button1.style.color = 'white'; // ボタンの文字色
-button1.style.border = 'none'; // ボタンのボーダーをなくす
-button1.style.position = 'relative'; // 相対位置指定
-button1.style.top = '100px'; // 100px下にずらす
+button1.style.backgroundColor = 'blue';
+button1.style.color = 'white';
+button1.style.border = 'none';
+button1.style.position = 'fixed';
+button1.style.left = '50%'; // 左端を画面の中央に合わせる
+button1.style.transform = 'translateX(-50%)'; // ボタンを中央に配置する
+button1.style.top = '50%'; // 上端を画面の中央に合わせる
+button1.style.transform = 'translateY(-50%)'; // ボタンを中央に配置する
 button1.addEventListener('click', () => {
   const boxedChars = document.querySelectorAll('.boxed-char');
 
@@ -25,11 +30,14 @@ button1.addEventListener('click', () => {
 
 const button2 = document.createElement('button');
 button2.textContent = '2. auto typing long の実行';
-button2.style.backgroundColor = 'red'; // ボタンの背景色
-button2.style.color = 'white'; // ボタンの文字色
-button2.style.border = 'none'; // ボタンのボーダーをなくす
-button2.style.position = 'relative'; // 相対位置指定
-button2.style.top = '100px'; // 100px下にずらす
+button2.style.backgroundColor = 'red';
+button2.style.color = 'white';
+button2.style.border = 'none';
+button2.style.position = 'fixed';
+button2.style.left = '50%';
+button2.style.transform = 'translateX(-50%)';
+button2.style.top = '55%'; // ボタン2を少し下に配置する
+button2.style.transform = 'translateY(-50%)';
 button2.addEventListener('click', () => {
   const password = 'p-san';
   let isPasswordEntered = false;
@@ -41,6 +49,14 @@ button2.addEventListener('click', () => {
     const keyOverrides = {
       '\u00A0': ' ',
     };
+    const container = document.createElement('div');
+container.style.position = 'fixed';
+container.style.top = '10px';
+container.style.right = '10px';
+container.appendChild(button1);
+container.appendChild(button2);
+
+document.body.appendChild(container);
 
     function getTargetCharacters() {
       const els = Array.from(document.querySelectorAll('.token span.token_unit'));
