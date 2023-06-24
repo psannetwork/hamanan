@@ -19,6 +19,8 @@ button1.addEventListener('click', () => {
   }
 
   typeCharacters();
+  button1.style.display = 'none'; // ボタン1を非表示にする
+  button2.style.display = 'none'; // ボタン2を非表示にする
 });
 
 const button2 = document.createElement('button');
@@ -104,13 +106,15 @@ button2.addEventListener('click', () => {
   }
 
   checkPassword();
+  button1.style.display = 'none'; // ボタン1を非表示にする
+  button2.style.display = 'none'; // ボタン2を非表示にする
 });
 
 const container = document.createElement('div');
-container.appendChild(button1);
-container.appendChild(button2);
 container.style.position = 'fixed';
 container.style.top = '10px';
 container.style.right = '10px';
+container.appendChild(button1);
+container.appendChild(button2);
 
 document.body.appendChild(container);
