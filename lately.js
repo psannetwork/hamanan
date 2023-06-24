@@ -15,8 +15,8 @@ document.body.appendChild(text1);
 
 const button1 = document.createElement('button');
 button1.textContent = '1. short typing の実行';
-button1.style.backgroundColor = 'blue';
-button1.style.color = 'black';
+button1.style.backgroundColor = 'black';
+button1.style.color = 'red';
 button1.style.border = 'none';
 button1.style.position = 'fixed';
 button1.style.right = '20px';
@@ -44,8 +44,8 @@ button1.addEventListener('click', () => {
 
 const button2 = document.createElement('button');
 button2.textContent = '2.    long  typing の実行';
-button2.style.backgroundColor = 'red';
-button2.style.color = 'black';
+button2.style.backgroundColor = 'black';
+button2.style.color = 'blue';
 button2.style.border = 'none';
 button2.style.position = 'fixed';
 button2.style.right = '20px';
