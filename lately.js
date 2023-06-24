@@ -42,6 +42,93 @@ button1.addEventListener('click', () => {
   button2.style.display = 'none'; // ボタン2を非表示にする
 });
 
+const button3 = document.createElement('button');
+button3.textContent = '3. auto click';
+button3.style.backgroundColor = 'black';
+button3.style.color = 'green';
+button3.style.border = 'none';
+button3.style.position = 'fixed';
+button3.style.right = '20px';
+button3.style.transform = 'translateX(-50%)';
+button3.style.top = '111px';
+button3.style.transform = 'translateY(-50%)';
+button3.style.zIndex = '9999';
+button3.addEventListener('click', () => {
+const minDelay = 40;
+const maxDelay = 40;
+
+const keyOverrides = {
+  [String.fromCharCode(160)]: ' '
+};
+
+function getTargetCharacters() {
+  const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+  const chrs = els
+    .map(el => {
+      if (el.firstChild?.classList?.contains('_enter')) {
+        return '\n';
+      }
+      let text = el.textContent[0];
+      return text;
+    })
+    .map(c => keyOverrides.hasOwnProperty(c) ? keyOverrides[c] : c);
+  return chrs;
+}
+
+function recordKey(chr) {
+  window.core.record_keydown_time(chr);
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+function calculateDelay(currentIndex, numChars) {
+  const progress = currentIndex / numChars;
+  const speedMultiplier = 1 + progress;
+  const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+  return delay * speedMultiplier;
+}
+
+function clickButtonWhenVisible() {
+  const button = document.querySelector('.btn.navbar-continue');
+  if (button) {
+    button.click();
+    console.log('ボタンをクリックしました');
+  } else {
+    console.log('ボタンが見つかりません');
+    setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+  }
+}
+
+async function autoPlay(finish) {
+  const chrs = getTargetCharacters();
+  const numChars = chrs.length;
+  let delay = maxDelay;
+  for (let i = 0; i < numChars - (!finish); ++i) {
+    const c = chrs[i];
+    recordKey(c);
+    await sleep(delay);
+    if (i > 0 && i % 10 === 0) {
+      delay = calculateDelay(i, numChars);
+    }
+  }
+
+  // 自動再生が完了した後、3秒後に再度実行
+  setTimeout(() => {
+    clickButtonWhenVisible();
+    autoPlay(true);
+  }, 3000);
+}
+
+clickButtonWhenVisible();
+autoPlay(true);  console.log('新しいモードが実行されました');
+});
+
+document.body.appendChild(button3);
+
+//ここまで3
+
 const button2 = document.createElement('button');
 button2.textContent = '2.    long  typing の実行';
 button2.style.backgroundColor = 'black';
