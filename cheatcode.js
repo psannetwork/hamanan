@@ -1,5 +1,5 @@
 const button1 = document.createElement('button');
-button1.textContent = '1. typeCharacters() の実行';
+button1.textContent = '1. short typing の実行';
 button1.style.backgroundColor = 'blue'; // ボタンの背景色
 button1.style.color = 'white'; // ボタンの文字色
 button1.style.border = 'none'; // ボタンのボーダーをなくす
@@ -22,7 +22,7 @@ button1.addEventListener('click', () => {
 });
 
 const button2 = document.createElement('button');
-button2.textContent = '2. パスワードを入力して autoPlay() の実行';
+button2.textContent = '2. auto typing long の実行';
 button2.style.backgroundColor = 'red'; // ボタンの背景色
 button2.style.color = 'white'; // ボタンの文字色
 button2.style.border = 'none'; // ボタンのボーダーをなくす
