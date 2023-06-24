@@ -55,7 +55,7 @@ button3.style.transform = 'translateY(-50%)';
 button3.style.zIndex = '9999';
 button3.addEventListener('click', () => {
 const minDelay = 15;
-const maxDelay = 20;
+const maxDelay = 30;
 
 const keyOverrides = {
   [String.fromCharCode(160)]: ' '
@@ -97,7 +97,8 @@ function clickButtonWhenVisible() {
     console.log('ボタンをクリックしました');
   } else {
     console.log('ボタンが見つかりません');
-    setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+    setTimeout(clickButtonWhenVisible, 1000);
+    console.clear();// 1秒ごとに再試行
   }
 }
 
@@ -114,11 +115,11 @@ async function autoPlay(finish) {
     }
   }
 
-  // 自動再生が完了した後、3秒後に再度実行
+  // 自動再生が完了した後、5秒後に再度実行
   setTimeout(() => {
     clickButtonWhenVisible();
     autoPlay(true);
-  }, 3000);
+  }, 5000);
 }
 
 clickButtonWhenVisible();
