@@ -90,7 +90,7 @@ if (userInput === '1') {
 }
 
 autoPlay(true);
-//r typing
+//r typing prompt
 function recordRandomKeys() {
   const promptText = prompt('文字列を入力してください:');
   const numKeys = 100; // 入力するキーの数
@@ -122,3 +122,33 @@ function recordRandomKeys() {
 recordRandomKeys();
 
 
+//r typing
+function recordRandomKeys() {
+  const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+  const numKeys = 100; // 入力するキーの数
+
+  async function typeCharacters() {
+    for (let i = 0; i < numKeys; i++) {
+      const randomChar = getRandomCharacter();
+      recordKey(randomChar);
+      await sleep(50); // 50ミリ秒待機
+    }
+  }
+
+  function getRandomCharacter() {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    return characters.charAt(randomIndex);
+  }
+
+  function recordKey(chr) {
+    window.core.record_keydown_time(chr);
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  typeCharacters();
+}
+
+recordRandomKeys();
