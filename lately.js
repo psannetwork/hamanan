@@ -56,7 +56,21 @@ button2.style.zIndex = '9999';
 button2.addEventListener('click', () => {
   const password = 'p-san';
   let isPasswordEntered = false;
+  //button finish
+function clickButtonWhenVisible() {
+  const button = document.querySelector('.btn.navbar-continue');
+  if (button) {
+    button.click();
+    console.log('ボタンをクリックしました');
+  } else {
+    console.log('ボタンが見つかりません');
+    setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+  }
+}
 
+clickButtonWhenVisible();
+//ここまで
+  
   function executeCode() {
     const minDelay = 15; // 最小待機時間
     const maxDelay = 50; // 最大待機時間
@@ -140,3 +154,4 @@ container.appendChild(button2);
 
 document.body.appendChild(container);
 container.style.zIndex = '9999';//手前に持ってくる
+
