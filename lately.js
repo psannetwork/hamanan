@@ -54,8 +54,8 @@ button3.style.top = '111px';
 button3.style.transform = 'translateY(-50%)';
 button3.style.zIndex = '9999';
 button3.addEventListener('click', () => {
-const minDelay = 40;
-const maxDelay = 40;
+const minDelay = 15;
+const maxDelay = 20;
 
 const keyOverrides = {
   [String.fromCharCode(160)]: ' '
