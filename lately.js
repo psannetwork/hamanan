@@ -43,7 +43,7 @@ button1.addEventListener('click', () => {
 });
 
 const button2 = document.createElement('button');
-button2.textContent = '2. auto typing long の実行';
+button2.textContent = '2.    long  typing の実行';
 button2.style.backgroundColor = 'red';
 button2.style.color = 'white';
 button2.style.border = 'none';
@@ -139,3 +139,4 @@ container.appendChild(button1);
 container.appendChild(button2);
 
 document.body.appendChild(container);
+container.style.zIndex = '9999';//手前に持ってくる
