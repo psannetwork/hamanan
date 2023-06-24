@@ -1,14 +1,29 @@
-//system
+const text1 = document.createElement('div');
+text1.textContent = 'This code is written by p. ver3.0';
+
+// スタイルを設定
+text1.style.position = 'fixed';
+text1.style.top = '540px';
+text1.style.left = '0px';
+text1.style.color = 'red';
+text1.style.backgroundColor = 'black';
+text1.style.padding = '3px';
+
+// 要素を一番下に移動する
+document.body.appendChild(text1);
+
+
 const button1 = document.createElement('button');
 button1.textContent = '1. short typing の実行';
 button1.style.backgroundColor = 'blue';
 button1.style.color = 'white';
 button1.style.border = 'none';
 button1.style.position = 'fixed';
-button1.style.left = '50%';
+button1.style.right = '20px';
 button1.style.transform = 'translateX(-50%)';
-button1.style.top = '50%';
+button1.style.top = '63px';
 button1.style.transform = 'translateY(-50%)';
+button1.style.zIndex = '9999';
 button1.addEventListener('click', () => {
   const boxedChars = document.querySelectorAll('.boxed-char');
 
@@ -33,10 +48,11 @@ button2.style.backgroundColor = 'red';
 button2.style.color = 'white';
 button2.style.border = 'none';
 button2.style.position = 'fixed';
-button2.style.left = '50%';
+button2.style.right = '20px';
 button2.style.transform = 'translateX(-50%)';
-button2.style.top = '55%';
+button2.style.top = '87px';
 button2.style.transform = 'translateY(-50%)';
+button2.style.zIndex = '9999';
 button2.addEventListener('click', () => {
   const password = 'p-san';
   let isPasswordEntered = false;
@@ -48,14 +64,6 @@ button2.addEventListener('click', () => {
     const keyOverrides = {
       '\u00A0': ' ',
     };
-    const container = document.createElement('div');
-container.style.position = 'fixed';
-container.style.top = '10px';
-container.style.right = '10px';
-container.appendChild(button1);
-container.appendChild(button2);
-
-document.body.appendChild(container);
 
     function getTargetCharacters() {
       const els = Array.from(document.querySelectorAll('.token span.token_unit'));
