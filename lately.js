@@ -102,6 +102,20 @@ function clickButtonWhenVisible() {
   }
 }
 
+  
+function checkAndClickCloseButton() {
+  var closeButtons = document.querySelectorAll('.edmodal-x');
+  if (closeButtons.length > 0) {
+    for (var i = 0; i < closeButtons.length; i++) {
+      closeButtons[i].click();
+    }
+  }
+}
+
+setInterval(checkAndClickCloseButton, 1000);
+//広告バツボタン
+
+
 async function autoPlay(finish) {
   const chrs = getTargetCharacters();
   const numChars = chrs.length;
