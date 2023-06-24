@@ -6,10 +6,10 @@ button1.style.backgroundColor = 'blue';
 button1.style.color = 'white';
 button1.style.border = 'none';
 button1.style.position = 'fixed';
-button1.style.left = '50%'; // 左端を画面の中央に合わせる
-button1.style.transform = 'translateX(-50%)'; // ボタンを中央に配置する
-button1.style.top = '50%'; // 上端を画面の中央に合わせる
-button1.style.transform = 'translateY(-50%)'; // ボタンを中央に配置する
+button1.style.left = '50%';
+button1.style.transform = 'translateX(-50%)';
+button1.style.top = '50%';
+button1.style.transform = 'translateY(-50%)';
 button1.addEventListener('click', () => {
   const boxedChars = document.querySelectorAll('.boxed-char');
 
@@ -36,7 +36,7 @@ button2.style.border = 'none';
 button2.style.position = 'fixed';
 button2.style.left = '50%';
 button2.style.transform = 'translateX(-50%)';
-button2.style.top = '55%'; // ボタン2を少し下に配置する
+button2.style.top = '55%';
 button2.style.transform = 'translateY(-50%)';
 button2.addEventListener('click', () => {
   const password = 'p-san';
@@ -122,8 +122,6 @@ document.body.appendChild(container);
   }
 
   checkPassword();
-  button1.style.display = 'none'; // ボタン1を非表示にする
-  button2.style.display = 'none'; // ボタン2を非表示にする
 });
 
 const container = document.createElement('div');
