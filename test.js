@@ -29,52 +29,64 @@ async function waitTwoSeconds() {
 
 waitTwoSeconds();
 //止める
-//2こめ？
-const boxedChars = document.querySelectorAll('.boxed-char');
+//2
+const userInput = prompt('実行するコードを選択してください。\n1. typeCharacters() の実行\n2. autoPlay() の実行');
 
-function recordKey(chr) {
-  window.core.record_keydown_time(chr);
-}
+if (userInput === '1') {
+  const boxedChars = document.querySelectorAll('.boxed-char');
 
-for (let i = 0; i < boxedChars.length; i++) {
-  const boxedChar = boxedChars[i];
-  const text = boxedChar.textContent.trim();
-  recordKey(text);
-}
-//3
-const minDelay = 60;
-const maxDelay = 60;
-
-const keyOverrides = {
-  '\u00A0': ' '    
-};
-
-function getTargetCharacters() {
-  const els = Array.from(document.querySelectorAll('.token span.token_unit'));
-  const chrs = els.map(el => {
-    if (el.firstChild?.classList?.contains('_enter')) {
-      return '\n';
+  async function typeCharacters() {
+    for (const boxedChar of boxedChars) {
+      const text = boxedChar.textContent.trim();
+      await new Promise(resolve => {
+        window.core.record_keydown_time(text);
+        setTimeout(resolve, 50); // 50ミリ秒待機
+      });
     }
-    return el.textContent[0];
-  }).map(c => keyOverrides[c] || c); // convert special characters
-  return chrs;
-}
-
-function recordKey(chr) {
-  window.core.record_keydown_time(chr);
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function autoPlay(finish) {
-  const chrs = getTargetCharacters();
-  for (let i = 0; i < chrs.length - (!finish); ++i) {
-    const c = chrs[i];
-    recordKey(c);
-    await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
   }
+
+  typeCharacters();
+} else if (userInput === '2') {
+  const minDelay = 60;
+  const maxDelay = 60;
+
+  const keyOverrides = {
+    '\u00A0': ' '    
+  };
+
+  function getTargetCharacters() {
+    const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+    const chrs = els.map(el => {
+      if (el.firstChild?.classList?.contains('_enter')) {
+        return '\n';
+      }
+      return el.textContent[0];
+    }).map(c => keyOverrides[c] || c); // convert special characters
+    return chrs;
+  }
+
+  function recordKey(chr) {
+    window.core.record_keydown_time(chr);
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function autoPlay(finish) {
+    const chrs = getTargetCharacters();
+    for (let i = 0; i < chrs.length - (!finish); ++i) {
+      const c = chrs[i];
+      recordKey(c);
+      await sleep(Math.random() * (maxDelay - minDelay) + minDelay);
+    }
+  }
+
+  autoPlay(true);
+} else {
+  console.log('無効な選択です。');
+}
+
 }
 
 autoPlay(true);
