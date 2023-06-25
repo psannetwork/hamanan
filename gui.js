@@ -2,14 +2,24 @@
 const square = document.createElement('div');
 square.style.width = '100vw';
 square.style.height = '100vh';
-square.style.backgroundImage = "url('https://sozaino.site/wp-content/uploads/2021/02/utyuu.jpg')";
-square.style.backgroundSize = 'cover';
-square.style.backgroundPosition = 'center';
 square.style.position = 'fixed';
 square.style.top = '0px';
 square.style.right = '0px';
 square.style.zIndex = '9990';
 square.style.display = 'none';
+
+// 画像の読み込みを試みる
+const image = new Image();
+image.src = 'https://sozaino.site/wp-content/uploads/2021/02/utyuu.jpg';
+image.onload = () => {
+  // 画像の読み込みに成功した場合
+  square.style.backgroundImage = `url('${image.src}')`;
+};
+
+image.onerror = () => {
+  // 画像の読み込みに失敗した場合（黒い四角にする）
+  square.style.backgroundColor = '#202f55';
+};
 
 // テキスト要素の作成
 const text = document.createElement('div');
