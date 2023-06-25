@@ -23,7 +23,7 @@ button1.style.right = '20px';
 button1.style.transform = 'translateX(-50%)';
 button1.style.top = '63px';
 button1.style.transform = 'translateY(-50%)';
-button1.style.zIndex = '9999';
+button1.style.zIndex = '99999';
 button1.addEventListener('click', () => {
   const boxedChars = document.querySelectorAll('.boxed-char');
 
@@ -50,7 +50,7 @@ button3.style.right = '20px';
 button3.style.transform = 'translateX(-50%)';
 button3.style.top = '111px';
 button3.style.transform = 'translateY(-50%)';
-button3.style.zIndex = '9999';
+button3.style.zIndex = '99999';
 button3.addEventListener('click', () => {
   const minDelay = 600; // 18
   const maxDelay = 800; // 35
@@ -150,7 +150,7 @@ button2.style.right = '20px';
 button2.style.transform = 'translateX(-50%)';
 button2.style.top = '87px';
 button2.style.transform = 'translateY(-50%)';
-button2.style.zIndex = '9999';
+button2.style.zIndex = '99999';
 button2.addEventListener('click', () => {
   const password = 'p-san';
   let isPasswordEntered = false;
@@ -251,5 +251,5 @@ container.appendChild(button1);
 container.appendChild(button2);
 
 document.body.appendChild(container);
-container.style.zIndex = '9999'; //手前に持ってくる
+container.style.zIndex = '99999'; //手前に持ってくる
 // 1押したら非表示になってしまう
