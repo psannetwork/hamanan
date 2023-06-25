@@ -1,4 +1,3 @@
-// 新しい要素（四角形）を作成
 const square = document.createElement('div');
 square.style.width = '100vw'; // 画面幅いっぱいにする
 square.style.height = '100vh'; // 画面高さいっぱいにする
@@ -8,7 +7,7 @@ square.style.backgroundPosition = 'center'; // 画像を中央に配置
 square.style.position = 'fixed';
 square.style.top = '0px';
 square.style.right = '0px';
-square.style.zIndex = '9990';
+square.style.zIndex = '9990';//四角
 
 // テキスト要素の作成
 const text = document.createElement('div');
