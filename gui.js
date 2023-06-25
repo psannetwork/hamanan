@@ -42,6 +42,7 @@ slideButton.addEventListener('click', () => {
     text.style.display = 'block';
     button1.style.display = 'block';
     button2.style.display = 'block';
+    button3.style.display = 'block';
     slideButton.textContent = 'Close';
   } else {
     // 表示されている場合は非表示にする
@@ -49,13 +50,14 @@ slideButton.addEventListener('click', () => {
     text.style.display = 'none';
     button1.style.display = 'none';
     button2.style.display = 'none';
+    button3.style.display = 'none';
     slideButton.textContent = 'Menu';
   }
 });
 
 // ボタン要素1の作成
 const button1 = document.createElement('button');
-button1.textContent = 'Button 1';
+button1.textContent = 'cheat js';
 button1.style.backgroundColor = 'red';
 button1.style.color = 'white';
 button1.style.position = 'fixed';
@@ -68,13 +70,12 @@ button1.style.height = '50px'; // ボタンの高さを50pxに設定
 
 // ボタン1のクリックイベントの追加
 button1.addEventListener('click', () => {
-  fetch('https://api.github.com/repos/ユーザー名/リポジトリ名/contents/ファイルパス')
-    .then(response => response.json())
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/cheatcode.js')
+    .then(response => response.text()) // テキストとして取得
     .then(data => {
       // GitHub上のコードを実行する処理
       console.log('ボタン1がクリックされました');
-      console.log(data);
-      // ここにコードの実行
+      eval(data); // 取得したコードを実行
     })
     .catch(error => {
       console.error('エラーが発生しました', error);
@@ -83,7 +84,7 @@ button1.addEventListener('click', () => {
 
 // ボタン要素2の作成
 const button2 = document.createElement('button');
-button2.textContent = 'Button 2';
+button2.textContent = 'devmode';
 button2.style.backgroundColor = 'green';
 button2.style.color = 'white';
 button2.style.position = 'fixed';
@@ -96,13 +97,39 @@ button2.style.height = '50px'; // ボタンの高さを50pxに設定
 
 // ボタン2のクリックイベントの追加
 button2.addEventListener('click', () => {
-  fetch('https://api.github.com/repos/ユーザー名/リポジトリ名/contents/ファイルパス')
-    .then(response => response.json())
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/lately.js')
+    .then(response => response.text()) // テキストとして取得
     .then(data => {
       // GitHub上のコードを実行する処理
       console.log('ボタン2がクリックされました');
-      console.log(data);
-      // ここにコードの実行
+      eval(data); // 取得したコードを実行
+    })
+    .catch(error => {
+      console.error('エラーが発生しました', error);
+    });
+});
+
+// ボタン要素3の作成
+const button3 = document.createElement('button');
+button3.textContent = 'dino';
+button3.style.backgroundColor = 'blue';
+button3.style.color = 'white';
+button3.style.position = 'fixed';
+button3.style.top = '450px'; // 上から450px下にずらす
+button3.style.left = '45%';
+button3.style.zIndex = '9999';
+button3.style.display = 'none'; // 初期状態では非表示
+button3.style.width = '150px'; // ボタンの幅を150pxに設定
+button3.style.height = '50px'; // ボタンの高さを50pxに設定
+
+// ボタン3のクリックイベントの追加
+button3.addEventListener('click', () => {
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/dino_cheat.js')
+    .then(response => response.text()) // テキストとして取得
+    .then(data => {
+      // GitHub上のコードを実行する処理
+      console.log('ボタン3がクリックされました');
+      eval(data); // 取得したコードを実行
     })
     .catch(error => {
       console.error('エラーが発生しました', error);
@@ -113,6 +140,7 @@ button2.addEventListener('click', () => {
 document.body.appendChild(slideButton);
 document.body.appendChild(button1);
 document.body.appendChild(button2);
+document.body.appendChild(button3);
 
 // テキストをドキュメントに追加
 document.body.appendChild(text);
