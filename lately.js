@@ -38,8 +38,6 @@ button1.addEventListener('click', () => {
   }
 
   typeCharacters();
-  button1.style.display = 'none'; // ボタン1を非表示にする
-  button2.style.display = 'none'; // ボタン2を非表示にする
 });
 
 const button3 = document.createElement('button');
@@ -54,99 +52,96 @@ button3.style.top = '111px';
 button3.style.transform = 'translateY(-50%)';
 button3.style.zIndex = '9999';
 button3.addEventListener('click', () => {
-const minDelay = 600;//18
-const maxDelay = 800;//35
+  const minDelay = 600; // 18
+  const maxDelay = 800; // 35
 
+  const keyOverrides = {
+    [String.fromCharCode(160)]: ' ',
+  };
 
-const keyOverrides = {
-  [String.fromCharCode(160)]: ' '
-};
+  function getTargetCharacters() {
+    const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+    const chrs = els
+      .map(el => {
+        if (el.firstChild?.classList?.contains('_enter')) {
+          return '\n';
+        }
+        let text = el.textContent[0];
+        return text;
+      })
+      .map(c => keyOverrides.hasOwnProperty(c) ? keyOverrides[c] : c);
+    return chrs;
+  }
 
-function getTargetCharacters() {
-  const els = Array.from(document.querySelectorAll('.token span.token_unit'));
-  const chrs = els
-    .map(el => {
-      if (el.firstChild?.classList?.contains('_enter')) {
-        return '\n';
+  function recordKey(chr) {
+    window.core.record_keydown_time(chr);
+  }
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  function calculateDelay(currentIndex, numChars) {
+    const progress = currentIndex / numChars;
+    const speedMultiplier = 1 + progress;
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    return delay * speedMultiplier;
+  }
+
+  function clickButtonWhenVisible() {
+    const button = document.querySelector('.btn.navbar-continue');
+    if (button) {
+      button.click();
+      console.log('ボタンをクリックしました');
+    } else {
+      console.log('ボタンが見つかりません');
+      setTimeout(clickButtonWhenVisible, 1000);
+      console.clear(); // 1秒ごとに再試行
+    }
+  }
+
+  function checkAndClickCloseButton() {
+    var closeButtons = document.querySelectorAll('.edmodal-x');
+    if (closeButtons.length > 0) {
+      for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].click();
       }
-      let text = el.textContent[0];
-      return text;
-    })
-    .map(c => keyOverrides.hasOwnProperty(c) ? keyOverrides[c] : c);
-  return chrs;
-}
-
-function recordKey(chr) {
-  window.core.record_keydown_time(chr);
-}
-
-function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
-}
-
-function calculateDelay(currentIndex, numChars) {
-  const progress = currentIndex / numChars;
-  const speedMultiplier = 1 + progress;
-  const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-  return delay * speedMultiplier;
-}
-
-function clickButtonWhenVisible() {
-  const button = document.querySelector('.btn.navbar-continue');
-  if (button) {
-    button.click();
-    console.log('ボタンをクリックしました');
-  } else {
-    console.log('ボタンが見つかりません');
-    setTimeout(clickButtonWhenVisible, 1000);
-    console.clear();// 1秒ごとに再試行
-  }
-}
-
-  
-function checkAndClickCloseButton() {
-  var closeButtons = document.querySelectorAll('.edmodal-x');
-  if (closeButtons.length > 0) {
-    for (var i = 0; i < closeButtons.length; i++) {
-      closeButtons[i].click();
-    }
-  }
-}
-
-setInterval(checkAndClickCloseButton, 1000);
-//広告バツボタン
-
-
-async function autoPlay(finish) {
-  const chrs = getTargetCharacters();
-  const numChars = chrs.length;
-  let delay = maxDelay;
-  for (let i = 0; i < numChars - (!finish); ++i) {
-    const c = chrs[i];
-    recordKey(c);
-    await sleep(delay);
-    if (i > 0 && i % 10 === 0) {
-      delay = calculateDelay(i, numChars);
     }
   }
 
-  // 自動再生が完了した後、5秒後に再度実行
-  setTimeout(() => {
-    clickButtonWhenVisible();
-    autoPlay(true);
-  }, 5000);
-}
+  setInterval(checkAndClickCloseButton, 1000); //広告バツボタン
 
-clickButtonWhenVisible();
-autoPlay(true);  console.log('新しいモードが実行されました');
+  async function autoPlay(finish) {
+    const chrs = getTargetCharacters();
+    const numChars = chrs.length;
+    let delay = maxDelay;
+    for (let i = 0; i < numChars - (!finish); ++i) {
+      const c = chrs[i];
+      recordKey(c);
+      await sleep(delay);
+      if (i > 0 && i % 10 === 0) {
+        delay = calculateDelay(i, numChars);
+      }
+    }
+
+    // 自動再生が完了した後、5秒後に再度実行
+    setTimeout(() => {
+      clickButtonWhenVisible();
+      autoPlay(true);
+    }, 5000);
+  }
+
+  clickButtonWhenVisible();
+  autoPlay(true);
+  console.log('新しいモードが実行されました');
 });
 
 document.body.appendChild(button3);
 
-//ここまで3
+// ここまで3
 
 const button2 = document.createElement('button');
-button2.textContent = '2.    long  typing の実行';
+button2.textContent = '2. long typing の実行';
 button2.style.backgroundColor = 'black';
 button2.style.color = 'blue';
 button2.style.border = 'none';
@@ -159,21 +154,21 @@ button2.style.zIndex = '9999';
 button2.addEventListener('click', () => {
   const password = 'p-san';
   let isPasswordEntered = false;
-  //button finish
-function clickButtonWhenVisible() {
-  const button = document.querySelector('.btn.navbar-continue');
-  if (button) {
-    button.click();
-    console.log('ボタンをクリックしました');
-  } else {
-    console.log('ボタンが見つかりません');
-    setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
-  }
-}
 
-clickButtonWhenVisible();
-//ここまで
-  
+  function clickButtonWhenVisible() {
+    const button = document.querySelector('.btn.navbar-continue');
+    if (button) {
+      button.click();
+      console.log('ボタンをクリックしました');
+    } else {
+      console.log('ボタンが見つかりません');
+      setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+    }
+  }
+
+  clickButtonWhenVisible();
+  // ここまで
+
   function executeCode() {
     const minDelay = 15; // 最小待機時間
     const maxDelay = 50; // 最大待機時間
@@ -256,5 +251,5 @@ container.appendChild(button1);
 container.appendChild(button2);
 
 document.body.appendChild(container);
-container.style.zIndex = '9999';//手前に持ってくる
-
+container.style.zIndex = '9999'; //手前に持ってくる
+// 1押したら非表示になってしまう
