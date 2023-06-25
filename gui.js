@@ -26,8 +26,8 @@ slideButton.textContent = 'Menu';
 slideButton.style.backgroundColor = 'red';
 slideButton.style.color = 'white';
 slideButton.style.position = 'fixed';
-slideButton.style.top = '80px'; // 上から80px下にずらす
-slideButton.style.right = '20px';
+slideButton.style.bottom = '0px'; // 上から80px下にずらす
+slideButton.style.right = '0px';
 slideButton.style.zIndex = '9999';
 
 // ボタンの初期状態は非表示にする
