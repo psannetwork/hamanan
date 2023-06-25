@@ -1,10 +1,12 @@
 // 新しい要素（四角形）を作成
 const square = document.createElement('div');
-square.style.width = '2000px';
-square.style.height = '2000px';
-square.style.backgroundColor = 'black';
+square.style.width = '100vw'; // 画面幅いっぱいにする
+square.style.height = '100vh'; // 画面高さいっぱいにする
+square.style.backgroundImage = "url('https://sozaino.site/wp-content/uploads/2021/02/utyuu.jpg')";
+square.style.backgroundSize = 'cover'; // 画像を要素に合わせて調整
+square.style.backgroundPosition = 'center'; // 画像を中央に配置
 square.style.position = 'fixed';
-square.style.top = '0px'; // 上から50px下にずらす
+square.style.top = '0px';
 square.style.right = '0px';
 square.style.zIndex = '9990';
 
@@ -21,7 +23,7 @@ text.style.zIndex = '9998';
 // スライドボタンの作成
 const slideButton = document.createElement('button');
 slideButton.textContent = 'Menu';
-slideButton.style.backgroundColor = 'blue';
+slideButton.style.backgroundColor = 'red';
 slideButton.style.color = 'white';
 slideButton.style.position = 'fixed';
 slideButton.style.top = '80px'; // 上から80px下にずらす
@@ -54,13 +56,15 @@ slideButton.addEventListener('click', () => {
 // ボタン要素1の作成
 const button1 = document.createElement('button');
 button1.textContent = 'Button 1';
-button1.style.backgroundColor = 'blue';
+button1.style.backgroundColor = 'red';
 button1.style.color = 'white';
 button1.style.position = 'fixed';
 button1.style.top = '150px'; // 上から150px下にずらす
-button1.style.left = '20px';
+button1.style.left = '45%';
 button1.style.zIndex = '9999';
 button1.style.display = 'none'; // 初期状態では非表示
+button1.style.width = '150px'; // ボタンの幅を200pxに設定
+button1.style.height = '50px'; // ボタンの高さを50pxに設定
 
 // ボタン1のクリックイベントの追加
 button1.addEventListener('click', () => {
@@ -83,10 +87,12 @@ button2.textContent = 'Button 2';
 button2.style.backgroundColor = 'green';
 button2.style.color = 'white';
 button2.style.position = 'fixed';
-button2.style.top = '200px'; // 上から200px下にずらす
-button2.style.left = '20px';
+button2.style.top = '300px'; // 上から200px下にずらす
+button2.style.left = '45%';
 button2.style.zIndex = '9999';
 button2.style.display = 'none'; // 初期状態では非表示
+button2.style.width = '150px'; // ボタンの幅を200pxに設定
+button2.style.height = '50px'; // ボタンの高さを50pxに設定
 
 // ボタン2のクリックイベントの追加
 button2.addEventListener('click', () => {
