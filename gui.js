@@ -57,7 +57,7 @@ slideButton.addEventListener('click', () => {
 
 // ボタン要素1の作成
 const button1 = document.createElement('button');
-button1.textContent = 'cheat js';
+button1.textContent = 'typing js';
 button1.style.backgroundColor = 'red';
 button1.style.color = 'white';
 button1.style.position = 'fixed';
