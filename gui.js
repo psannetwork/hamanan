@@ -83,7 +83,6 @@ button1.addEventListener('click', () => {
       console.error('エラーが発生しました', error);
     });
 });
-
 // ボタン要素2の作成
 const button2 = document.createElement('button');
 button2.textContent = 'devmode';
@@ -110,6 +109,7 @@ button2.addEventListener('click', () => {
       console.error('エラーが発生しました', error);
     });
 });
+
 
 // ボタン要素3の作成
 const button3 = document.createElement('button');
