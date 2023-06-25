@@ -5,7 +5,7 @@ square.style.height = '100vh';
 square.style.position = 'fixed';
 square.style.top = '0px';
 square.style.right = '0px';
-square.style.zIndex = '9990';
+square.style.zIndex = '99998';
 square.style.display = 'none';
 
 // 画像の読み込みを試みる
@@ -29,7 +29,7 @@ text.style.fontSize = '14px';
 text.style.position = 'fixed';
 text.style.bottom = '0px';
 text.style.left = '0px';
-text.style.zIndex = '9998';
+text.style.zIndex = '99999';
 text.style.display = 'none';
 
 // スライドボタンの作成
@@ -40,7 +40,7 @@ slideButton.style.color = 'white';
 slideButton.style.position = 'fixed';
 slideButton.style.bottom = '0px';
 slideButton.style.right = '0px';
-slideButton.style.zIndex = '9999';
+slideButton.style.zIndex = '99999';
 
 // ボタンの初期状態は非表示にする
 square.style.display = 'none';
@@ -78,7 +78,7 @@ button1.style.position = 'fixed';
 button1.style.top = '50%';
 button1.style.left = '50%';
 button1.style.transform = 'translate(-50%, -50%)';
-button1.style.zIndex = '9999';
+button1.style.zIndex = '99999';
 button1.style.display = 'none';
 button1.style.width = '150px';
 button1.style.height = '50px';
@@ -97,6 +97,7 @@ button1.addEventListener('click', () => {
     });
 });
 
+
 // ボタン要素2の作成
 const button2 = document.createElement('button');
 button2.textContent = 'devmode';
@@ -106,7 +107,7 @@ button2.style.position = 'fixed';
 button2.style.top = 'calc(50% + 60px)';
 button2.style.left = '50%';
 button2.style.transform = 'translate(-50%, -50%)';
-button2.style.zIndex = '9999';
+button2.style.zIndex = '99999';
 button2.style.display = 'none';
 button2.style.width = '150px';
 button2.style.height = '50px';
@@ -125,6 +126,7 @@ button2.addEventListener('click', () => {
     });
 });
 
+
 // ボタン要素3の作成
 const button3 = document.createElement('button');
 button3.textContent = 'dino';
@@ -134,7 +136,7 @@ button3.style.position = 'fixed';
 button3.style.top = 'calc(50% + 120px)';
 button3.style.left = '50%';
 button3.style.transform = 'translate(-50%, -50%)';
-button3.style.zIndex = '9999';
+button3.style.zIndex = '99999';
 button3.style.display = 'none';
 button3.style.width = '150px';
 button3.style.height = '50px';
@@ -162,7 +164,7 @@ button4.style.position = 'fixed';
 button4.style.top = 'calc(50% + 180px)';
 button4.style.left = '50%';
 button4.style.transform = 'translate(-50%, -50%)';
-button4.style.zIndex = '9999';
+button4.style.zIndex = '99999';
 button4.style.display = 'none';
 button4.style.width = '150px';
 button4.style.height = '50px';
