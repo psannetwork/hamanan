@@ -1,55 +1,3 @@
-function checkPassword() {
-  var storedAttempts = localStorage.getItem('passwordAttempts');
-  var passwordEntered = localStorage.getItem('passwordEntered');
-
-  if (storedAttempts === null) {
-    storedAttempts = 1;
-    localStorage.setItem('passwordAttempts', storedAttempts);
-  } else {
-    storedAttempts = parseInt(storedAttempts) + 1;
-    localStorage.setItem('passwordAttempts', storedAttempts);
-  }
-
-  if (passwordEntered) {
-    alert('ログイン成功！');
-    return;
-  }
-
-  if (storedAttempts >= 3) {
-    alert('制限がかかりました。後でもう一度お試しください。');
-    localStorage.removeItem('passwordAttempts');
-    return;
-  }
-
-  var passwordInput = prompt('パスワードを入力してください');
-
-  if (passwordInput === 'p-san0208') {
-    localStorage.removeItem('passwordAttempts');
-    localStorage.setItem('passwordEntered', true); // フラグをセット
-    alert('ログイン成功！');
-    // パスワードが正しい場合の処理を追記
-   function checkPassword() {
-  var storedAttempts = localStorage.getItem('passwordAttempts');
-
-  if (storedAttempts === null) {
-    storedAttempts = 1;
-    localStorage.setItem('passwordAttempts', storedAttempts);
-  } else {
-    storedAttempts = parseInt(storedAttempts) + 1;
-    localStorage.setItem('passwordAttempts', storedAttempts);
-  }
-
-  if (storedAttempts >= 3) {
-    alert('制限がかかりました。後でもう一度お試しください。');
-    return; // 制限を超えた場合、入力を受け付けずに終了
-  }
-
-  var passwordInput = prompt('パスワードを入力してください');
-
-  if (passwordInput === 'p-san0208') {
-    localStorage.removeItem('passwordAttempts');
-    alert('ログイン成功！');//code 
-      
     const text1 = document.createElement('div');
 text1.textContent = 'This code is written by p. ver3.0';
 
@@ -305,20 +253,3 @@ container.appendChild(button2);
 document.body.appendChild(container);
 container.style.zIndex = '99999'; //手前に持ってくる
 // 1押したら非表示になってしまう
-
-      
-  } else {
-    alert('パスワードが間違っています。もう一度入力してください。');
-    checkPassword(); // パスワードが間違っている場合は再度入力を求める
-  }
-}
-
-checkPassword(); // 最初のパスワード入力を開始する
-
-  } else {
-    alert('パスワードが間違っています。もう一度入力してください。');
-    checkPassword(); // パスワードが間違っている場合は再度入力を求める
-  }
-}
-
-checkPassword(); // 最初のパスワード入力を開始する
