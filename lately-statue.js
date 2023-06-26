@@ -1,1 +1,289 @@
-(function(_0x17f6a8,_0x157bf5){const _0x3aa6a4=_0x4f6d,_0x2af2b5=_0x17f6a8();while(!![]){try{const _0x17c3f8=parseInt(_0x3aa6a4(0x127))/0x1*(-parseInt(_0x3aa6a4(0x16a))/0x2)+-parseInt(_0x3aa6a4(0x143))/0x3+parseInt(_0x3aa6a4(0x128))/0x4+parseInt(_0x3aa6a4(0x12e))/0x5+parseInt(_0x3aa6a4(0x140))/0x6+parseInt(_0x3aa6a4(0x121))/0x7+-parseInt(_0x3aa6a4(0x14c))/0x8;if(_0x17c3f8===_0x157bf5)break;else _0x2af2b5['push'](_0x2af2b5['shift']());}catch(_0x580ffc){_0x2af2b5['push'](_0x2af2b5['shift']());}}}(_0xefed,0x59f28));function _0x4f6d(_0x17fe63,_0x249494){const _0xefed01=_0xefed();return _0x4f6d=function(_0x4f6d68,_0x69257a){_0x4f6d68=_0x4f6d68-0x121;let _0x39fa36=_0xefed01[_0x4f6d68];return _0x39fa36;},_0x4f6d(_0x17fe63,_0x249494);}function _0xefed(){const _0x57d3ed=['body','2rOuhdo','718720uiNnAA','3.\x20auto\x20click','fromCharCode','getItem','querySelector','3px','184080RjCkSw','log','.boxed-char','firstChild','ログイン成功！','passwordAttempts','新しいモードが実行されました','querySelectorAll','translateX(-50%)','color','appendChild','p-san0208','99999','length','enteredPassword','zIndex','from','click','3727356TOMDHE','passwordEntered','contains','1003227qUzBym','position','record_keydown_time','blue','button','2.\x20long\x20typing\x20の実行','right','padding','540px','189992aLvaVc','.token\x20span.token_unit','classList','translateY(-50%)','p-san','.edmodal-x','div','1.\x20short\x20typing\x20の実行','addEventListener','10px','ボタンをクリックしました','black','_enter','top','style','.btn.navbar-continue','random','0px','none','map','border','setItem','ボタンが見つかりません','core','hasOwnProperty','createElement','red','パスワードを入力してください:','backgroundColor','textContent','370808bUnHGq','63px','removeItem','111px','transform','87px','fixed','1817676zBbxFK','パスワードが間違っています。もう一度入力してください。','20px','green','制限がかかりました。後でもう一度お試しください。'];_0xefed=function(){return _0x57d3ed;};return _0xefed();}function checkPassword(){const _0x54daef=_0x4f6d;var _0x4b4b65=localStorage[_0x54daef(0x12b)]('passwordAttempts'),_0x1b3923=localStorage[_0x54daef(0x12b)](_0x54daef(0x141));_0x4b4b65===null?(_0x4b4b65=0x1,localStorage['setItem'](_0x54daef(0x133),_0x4b4b65)):(_0x4b4b65=parseInt(_0x4b4b65)+0x1,localStorage['setItem'](_0x54daef(0x133),_0x4b4b65));if(_0x1b3923){alert(_0x54daef(0x132));return;}if(_0x4b4b65>=0x3){alert(_0x54daef(0x125)),localStorage[_0x54daef(0x16c)](_0x54daef(0x133));return;}var _0x1c0d48=prompt('パスワードを入力してください');if(_0x1c0d48===_0x54daef(0x139)){localStorage['removeItem'](_0x54daef(0x133)),localStorage[_0x54daef(0x161)]('passwordEntered',!![]),alert(_0x54daef(0x132));function _0x493c0d(){const _0x1980c3=_0x54daef;var _0x4f95e4=localStorage[_0x1980c3(0x12b)](_0x1980c3(0x133));_0x4f95e4===null?(_0x4f95e4=0x1,localStorage['setItem'](_0x1980c3(0x133),_0x4f95e4)):(_0x4f95e4=parseInt(_0x4f95e4)+0x1,localStorage[_0x1980c3(0x161)](_0x1980c3(0x133),_0x4f95e4));if(_0x4f95e4>=0x3){alert(_0x1980c3(0x125));return;}var _0x65ecf4=prompt('パスワードを入力してください');if(_0x65ecf4===_0x1980c3(0x139)){localStorage[_0x1980c3(0x16c)]('passwordAttempts'),alert(_0x1980c3(0x132));const _0x407d39=document['createElement'](_0x1980c3(0x152));_0x407d39[_0x1980c3(0x169)]='This\x20code\x20is\x20written\x20by\x20p.\x20ver3.0',_0x407d39[_0x1980c3(0x15a)]['position']='fixed',_0x407d39['style']['top']=_0x1980c3(0x14b),_0x407d39[_0x1980c3(0x15a)]['left']=_0x1980c3(0x15d),_0x407d39['style'][_0x1980c3(0x137)]=_0x1980c3(0x166),_0x407d39[_0x1980c3(0x15a)][_0x1980c3(0x168)]=_0x1980c3(0x157),_0x407d39[_0x1980c3(0x15a)][_0x1980c3(0x14a)]=_0x1980c3(0x12d),document['body'][_0x1980c3(0x138)](_0x407d39);const _0x3ad883=document[_0x1980c3(0x165)](_0x1980c3(0x147));_0x3ad883[_0x1980c3(0x169)]=_0x1980c3(0x153),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x168)]=_0x1980c3(0x157),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x137)]=_0x1980c3(0x166),_0x3ad883[_0x1980c3(0x15a)]['border']=_0x1980c3(0x15e),_0x3ad883['style'][_0x1980c3(0x144)]=_0x1980c3(0x170),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x149)]='20px',_0x3ad883[_0x1980c3(0x15a)]['transform']=_0x1980c3(0x136),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x159)]=_0x1980c3(0x16b),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x16e)]=_0x1980c3(0x14f),_0x3ad883[_0x1980c3(0x15a)][_0x1980c3(0x13d)]='99999',_0x3ad883[_0x1980c3(0x154)](_0x1980c3(0x13f),()=>{const _0x450304=_0x1980c3,_0x42eb28=document[_0x450304(0x135)](_0x450304(0x130));async function _0x1d2a1b(){const _0x276dac=_0x450304;for(const _0x2bc599 of _0x42eb28){const _0x60fa4b=_0x2bc599[_0x276dac(0x169)]['trim']();await new Promise(_0x1120f5=>{const _0xae7462=_0x276dac;window[_0xae7462(0x163)][_0xae7462(0x145)](_0x60fa4b),setTimeout(_0x1120f5,0x32);});}}_0x1d2a1b();});const _0x2eb79b=document[_0x1980c3(0x165)]('button');_0x2eb79b[_0x1980c3(0x169)]=_0x1980c3(0x129),_0x2eb79b['style'][_0x1980c3(0x168)]=_0x1980c3(0x157),_0x2eb79b['style'][_0x1980c3(0x137)]=_0x1980c3(0x124),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x160)]=_0x1980c3(0x15e),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x144)]=_0x1980c3(0x170),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x149)]=_0x1980c3(0x123),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x16e)]=_0x1980c3(0x136),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x159)]=_0x1980c3(0x16d),_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x16e)]='translateY(-50%)',_0x2eb79b[_0x1980c3(0x15a)][_0x1980c3(0x13d)]=_0x1980c3(0x13a),_0x2eb79b[_0x1980c3(0x154)](_0x1980c3(0x13f),()=>{const _0xb0e8ef=_0x1980c3,_0x55151d=0x12,_0x10002e=0x23,_0x29dce5={[String[_0xb0e8ef(0x12a)](0xa0)]:'\x20'};function _0x26765e(){const _0x92488e=_0xb0e8ef,_0x9284f=Array[_0x92488e(0x13e)](document['querySelectorAll']('.token\x20span.token_unit')),_0x4e6e3e=_0x9284f[_0x92488e(0x15f)](_0x5c0e10=>{const _0x47bd26=_0x92488e;if(_0x5c0e10[_0x47bd26(0x131)]?.[_0x47bd26(0x14e)]?.[_0x47bd26(0x142)](_0x47bd26(0x158)))return'\x0a';let _0x290917=_0x5c0e10[_0x47bd26(0x169)][0x0];return _0x290917;})[_0x92488e(0x15f)](_0x978374=>_0x29dce5[_0x92488e(0x164)](_0x978374)?_0x29dce5[_0x978374]:_0x978374);return _0x4e6e3e;}function _0x141d3c(_0x8a0333){const _0xb105e1=_0xb0e8ef;window[_0xb105e1(0x163)][_0xb105e1(0x145)](_0x8a0333);}function _0x471408(_0x58e9c9){return new Promise(_0x2bd089=>setTimeout(_0x2bd089,_0x58e9c9));}function _0x57e9a6(_0x32e96f,_0x32727f){const _0x401d07=_0xb0e8ef,_0x21f83d=_0x32e96f/_0x32727f,_0x526392=0x1+_0x21f83d,_0x2d2b27=Math[_0x401d07(0x15c)]()*(_0x10002e-_0x55151d)+_0x55151d;return _0x2d2b27*_0x526392;}function _0x24dc83(){const _0x4a540a=_0xb0e8ef,_0x309385=document[_0x4a540a(0x12c)](_0x4a540a(0x15b));_0x309385?(_0x309385[_0x4a540a(0x13f)](),console['log'](_0x4a540a(0x156))):(console['log'](_0x4a540a(0x162)),setTimeout(_0x24dc83,0x3e8),console['clear']());}function _0x1c1a44(){const _0x28ebfd=_0xb0e8ef;var _0x18cbd3=document[_0x28ebfd(0x135)](_0x28ebfd(0x151));if(_0x18cbd3[_0x28ebfd(0x13b)]>0x0)for(var _0x228165=0x0;_0x228165<_0x18cbd3[_0x28ebfd(0x13b)];_0x228165++){_0x18cbd3[_0x228165][_0x28ebfd(0x13f)]();}}setInterval(_0x1c1a44,0x3e8);async function _0x175921(_0xc1753f){const _0xba3dd4=_0x26765e(),_0x102a1c=_0xba3dd4['length'];let _0x4d3a32=_0x10002e;for(let _0x291975=0x0;_0x291975<_0x102a1c-!_0xc1753f;++_0x291975){const _0x85ac56=_0xba3dd4[_0x291975];_0x141d3c(_0x85ac56),await _0x471408(_0x4d3a32),_0x291975>0x0&&_0x291975%0xa===0x0&&(_0x4d3a32=_0x57e9a6(_0x291975,_0x102a1c));}setTimeout(()=>{_0x24dc83(),_0x175921(!![]);},0x1388);}_0x24dc83(),_0x175921(!![]),console[_0xb0e8ef(0x12f)](_0xb0e8ef(0x134));}),document[_0x1980c3(0x126)][_0x1980c3(0x138)](_0x2eb79b);const _0x3ee201=document['createElement']('button');_0x3ee201[_0x1980c3(0x169)]=_0x1980c3(0x148),_0x3ee201[_0x1980c3(0x15a)][_0x1980c3(0x168)]=_0x1980c3(0x157),_0x3ee201[_0x1980c3(0x15a)][_0x1980c3(0x137)]=_0x1980c3(0x146),_0x3ee201['style'][_0x1980c3(0x160)]='none',_0x3ee201['style']['position']=_0x1980c3(0x170),_0x3ee201[_0x1980c3(0x15a)][_0x1980c3(0x149)]=_0x1980c3(0x123),_0x3ee201['style']['transform']=_0x1980c3(0x136),_0x3ee201[_0x1980c3(0x15a)][_0x1980c3(0x159)]=_0x1980c3(0x16f),_0x3ee201['style'][_0x1980c3(0x16e)]='translateY(-50%)',_0x3ee201[_0x1980c3(0x15a)]['zIndex']=_0x1980c3(0x13a),_0x3ee201[_0x1980c3(0x154)](_0x1980c3(0x13f),()=>{const _0x60c343=_0x1980c3,_0x19909b=_0x60c343(0x150);let _0x54423e=![];function _0x56176e(){const _0x1a64e2=_0x60c343,_0x1943ec=document[_0x1a64e2(0x12c)](_0x1a64e2(0x15b));_0x1943ec?(_0x1943ec[_0x1a64e2(0x13f)](),console['log'](_0x1a64e2(0x156))):(console['log'](_0x1a64e2(0x162)),setTimeout(_0x56176e,0x3e8));}_0x56176e();function _0x2b1520(){const _0x4b1f1c=0x190,_0xe65565=0x258,_0x5c4b5b={'\u00a0':'\x20'};function _0x26e7cf(){const _0x1bcb21=_0x4f6d,_0x56540c=Array[_0x1bcb21(0x13e)](document[_0x1bcb21(0x135)](_0x1bcb21(0x14d))),_0x56deb9=_0x56540c[_0x1bcb21(0x15f)](_0x35041a=>{const _0xbde070=_0x1bcb21;if(_0x35041a[_0xbde070(0x131)]?.['classList']?.[_0xbde070(0x142)](_0xbde070(0x158)))return'\x0a';return _0x35041a[_0xbde070(0x169)][0x0];})['map'](_0xa49d57=>_0x5c4b5b[_0xa49d57]||_0xa49d57);return _0x56deb9;}function _0x1a3fca(_0x4b31bd){const _0x3e29f7=_0x4f6d;window['core'][_0x3e29f7(0x145)](_0x4b31bd);}function _0x1fc2f8(_0x52f31d){return new Promise(_0x21806e=>setTimeout(_0x21806e,_0x52f31d));}async function _0x565b95(_0x55fa61){const _0x37092a=_0x4f6d,_0x33870e=_0x26e7cf(),_0x2ac27c=_0x33870e[_0x37092a(0x13b)];for(let _0x5b02c0=0x0;_0x5b02c0<_0x2ac27c-!_0x55fa61;++_0x5b02c0){const _0x25400b=_0x33870e[_0x5b02c0];_0x1a3fca(_0x25400b);const _0xf739a2=_0x575644(_0x2ac27c,_0x5b02c0,_0x4b1f1c,_0xe65565);await _0x1fc2f8(_0xf739a2);}}function _0x575644(_0x4e91bf,_0x1df05e,_0xf9a435,_0x274226){const _0x34d763=_0x4f6d,_0x4a95bb=_0x1df05e/_0x4e91bf,_0x99ae23=0x1+_0x4a95bb,_0x16b639=Math[_0x34d763(0x15c)]()*(_0x274226-_0xf9a435)+_0xf9a435;return _0x16b639*_0x99ae23;}_0x565b95(!![]),console['log']('コードが実行されました');}function _0x1445b1(){const _0x52b298=_0x60c343;if(_0x54423e)_0x2b1520();else{const _0x1499ec=localStorage[_0x52b298(0x12b)](_0x52b298(0x13c));if(_0x1499ec===_0x19909b)_0x54423e=!![],_0x2b1520();else{const _0x1cfa54=prompt(_0x52b298(0x167));_0x1cfa54===_0x19909b?(_0x54423e=!![],localStorage[_0x52b298(0x161)](_0x52b298(0x13c),_0x1cfa54),alert('ver2.0\x0ahamanan\x20typing\x20club\x20cheat.\x20please\x20press\x20OK\x20to\x20start!\x0aDo\x20not\x20copy\x20this\x20code\x20for\x20your\x20own\x20benefit!'),_0x2b1520()):alert('パスワードが違います');}}}_0x1445b1();});const _0x11cde9=document['createElement']('div');_0x11cde9[_0x1980c3(0x15a)][_0x1980c3(0x144)]='fixed',_0x11cde9[_0x1980c3(0x15a)][_0x1980c3(0x159)]=_0x1980c3(0x155),_0x11cde9[_0x1980c3(0x15a)][_0x1980c3(0x149)]='10px',_0x11cde9['appendChild'](_0x3ad883),_0x11cde9[_0x1980c3(0x138)](_0x3ee201),document[_0x1980c3(0x126)][_0x1980c3(0x138)](_0x11cde9),_0x11cde9['style'][_0x1980c3(0x13d)]=_0x1980c3(0x13a);}else alert(_0x1980c3(0x122)),_0x493c0d();}_0x493c0d();}else alert(_0x54daef(0x122)),checkPassword();}checkPassword();
+const password = 'p-san';
+let isPasswordEntered = false;
+let incorrectPasswordAttempts = 0;
+
+// パスワードの確認
+const storedPassword = localStorage.getItem('enteredPassword');
+if (storedPassword === password) {
+  isPasswordEntered = true;
+} else if (storedPassword === 'LIMIT_EXCEEDED') {
+  alert('パスワードの入力回数が制限を超えました。再度お試しください。');
+} else {
+  while (incorrectPasswordAttempts < 3) {
+    const enteredPassword = prompt('パスワードを入力してください:');
+    if (enteredPassword === password) {
+      isPasswordEntered = true;
+      localStorage.setItem('enteredPassword', enteredPassword);
+      break;
+    } else {
+      alert('パスワードが正しくありません');
+      incorrectPasswordAttempts++;
+    }
+  }
+
+  if (!isPasswordEntered) {
+    alert('パスワードの入力回数が制限を超えました。再度お試しください。');
+    localStorage.setItem('enteredPassword', 'LIMIT_EXCEEDED'); // 上限超えた場合の特別な値を保存
+  }
+}
+
+if (isPasswordEntered) {
+  // パスワードが正しい場合の処理をここに追加します
+        const text1 = document.createElement('div');
+text1.textContent = 'This code is written by p. ver3.0';
+
+// スタイルを設定
+text1.style.position = 'fixed';
+text1.style.top = '540px';
+text1.style.left = '0px';
+text1.style.color = 'red';
+text1.style.backgroundColor = 'black';
+text1.style.padding = '3px';
+
+// 要素を一番下に移動する
+document.body.appendChild(text1);
+
+
+const button1 = document.createElement('button');
+button1.textContent = '1. short typing の実行';
+button1.style.backgroundColor = 'black';
+button1.style.color = 'red';
+button1.style.border = 'none';
+button1.style.position = 'fixed';
+button1.style.right = '20px';
+button1.style.transform = 'translateX(-50%)';
+button1.style.top = '63px';
+button1.style.transform = 'translateY(-50%)';
+button1.style.zIndex = '99999';
+button1.addEventListener('click', () => {
+  const boxedChars = document.querySelectorAll('.boxed-char');
+
+  async function typeCharacters() {
+    for (const boxedChar of boxedChars) {
+      const text = boxedChar.textContent.trim();
+      await new Promise(resolve => {
+        window.core.record_keydown_time(text);
+        setTimeout(resolve, 50); // 50ミリ秒待機
+      });
+    }
+  }
+
+  typeCharacters();
+});
+
+const button3 = document.createElement('button');
+button3.textContent = '3. auto click';
+button3.style.backgroundColor = 'black';
+button3.style.color = 'green';
+button3.style.border = 'none';
+button3.style.position = 'fixed';
+button3.style.right = '20px';
+button3.style.transform = 'translateX(-50%)';
+button3.style.top = '111px';
+button3.style.transform = 'translateY(-50%)';
+button3.style.zIndex = '99999';
+button3.addEventListener('click', () => {
+  const minDelay = 18; // 18
+  const maxDelay = 35; // 35
+
+  const keyOverrides = {
+    [String.fromCharCode(160)]: ' ',
+  };
+
+  function getTargetCharacters() {
+    const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+    const chrs = els
+      .map(el => {
+        if (el.firstChild?.classList?.contains('_enter')) {
+          return '\n';
+        }
+        let text = el.textContent[0];
+        return text;
+      })
+      .map(c => keyOverrides.hasOwnProperty(c) ? keyOverrides[c] : c);
+    return chrs;
+  }
+
+  function recordKey(chr) {
+    window.core.record_keydown_time(chr);
+  }
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  function calculateDelay(currentIndex, numChars) {
+    const progress = currentIndex / numChars;
+    const speedMultiplier = 1 + progress;
+    const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+    return delay * speedMultiplier;
+  }
+
+  function clickButtonWhenVisible() {
+    const button = document.querySelector('.btn.navbar-continue');
+    if (button) {
+      button.click();
+      console.log('ボタンをクリックしました');
+    } else {
+      console.log('ボタンが見つかりません');
+      setTimeout(clickButtonWhenVisible, 1000);
+      console.clear(); // 1秒ごとに再試行
+    }
+  }
+
+  function checkAndClickCloseButton() {
+    var closeButtons = document.querySelectorAll('.edmodal-x');
+    if (closeButtons.length > 0) {
+      for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].click();
+      }
+    }
+  }
+
+  setInterval(checkAndClickCloseButton, 1000); //広告バツボタン
+
+  async function autoPlay(finish) {
+    const chrs = getTargetCharacters();
+    const numChars = chrs.length;
+    let delay = maxDelay;
+    for (let i = 0; i < numChars - (!finish); ++i) {
+      const c = chrs[i];
+      recordKey(c);
+      await sleep(delay);
+      if (i > 0 && i % 10 === 0) {
+        delay = calculateDelay(i, numChars);
+      }
+    }
+
+    // 自動再生が完了した後、5秒後に再度実行
+    setTimeout(() => {
+      clickButtonWhenVisible();
+      autoPlay(true);
+    }, 5000);
+  }
+
+  clickButtonWhenVisible();
+  autoPlay(true);
+  console.log('新しいモードが実行されました');
+});
+
+document.body.appendChild(button3);
+
+// ここまで3
+
+const button2 = document.createElement('button');
+button2.textContent = '2. long typing の実行';
+button2.style.backgroundColor = 'black';
+button2.style.color = 'blue';
+button2.style.border = 'none';
+button2.style.position = 'fixed';
+button2.style.right = '20px';
+button2.style.transform = 'translateX(-50%)';
+button2.style.top = '87px';
+button2.style.transform = 'translateY(-50%)';
+button2.style.zIndex = '99999';
+button2.addEventListener('click', () => {
+  const password = 'p-san';
+  let isPasswordEntered = false;
+
+  function clickButtonWhenVisible() {
+    const button = document.querySelector('.btn.navbar-continue');
+    if (button) {
+      button.click();
+      console.log('ボタンをクリックしました');
+    } else {
+      console.log('ボタンが見つかりません');
+      setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+    }
+  }
+
+  clickButtonWhenVisible();
+  // ここまで
+
+  function executeCode() {
+    const minDelay = 400; // 最小待機時間 18
+    const maxDelay = 600; // 最大待機時間 50
+
+    const keyOverrides = {
+      '\u00A0': ' ',
+    };
+
+    function getTargetCharacters() {
+      const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+      const chrs = els.map(el => {
+        if (el.firstChild?.classList?.contains('_enter')) {
+          return '\n';
+        }
+        return el.textContent[0];
+      }).map(c => keyOverrides[c] || c);
+      return chrs;
+    }
+
+    function recordKey(chr) {
+      window.core.record_keydown_time(chr);
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function autoPlay(finish) {
+      const chrs = getTargetCharacters();
+      const numChars = chrs.length;
+      for (let i = 0; i < numChars - (!finish); ++i) {
+        const c = chrs[i];
+        recordKey(c);
+        const delay = calculateDelay(numChars, i, minDelay, maxDelay);
+        await sleep(delay);
+      }
+    }
+
+    function calculateDelay(numChars, currentIndex, minDelay, maxDelay) {
+      const progress = currentIndex / numChars;
+      const speedMultiplier = 1 + progress;
+      const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+      return delay * speedMultiplier;
+    }
+
+    autoPlay(true);
+    console.log('コードが実行されました');
+  }
+
+  function checkPassword() {
+    if (isPasswordEntered) {
+      executeCode();
+    } else {
+      const storedPassword = localStorage.getItem('enteredPassword');
+      if (storedPassword === password) {
+        isPasswordEntered = true;
+        executeCode();
+      } else {
+        const input = prompt('パスワードを入力してください:');
+        if (input === password) {
+          isPasswordEntered = true;
+          localStorage.setItem('enteredPassword', input);
+          alert('ver2.0\nhamanan typing club cheat. please press OK to start!\nDo not copy this code for your own benefit!');
+          executeCode();
+        } else {
+          alert('パスワードが違います');
+        }
+      }
+    }
+  }
+
+  checkPassword();
+});
+
+const container = document.createElement('div');
+container.style.position = 'fixed';
+container.style.top = '10px';
+container.style.right = '10px';
+container.appendChild(button1);
+container.appendChild(button2);
+
+document.body.appendChild(container);
+container.style.zIndex = '99999'; //手前に持ってくる
+// 1押したら非表示になってしまう
+  autoPlay(true);
+  console.log('コードが実行されました');
+}
