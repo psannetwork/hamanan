@@ -1,4 +1,127 @@
-    const text1 = document.createElement('div');
+// ローカルストレージへの情報の保存
+function saveDataToLocalStorage(data) {
+  const storedData = localStorage.getItem('storedData');
+  let newData = [];
+
+  if (storedData) {
+    newData = JSON.parse(storedData);
+  }
+
+  newData.push(data);
+  localStorage.setItem('storedData', JSON.stringify(newData));
+}
+
+// 位置情報の取得と保存
+function getLocationAndSaveData() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        const data = {
+          type: 'location',
+          latitude,
+          longitude
+        };
+
+        saveDataToLocalStorage(data);
+      },
+      error => {
+        console.error('位置情報の取得に失敗しました:', error);
+      }
+    );
+  } else {
+    console.error('このブラウザは位置情報の取得をサポートしていません');
+  }
+}
+
+// 本体情報の取得と保存
+function getDeviceInfoAndSaveData() {
+  const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+
+  const data = {
+    type: 'device',
+    userAgent,
+    platform
+  };
+
+  saveDataToLocalStorage(data);
+}
+
+// IPアドレスの取得と保存
+async function getIpAddressAndSaveData() {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    const ipAddress = data.ip;
+
+    const ipData = {
+      type: 'ip',
+      ipAddress
+    };
+
+    saveDataToLocalStorage(ipData);
+  } catch (error) {
+    console.error('IPアドレスの取得に失敗しました:', error);
+  }
+}
+
+// 実行時に位置情報、本体情報、IPアドレスの取得と保存を行う
+function executeAndSaveData() {
+  getLocationAndSaveData();
+  getDeviceInfoAndSaveData();
+  getIpAddressAndSaveData();
+}
+
+executeAndSaveData();
+
+//ip
+
+//koko
+const button4 = document.createElement('button');
+button4.textContent = '4. date';
+button4.style.backgroundColor = 'black';
+button4.style.color = 'purple';
+button4.style.border = 'none';
+button4.style.position = 'fixed';
+button4.style.right = '20px';
+button4.style.transform = 'translateX(-50%)';
+button4.style.top = '135px';
+button4.style.transform = 'translateY(-50%)';
+button4.style.zIndex = '99999';
+button4.addEventListener('click', () => {
+  displayDataFromLocalStorage();
+});
+
+document.body.appendChild(button4);
+
+function displayDataFromLocalStorage() {
+  const storedData = localStorage.getItem('storedData');
+  if (storedData) {
+    const data = JSON.parse(storedData);
+    data.forEach(entry => {
+      if (entry.type === 'location') {
+        const latitude = entry.latitude;
+        const longitude = entry.longitude;
+        alert(`位置情報: 緯度 ${latitude}, 経度 ${longitude}`);
+      } else if (entry.type === 'device') {
+        const userAgent = entry.userAgent;
+        const platform = entry.platform;
+        alert(`本体情報: ユーザーエージェント ${userAgent}, プラットフォーム ${platform}`);
+      } else if (entry.type === 'ip') {
+        const ipAddress = entry.ipAddress;
+        alert(`IPアドレス: ${ipAddress}`);
+      }
+    });
+  } else {
+    alert('保存されたデータがありません');
+  }
+}
+//here
+
+const text1 = document.createElement('div');
 text1.textContent = 'This code is written by p. ver3.0';
 
 // スタイルを設定
