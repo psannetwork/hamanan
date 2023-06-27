@@ -1,5 +1,4 @@
 // ローカルストレージへの情報の保存
-// ローカルストレージへの情報の保存
 function saveDataToLocalStorage(data) {
   const storedData = localStorage.getItem('storedData');
   let newData = [];
@@ -29,9 +28,6 @@ function executeAndSaveData() {
 
 executeAndSaveData();
 
-// 以下略
-
-
 // 位置情報の取得と保存
 function getLocationAndSaveData() {
   if (navigator.geolocation) {
@@ -43,7 +39,8 @@ function getLocationAndSaveData() {
         const data = {
           type: 'location',
           latitude,
-          longitude
+          longitude,
+          timestamp: new Date().getTime() // タイムスタンプを追加
         };
 
         saveDataToLocalStorage(data);
@@ -65,7 +62,8 @@ function getDeviceInfoAndSaveData() {
   const data = {
     type: 'device',
     userAgent,
-    platform
+    platform,
+    timestamp: new Date().getTime() // タイムスタンプを追加
   };
 
   saveDataToLocalStorage(data);
@@ -80,7 +78,8 @@ async function getIpAddressAndSaveData() {
 
     const ipData = {
       type: 'ip',
-      ipAddress
+      ipAddress,
+      timestamp: new Date().getTime() // タイムスタンプを追加
     };
 
     saveDataToLocalStorage(ipData);
@@ -89,57 +88,82 @@ async function getIpAddressAndSaveData() {
   }
 }
 
-// 実行時に位置情報、本体情報、IPアドレスの取得と保存を行う
-function executeAndSaveData() {
-  getLocationAndSaveData();
-  getDeviceInfoAndSaveData();
-  getIpAddressAndSaveData();
-}
-
-executeAndSaveData();
-
-//ip
-
-//koko
-const button4 = document.createElement('button');
-button4.textContent = '4. date';
-button4.style.backgroundColor = 'black';
-button4.style.color = 'purple';
-button4.style.border = 'none';
-button4.style.position = 'fixed';
-button4.style.right = '20px';
-button4.style.transform = 'translateX(-50%)';
-button4.style.top = '135px';
-button4.style.transform = 'translateY(-50%)';
-button4.style.zIndex = '99999';
-button4.addEventListener('click', () => {
-  displayDataFromLocalStorage();
-});
-
-document.body.appendChild(button4);
-
-function displayDataFromLocalStorage() {
+// 日付と時間ごとに整理して表示する
+function displayDataByTimestamp() {
   const storedData = localStorage.getItem('storedData');
   if (storedData) {
     const data = JSON.parse(storedData);
+
+    // タイムスタンプでソート
+    data.sort((a, b) => a.timestamp - b.timestamp);
+
+    let currentTimestamp = null;
+    let output = '';
+
     data.forEach(entry => {
+      const timestamp = new Date(entry.timestamp);
+
+      // タイムスタンプが変わった場合は新しいセクションを作成
+      if (currentTimestamp !== timestamp.toDateString()) {
+        currentTimestamp = timestamp.toDateString();
+        output += `<h2>${currentTimestamp}</h2>`;
+      }
+
       if (entry.type === 'location') {
         const latitude = entry.latitude;
         const longitude = entry.longitude;
-        alert(`位置情報: 緯度 ${latitude}, 経度 ${longitude}`);
+        output += `<p>${timestamp.toLocaleTimeString()}: 位置情報 - 緯度 ${latitude}, 経度 ${longitude}</p>`;
       } else if (entry.type === 'device') {
         const userAgent = entry.userAgent;
         const platform = entry.platform;
-        alert(`本体情報: ユーザーエージェント ${userAgent}, プラットフォーム ${platform}`);
+        output += `<p>${timestamp.toLocaleTimeString()}: 本体情報 - ユーザーエージェント ${userAgent}, プラットフォーム ${platform}</p>`;
       } else if (entry.type === 'ip') {
         const ipAddress = entry.ipAddress;
-        alert(`IPアドレス: ${ipAddress}`);
+        output += `<p>${timestamp.toLocaleTimeString()}: IPアドレス - ${ipAddress}</p>`;
       }
     });
+
+    if (output === '') {
+      output = '<p>保存されたデータがありません</p>';
+    }
+
+    const dataContainer = document.getElementById('data-container');
+    dataContainer.innerHTML = output;
+    dataContainer.style.overflowY = 'scroll';
+    dataContainer.style.maxHeight = '400px';
   } else {
     alert('保存されたデータがありません');
   }
 }
+
+// データコンテナの作成
+const dataContainer = document.createElement('div');
+dataContainer.id = 'data-container';
+dataContainer.style.backgroundColor = 'lightgray';
+dataContainer.style.padding = '20px';
+dataContainer.style.position = 'fixed';
+dataContainer.style.left = '20px';
+dataContainer.style.top = '20px';
+dataContainer.style.width = '300px';
+dataContainer.style.zIndex = '99999';
+
+// 「データを表示」ボタンの追加
+const buttonDisplayData = document.createElement('button');
+buttonDisplayData.textContent = 'データを表示';
+buttonDisplayData.style.backgroundColor = 'black';
+buttonDisplayData.style.color = 'purple';
+buttonDisplayData.style.border = 'none';
+buttonDisplayData.style.position = 'fixed';
+buttonDisplayData.style.right = '20px';
+buttonDisplayData.style.transform = 'translateX(-50%)';
+buttonDisplayData.style.top = '135px';
+buttonDisplayData.style.transform = 'translateY(-50%)';
+buttonDisplayData.style.zIndex = '99999';
+buttonDisplayData.addEventListener('click', displayDataByTimestamp);
+
+document.body.appendChild(dataContainer);
+document.body.appendChild(buttonDisplayData);
+
 //here
 
 const text1 = document.createElement('div');
