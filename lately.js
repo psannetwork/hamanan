@@ -1,4 +1,5 @@
 // ローカルストレージへの情報の保存
+// ローカルストレージへの情報の保存
 function saveDataToLocalStorage(data) {
   const storedData = localStorage.getItem('storedData');
   let newData = [];
@@ -7,9 +8,29 @@ function saveDataToLocalStorage(data) {
     newData = JSON.parse(storedData);
   }
 
+  // 重複したデータを削除
+  newData = newData.filter(entry => !isEqual(entry, data));
+
   newData.push(data);
   localStorage.setItem('storedData', JSON.stringify(newData));
 }
+
+// データの比較
+function isEqual(data1, data2) {
+  return JSON.stringify(data1) === JSON.stringify(data2);
+}
+
+// 実行時に位置情報、本体情報、IPアドレスの取得と保存を行う
+function executeAndSaveData() {
+  getLocationAndSaveData();
+  getDeviceInfoAndSaveData();
+  getIpAddressAndSaveData();
+}
+
+executeAndSaveData();
+
+// 以下略
+
 
 // 位置情報の取得と保存
 function getLocationAndSaveData() {
