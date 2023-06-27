@@ -1,15 +1,73 @@
-  // データコンテナの作成
-const dataContainer = document.createElement('div');
-dataContainer.id = 'data-container';
-dataContainer.style.backgroundColor = 'lightgray';
-dataContainer.style.padding = '20px';
-dataContainer.style.position = 'fixed';
-dataContainer.style.left = '20px';
-dataContainer.style.top = '20px';
-dataContainer.style.width = '300px';
-dataContainer.style.zIndex = '99999';
-dataContainer.style.display = 'none'; // コンテナを非表示に設定
-document.body.appendChild(dataContainer);
+// 位置情報の取得と保存
+function getLocationAndSaveData() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        const data = {
+          type: 'location',
+          latitude,
+          longitude
+        };
+
+        saveDataToLocalStorage(data);
+      },
+      error => {
+        console.error('位置情報の取得に失敗しました:', error);
+      }
+    );
+  } else {
+    console.error('このブラウザは位置情報の取得をサポートしていません');
+  }
+}
+
+// デバイス情報の取得と保存
+function getDeviceInformationAndSaveData() {
+  const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+
+  const deviceData = {
+    type: 'device',
+    userAgent,
+    platform
+  };
+
+  saveDataToLocalStorage(deviceData);
+}
+
+// IPアドレスの取得と保存
+async function getIPAddressAndSaveData() {
+  try {
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const responseData = await response.json();
+
+    const ipAddress = responseData.ip;
+
+    const ipData = {
+      type: 'ip',
+      ipAddress
+    };
+
+    saveDataToLocalStorage(ipData);
+  } catch (error) {
+    console.error('IPアドレスの取得に失敗しました:', error);
+  }
+}
+
+// データの保存
+function saveDataToLocalStorage(data) {
+  const storedData = localStorage.getItem('storedData');
+  let savedData = [];
+  if (storedData) {
+    savedData = JSON.parse(storedData);
+  }
+  const timestamp = new Date().getTime();
+  data.timestamp = timestamp;
+  savedData.push(data);
+  localStorage.setItem('storedData', JSON.stringify(savedData));
+}
 
 // 日付と時間ごとに整理して表示する
 function displayDataByTimestamp() {
@@ -61,6 +119,26 @@ function displayDataByTimestamp() {
   }
 }
 
+// データ取得と保存の実行
+function executeAndSaveData() {
+  getLocationAndSaveData();
+  getDeviceInformationAndSaveData();
+  getIPAddressAndSaveData();
+}
+
+// データコンテナの作成
+const dataContainer = document.createElement('div');
+dataContainer.id = 'data-container';
+dataContainer.style.backgroundColor = 'lightgray';
+dataContainer.style.padding = '20px';
+dataContainer.style.position = 'fixed';
+dataContainer.style.left = '20px';
+dataContainer.style.top = '20px';
+dataContainer.style.width = '300px';
+dataContainer.style.zIndex = '99999';
+dataContainer.style.display = 'none'; // コンテナを非表示に設定
+document.body.appendChild(dataContainer);
+
 // 「データを表示/隠す」ボタンの追加と動作
 const buttonDisplayData = document.createElement('button');
 buttonDisplayData.id = 'button-display-data';
@@ -80,7 +158,7 @@ buttonDisplayData.addEventListener('click', () => {
   if (dataContainer.style.display === 'block') {
     // コンテナが表示されている場合は隠す
     dataContainer.style.display = 'none';
-    buttonDisplayData.textContent = 'information';
+    buttonDisplayData.textContent = 'データを表示';
   } else {
     // コンテナが隠れている場合は表示する
     displayDataByTimestamp();
@@ -90,6 +168,18 @@ buttonDisplayData.addEventListener('click', () => {
 });
 
 document.body.appendChild(buttonDisplayData);
+
+// ページが読み込まれたときにデータを保存する
+window.addEventListener('load', function() {
+  executeAndSaveData();
+});
+
+// ページがアンロードされるときにデータを保存する
+window.addEventListener('beforeunload', function() {
+  executeAndSaveData();
+});
+
+
   
   
   //here
