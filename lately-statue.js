@@ -1,2 +1,2 @@
 localStorage.removeItem('enteredPassword');
-alert("アップデートちゅうだよ！！")
+alert("アップデートちゅうだよ！！");
