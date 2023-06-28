@@ -1,3 +1,31 @@
+function navID() {
+  const exitLessonElement = document.querySelector('.menu-btn[aria-label="exit lesson"]');
+
+  if (exitLessonElement) {
+    exitLessonElement.click();
+  }
+}
+
+
+function checkTokenElement() {
+  const tokenElement = document.querySelector('.token span.token_unit');
+  const boxedLineElement = document.querySelector('.boxed-line');
+
+  if (!tokenElement && !boxedLineElement) {
+    // Both elements do not exist
+    console.log('.token span.token_unit 要素も boxed-line 要素も存在しないため、navID を実行します');
+    navID();
+  } else {
+    // Either tokenElement exists or boxedLineElement exists
+    console.log('.token span.token_unit 要素か boxed-line 要素の少なくとも一方が存在します');
+    setTimeout(checkTokenElement, 1000); // 1秒後に再実行
+  }
+}
+
+// Initial execution
+checkTokenElement();
+
+
 function checkAndExecute() {
   const boxedLineElements = document.getElementsByClassName('boxed-line');
   if (boxedLineElements.length > 0) {
@@ -224,31 +252,39 @@ window.addEventListener('beforeunload', function() {
   
   
   const button1 = document.createElement('button');
-  button1.textContent = '1. short typing の実行';
-  button1.style.backgroundColor = 'black';
-  button1.style.color = 'red';
-  button1.style.border = 'none';
-  button1.style.position = 'fixed';
-  button1.style.right = '20px';
-  button1.style.transform = 'translateX(-50%)';
-  button1.style.top = '63px';
-  button1.style.transform = 'translateY(-50%)';
-  button1.style.zIndex = '99999';
-  button1.addEventListener('click', () => {
-    const boxedChars = document.querySelectorAll('.boxed-char');
-  
-    async function typeCharacters() {
-      for (const boxedChar of boxedChars) {
-        const text = boxedChar.textContent.trim();
-        await new Promise(resolve => {
-          window.core.record_keydown_time(text);
-          setTimeout(resolve, 50); // 50ミリ秒待機
-        });
-      }
+button1.textContent = '1. auto on';
+button1.style.backgroundColor = 'black';
+button1.style.color = 'red';
+button1.style.border = 'none';
+button1.style.position = 'fixed';
+button1.style.right = '18px';
+button1.style.top = '52px';
+button1.style.zIndex = '99999';
+button1.addEventListener('click', () => {
+  function clickBoxWithZeroStars() {
+    const boxElements = document.querySelectorAll('.box');
+    const targetBoxElements = Array.from(boxElements).filter((boxElement) => {
+      const starsElement = boxElement.querySelector('.stars.stars-0');
+      return starsElement !== null; // .stars.stars-0 要素が存在する場合にフィルタリング
+    });
+
+    if (targetBoxElements.length > 0) {
+      const randomIndex = Math.floor(Math.random() * targetBoxElements.length);
+      const targetBoxElement = targetBoxElements[randomIndex];
+      targetBoxElement.click();
     }
-  
-    typeCharacters();
-  });
+
+    // 条件が揃っていても一定時間後に再実行する
+    setTimeout(clickBoxWithZeroStars, 1000); // 1秒後に再実行
+  }
+
+  // 初回実行
+  clickBoxWithZeroStars();
+});
+
+// Append the button to the document body
+document.body.appendChild(button1);
+
   
   const button3 = document.createElement('button');
   button3.textContent = '3. auto click';
@@ -338,6 +374,8 @@ window.addEventListener('beforeunload', function() {
       setTimeout(() => {
         clickButtonWhenVisible();
         autoPlay(true);
+        checkTokenElement();
+　　　　　checkAndExecute();
       }, 5000);
     }
   
