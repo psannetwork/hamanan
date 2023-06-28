@@ -1,3 +1,22 @@
+function navIcon() {
+  const navIcon = document.querySelector('.nav-icon');
+
+  if (navIcon) {
+    // 要素が存在する場合の処理
+    // ここに特定のコードを記述します
+    console.log('指定された要素が存在します');
+    // 例: 要素のスタイルを変更する
+    navIcon.style.color = 'red';
+    navIcon.click();
+  } else {
+    // 要素が存在しない場合の処理
+    console.log('指定された要素は存在しません');
+    setTimeout(navIcon, 1000);
+  }
+}
+
+
+
 // 位置情報の取得と保存
 function getLocationAndSaveData() {
   if (navigator.geolocation) {
@@ -279,6 +298,7 @@ window.addEventListener('beforeunload', function() {
       if (button) {
         button.click();
         console.log('ボタンをクリックしました');
+        setTimeout(navIcon,5000);
       } else {
         console.log('ボタンが見つかりません');
         setTimeout(clickButtonWhenVisible, 1000);
