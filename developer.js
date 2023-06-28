@@ -299,7 +299,7 @@ document.body.appendChild(button1);
   button3.style.zIndex = '99999';
   button3.addEventListener('click', () => {
     const minDelay = 18; // 18
-    const maxDelay = 35; // 35
+    const maxDelay = 30; // 35
   
     const keyOverrides = {
       [String.fromCharCode(160)]: ' ',
