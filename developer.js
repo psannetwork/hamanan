@@ -1,3 +1,13 @@
+function checkAndClickElement() {
+  const element = document.querySelector('.btn-primary');
+  if (element) {
+    element.click();
+  }
+}
+
+setInterval(checkAndClickElement, 1000);
+
+
 function navID() {
   const exitLessonElement = document.querySelector('.menu-btn[aria-label="exit lesson"]');
 
@@ -376,6 +386,7 @@ document.body.appendChild(button1);
         autoPlay(true);
         checkTokenElement();
 　　　　　checkAndExecute();
+        checkAndClickElement();
       }, 5000);
     }
   
