@@ -517,3 +517,13 @@ document.body.appendChild(button3);
   document.body.appendChild(container);
   container.style.zIndex = '99999'; //手前に持ってくる
   // 1押したら非表示になってしまう
+
+
+function autorope() {
+  // 実行したい処理を記述する
+  checkTokenElement();
+  console.log('関数が実行されました');
+}
+
+// 関数を3秒ごとに実行する
+setInterval(autorope, 3000);
