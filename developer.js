@@ -522,6 +522,7 @@ document.body.appendChild(button3);
 function autorope() {
   // 実行したい処理を記述する
   checkTokenElement();
+  checkAndExecute();
   console.log('関数が実行されました');
 }
 
