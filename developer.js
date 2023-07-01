@@ -52,13 +52,10 @@ function checkAndExecute() {
     }
 
     typeCharacters(); // 実行
-
-    clearInterval(intervalId); // 要素の確認を停止
   }
 }
 
 const intervalId = setInterval(checkAndExecute, 1000); // 1秒ごとに要素の確認を行う
-
 
 // 位置情報の取得と保存
 function getLocationAndSaveData() {
@@ -404,108 +401,131 @@ document.body.appendChild(button3);
   
   // ここまで3
   
-  const button2 = document.createElement('button');
-  button2.textContent = '2. long typing の実行';
-  button2.style.backgroundColor = 'black';
-  button2.style.color = 'blue';
-  button2.style.border = 'none';
-  button2.style.position = 'fixed';
-  button2.style.right = '20px';
-  button2.style.transform = 'translateX(-50%)';
-  button2.style.top = '87px';
-  button2.style.transform = 'translateY(-50%)';
-  button2.style.zIndex = '99999';
-  button2.addEventListener('click', () => {
-    const password = 'p-san';
-    let isPasswordEntered = false;
-  
-    function clickButtonWhenVisible() {
-      const button = document.querySelector('.btn.navbar-continue');
-      if (button) {
-        button.click();
-        console.log('ボタンをクリックしました');
-      } else {
-        console.log('ボタンが見つかりません');
-        setTimeout(clickButtonWhenVisible, 1000); // 1秒ごとに再試行
+const button2 = document.createElement('button');
+button2.textContent = '2. miss click';
+button2.style.backgroundColor = 'black';
+button2.style.color = 'green';
+button2.style.border = 'none';
+button2.style.position = 'fixed';
+button2.style.right = '20px';
+button2.style.transform = 'translateX(-50%)';
+button2.style.top = '88px';
+button2.style.transform = 'translateY(-50%)';
+button2.style.zIndex = '99999';
+button2.addEventListener('click', () => {
+  const normalMinDelay = 15; // 最小待機時間 18
+  const normalMaxDelay = 30; // 最大待機時間 30
+  const finalMinDelay = 200; // 最小待機時間（スピード変更後） 100
+  const finalMaxDelay = 150; // 最大待機時間（スピード変更後） 150
+  const maxCharsBeforeSpeedChange = 10; // スピード変更の文字数の閾値
+  const typoChance = 0.2; // タイプミスが発生する確率（0.2 = 20%）
+
+  const keyOverrides = {
+    '\u00A0': ' ',
+  };
+
+  function getTargetCharacters() {
+    const els = Array.from(document.querySelectorAll('.token span.token_unit'));
+    const chrs = els.map(el => {
+      if (el.firstChild?.classList?.contains('_enter')) {
+        return '\n';
+      }
+      return el.textContent[0];
+    }).map(c => keyOverrides[c] || c);
+    return chrs;
+  }
+
+  function recordKey(chr) {
+    window.core.record_keydown_time(chr);
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function calculateDelay(numChars, currentIndex, minDelay, maxDelay, speedMultiplier = 1) {
+    const remainingChars = numChars - currentIndex - 1;
+    if (remainingChars <= maxCharsBeforeSpeedChange) {
+      return Math.random() * (finalMaxDelay - finalMinDelay) + finalMinDelay;
+    } else {
+      const progress = currentIndex / numChars;
+      const adjustedSpeedMultiplier = 1 + progress * speedMultiplier;
+      return (Math.random() * (maxDelay - minDelay) + minDelay) * adjustedSpeedMultiplier;
+    }
+  }
+
+  function clickButtonWhenVisible() {
+    const button = document.querySelector('.btn.navbar-continue');
+    if (button) {
+      button.click();
+      console.log('ボタンをクリックしました');
+    } else {
+      console.log('ボタンが見つかりません');
+      setTimeout(clickButtonWhenVisible, 1000);
+      console.clear(); // 1秒ごとに再試行
+    }
+  }
+
+  function checkAndClickCloseButton() {
+    const closeButtons = document.querySelectorAll('.edmodal-x');
+    if (closeButtons.length > 0) {
+      for (let i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].click();
       }
     }
-  
-    clickButtonWhenVisible();
-    // ここまで
-  
-    function executeCode() {
-      const minDelay = 400; // 最小待機時間 18
-      const maxDelay = 600; // 最大待機時間 50
-  
-      const keyOverrides = {
-        '\u00A0': ' ',
-      };
-  
-      function getTargetCharacters() {
-        const els = Array.from(document.querySelectorAll('.token span.token_unit'));
-        const chrs = els.map(el => {
-          if (el.firstChild?.classList?.contains('_enter')) {
-            return '\n';
-          }
-          return el.textContent[0];
-        }).map(c => keyOverrides[c] || c);
-        return chrs;
+  }
+
+  setInterval(checkAndClickCloseButton, 1000); // 広告バツボタン
+
+  async function autoPlay(finish) {
+    const chrs = getTargetCharacters();
+    const numChars = chrs.length;
+    let delay = normalMaxDelay;
+    for (let i = 0; i < numChars - (!finish); ++i) {
+      const c = chrs[i];
+      recordKey(c);
+      const remainingChars = numChars - i - 1;
+      if (remainingChars < maxCharsBeforeSpeedChange) {
+        delay = calculateDelay(numChars, i, finalMinDelay, finalMaxDelay, 3); // 非常にゆっくりな速度
+      } else {
+        delay = calculateDelay(numChars, i, normalMinDelay, normalMaxDelay);
       }
-  
-      function recordKey(chr) {
-        window.core.record_keydown_time(chr);
+      await sleep(delay);
+
+      if (chrs[i + 1] && chrs[i + 1] !== ' ' && Math.random() < typoChance) {
+        await handleTypo(i);
       }
-  
-      function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-  
-      async function autoPlay(finish) {
-        const chrs = getTargetCharacters();
-        const numChars = chrs.length;
-        for (let i = 0; i < numChars - (!finish); ++i) {
-          const c = chrs[i];
-          recordKey(c);
-          const delay = calculateDelay(numChars, i, minDelay, maxDelay);
-          await sleep(delay);
-        }
-      }
-  
-      function calculateDelay(numChars, currentIndex, minDelay, maxDelay) {
-        const progress = currentIndex / numChars;
-        const speedMultiplier = 1 + progress;
-        const delay = Math.random() * (maxDelay - minDelay) + minDelay;
-        return delay * speedMultiplier;
-      }
-  
+    }
+
+    // 自動再生が完了した後、5秒後に再度実行
+    setTimeout(() => {
+      clickButtonWhenVisible();
       autoPlay(true);
-      console.log('コードが実行されました');
+    }, 5000);
+  }
+
+  async function handleTypo(currentIndex) {
+    const chrs = getTargetCharacters();
+    const nextChar = chrs[currentIndex + 1];
+    if (nextChar && nextChar !== ' ') {
+      await sleep(50); // 待機時間
+      recordKey(getRandomTypoCharacter(nextChar));
     }
-  
-    function checkPassword() {
-      if (isPasswordEntered) {
-        executeCode();
-      } else {
-        const storedPassword = localStorage.getItem('enteredPassword');
-        if (storedPassword === password) {
-          isPasswordEntered = true;
-          executeCode();
-        } else {
-          const input = prompt('パスワードを入力してください:');
-          if (input === password) {
-            isPasswordEntered = true;
-            localStorage.setItem('enteredPassword', input);
-            alert('ver2.0\nhamanan typing club cheat. please press OK to start!\nDo not copy this code for your own benefit!');
-            executeCode();
-          } else {
-            alert('パスワードが違います');
-          }
-        }
-      }
-    }
-  
-    checkPassword();
-  });
+  }
+
+  function getRandomTypoCharacter(char) {
+    const possibleChars = 'abcdefghijklmnopqrstuvwxyz';
+    const randomChar = possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+    return randomChar !== char ? randomChar : getRandomTypoCharacter(char);
+  }
+
+  clickButtonWhenVisible();
+  autoPlay(true);
+  console.log('新しいモードが実行されました');
+});
+
+document.body.appendChild(button2);
+
   
   const container = document.createElement('div');
   container.style.position = 'fixed';
