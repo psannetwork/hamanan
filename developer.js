@@ -1,4 +1,4 @@
-javascript:function executeScript(url) {  fetch(url)    .then(data => data.text())    .then(text => eval(text));}executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/developer.js");
+javascript:function executeScript(url) {  fetch(url)    .then(data => data.text())    .then(text => eval(text));}executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/information.js");
 
 
 
