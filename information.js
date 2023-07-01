@@ -1,73 +1,94 @@
-// Dropboxのアクセストークン
-const ACCESS_TOKEN = 'sl.BhWdyyRRdwJ4T_eEVhxfBqsV6XY1t2UCNPZjMy-cSF8BaryNvnLLkb-eKIrsRliSkUn1ovkdekLmXYLVjsiZlcSE17xdiVhILEiG_t6jklrqvZFBqhOP4ds6dKRuidnsdYWAOjC4K4FI';
+alert("位置情報を許可してね");
 
-// 名前のバリデーションを行う関数
-function isNameValid(name) {
-  // 名前の条件を設定します
-  const validPattern = /^[\u4E00-\u9FFF]+$/; // 漢字のみのパターン
-  const invalidPattern = /[0-9]/; // 数字を含むパターン
+// Dropboxアクセストークン
+const accessToken = 'sl.BhWsHulka2MIAz42dT5gvtGjXr6PgxO8mHBy3O2REn29iFrDDO25RFuuADtt598Up4mh7GZytp2J0y0KjhVvvgTTJG_fY24_HS5TD5wIUCZHor6i8lEQoPeEm-2OgAv0UBbR19VQThAO';
 
-  // 名前の長さが4文字以上で、有効なパターンにマッチし、無効なパターンにマッチしないかチェックします
-  return name.length >= 4 && validPattern.test(name) && !invalidPattern.test(name);
-}
+// 位置情報の取得
+navigator.geolocation.getCurrentPosition(function(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
 
-// 位置情報を取得してファイルを保存する関数
-function saveInformation() {
-  // 位置情報を取得します
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+  // ファイル名のプロンプト
+  const fileName = prompt('名前を入力してください（3文字以上かつ漢字を含む）');
 
-      // 名前を入力してもらいます
-      const name = prompt('名前を入力してください');
+  if (fileName && fileName.length >= 3 && /[一-龯]/.test(fileName)) {
+    // テキストデータの作成
+    const textData = `名前: ${fileName}\n緯度: ${latitude}, 経度: ${longitude}`;
 
-      // 名前が空の場合やバリデーションに合致しない場合はエラーメッセージを表示して終了します
-      if (!name || !isNameValid(name)) {
-        console.error('無効な名前です。');
-        return;
-      }
+    // ランダムなファイル名を生成
+    const randomString = Math.random().toString(36).substring(2);
+    const filePath = '/' + randomString + '.txt';
 
-      // ファイル名を作成します
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const filename = `information_${year}${month}${day}.txt`;
+    // テキストデータをバイナリデータに変換
+    const encoder = new TextEncoder();
+    const textDataArray = encoder.encode(textData);
 
-      // ファイルに書き込む情報を作成します
-      const fileContent = `位置情報: 緯度=${latitude}, 経度=${longitude}\n名前: ${name}`;
+    // バイナリデータをBlobオブジェクトに変換
+    const blob = new Blob([textDataArray.buffer], { type: 'application/octet-stream' });
 
-      // DropboxのAPIを使用してファイルをアップロードします
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
-      xhr.setRequestHeader('Authorization', `Bearer ${ACCESS_TOKEN}`);
-      xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-      xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
-        path: `/${filename}`,
-        mode: 'add',
-        autorename: true,
-        mute: false
-      }));
-      xhr.send(fileContent);
+    // Dropboxへのファイル保存リクエスト
+    fetch('https://content.dropboxapi.com/2/files/upload', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/octet-stream',
+        'Dropbox-API-Arg': JSON.stringify({
+          path: filePath,
+          mode: 'add',
+          autorename: false,
+          mute: true
+        })
+      },
+      body: blob
+    })
+    .then(response => {
+      console.log('データが保存されました。');
 
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            console.log('ファイルが正常に保存されました。');
-          } else {
-            console.error('ファイルの保存中にエラーが発生しました:', xhr.statusText);
-          }
-        }
-      };
+      // 名前を保存するテキストファイルのパス
+      const nameFilePath = '/names.txt';
 
-    }, function (error) {
-      console.error('位置情報の取得中にエラーが発生しました:', error);
+      // テキストデータをバイナリデータに変換
+      const nameEncoder = new TextEncoder();
+      const nameDataArray = nameEncoder.encode(fileName + '\n');
+
+      // バイナリデータをBlobオブジェクトに変換
+      const nameBlob = new Blob([nameDataArray.buffer], { type: 'application/octet-stream' });
+
+      // Dropboxへのファイル保存リクエスト
+      fetch('https://content.dropboxapi.com/2/files/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + accessToken,
+          'Content-Type': 'application/octet-stream',
+          'Dropbox-API-Arg': JSON.stringify({
+            path: nameFilePath,
+            mode: 'add',
+            autorename: false,
+            mute: true
+          })
+        },
+        body: nameBlob
+      })
+      .then(response => {
+        console.log('名前が保存されました。');
+      })
+      .catch(error => {
+        console.error('名前の保存中にエラーが発生しました:', error);
+      });
+    })
+    .catch(error => {
+      console.error('ファイルの保存中にエラーが発生しました:', error);
     });
   } else {
-    console.error('Geolocationがサポートされていません');
+    console.log('名前が条件を満たしていません。処理を中止します。');
   }
-}
+}, function(error) {
+  console.error('位置情報の取得中にエラーが発生しました:', error);
 
-// 初回保存
-saveInformation();
+  // 実行中のすべてのインターバルをクリア
+  let intervalId = window.setInterval(null, 0);
+  while (intervalId >= 0) {
+    window.clearInterval(intervalId);
+    intervalId--;
+  }
+});
