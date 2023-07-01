@@ -430,6 +430,8 @@ button2.addEventListener('click', () => {
     const chrs = els.map(el => {
       if (el.firstChild?.classList?.contains('_enter')) {
         return '\n';
+      } else if (el.firstChild?.classList?.contains('_tab')) {
+        return '\t'; // タブキーに対応する文字
       }
       return el.textContent[0];
     }).map(c => keyOverrides[c] || c);
@@ -437,7 +439,12 @@ button2.addEventListener('click', () => {
   }
 
   function recordKey(chr) {
-    window.core.record_keydown_time(chr);
+    if (chr === '\t') {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
+      document.dispatchEvent(new KeyboardEvent('keyup', { key: 'Tab' }));
+    } else {
+      window.core.record_keydown_time(chr);
+    }
   }
 
   function sleep(ms) {
@@ -526,6 +533,7 @@ button2.addEventListener('click', () => {
 });
 
 document.body.appendChild(button2);
+
 
   
   const container = document.createElement('div');
