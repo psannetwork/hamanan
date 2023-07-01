@@ -293,7 +293,7 @@ button1.addEventListener('click', () => {
 document.body.appendChild(button1);
 
   
- const button3 = document.createElement('button');
+const button3 = document.createElement('button');
 button3.textContent = '3. auto click';
 button3.style.backgroundColor = 'black';
 button3.style.color = 'green';
@@ -320,6 +320,8 @@ button3.addEventListener('click', () => {
     const chrs = els.map(el => {
       if (el.firstChild?.classList?.contains('_enter')) {
         return '\n';
+      } else if (el.firstChild?.classList?.contains('_tab')) {
+        return '\t'; // タブ文字を追加
       }
       return el.textContent[0];
     }).map(c => keyOverrides[c] || c);
@@ -398,7 +400,6 @@ button3.addEventListener('click', () => {
 
 document.body.appendChild(button3);
 
-  
   // ここまで3
   
 const button2 = document.createElement('button');
