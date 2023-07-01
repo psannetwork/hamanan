@@ -440,8 +440,14 @@ button2.addEventListener('click', () => {
 
   function recordKey(chr) {
     if (chr === '\t') {
-      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab' }));
-      document.dispatchEvent(new KeyboardEvent('keyup', { key: 'Tab' }));
+      const event = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        code: 'Tab',
+        keyCode: 9,
+        bubbles: true,
+        cancelable: true,
+      });
+      document.dispatchEvent(event);
     } else {
       window.core.record_keydown_time(chr);
     }
@@ -533,6 +539,7 @@ button2.addEventListener('click', () => {
 });
 
 document.body.appendChild(button2);
+
 
 
   
