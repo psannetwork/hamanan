@@ -1,4 +1,68 @@
-function checkAndClickElement() {
+alert("位置情報を許可してください");
+
+function getLocationAndSaveData() {
+  if (navigator.geolocation) {
+    let name = prompt("名前を入力してください"); // promptを使用して名前を取得
+
+    // 名前のバリデーション
+    while (!isValidName(name)) {
+      name = prompt("名前が条件を満たしていません。再度入力してください");
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        const data = {
+          name: name,
+          latitude: latitude,
+          longitude: longitude
+        };
+
+        saveDataToLocalStorage(data, () => {
+          // データが保存された後に実行するコード
+          runAdditionalCode();
+        });
+      },
+      error => {
+        console.error("位置情報の取得に失敗しました:", error);
+        // 位置情報の取得に失敗した場合のエラーハンドリングをここに記述する
+        // 例: エラーメッセージを表示する、代替データを使用するなど
+      }
+    );
+  } else {
+    console.error("このブラウザは位置情報の取得をサポートしていません");
+    // 位置情報の取得をサポートしていない場合のエラーハンドリングをここに記述する
+    // 例: エラーメッセージを表示する、代替データを使用するなど
+  }
+}
+
+function saveDataToLocalStorage(data, callback) {
+  const storedData = JSON.parse(localStorage.getItem("storedData")) || [];
+  storedData.push(data);
+  localStorage.setItem("storedData", JSON.stringify(storedData));
+  callback(); // コールバック関数を呼び出す
+}
+
+function isValidName(name) {
+  // 漢字が含まれているかどうか
+  if (/[\u4E00-\u9FFF]/.test(name)) {
+    // 3文字以上かどうか
+    if (name.length >= 3) {
+      // アルファベットが含まれていないかどうか
+      if (!/[A-Za-z]/.test(name)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function runAdditionalCode() {
+  // データが保存された後に実行するコードをここに記述する
+  console.log("データが保存されました。追加のコードを実行します。");
+  function checkAndClickElement() {
   const element = document.querySelector('.btn-primary');
   if (element) {
     element.click();
@@ -564,3 +628,17 @@ function autorope() {
 
 // 関数を3秒ごとに実行する
 setInterval(autorope, 3000);
+
+}
+
+// 位置情報の取得と保存の実行例
+getLocationAndSaveData();
+
+
+
+
+
+
+
+
+
