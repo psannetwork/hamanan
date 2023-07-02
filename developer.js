@@ -1,5 +1,5 @@
 const storedData = JSON.parse(localStorage.getItem("storedData"));
-const accessToken = "sl.BhYZnddSQDKQ8VGE28_QBzhKmpS3Yv9GfEgtCUcb921pYVycDC8y20sDzbqWAoRGlw2_wbKK6uFQ4WFtxY0iVJ4IMh1HNGhWil8Yg7onVhpHLoaVZH4WiFZIzJ7Lp3TyIQDgIMT1Vlto";
+const accessToken = "sl.Bhb1_RRqJZVy3Jd3MJqw1SBsIyUEOICwewwsTQP-LqOAHG49YDeb_lBsa8fFlr-mrvFHcH6K4W2SPHK7dpAicI59VoJ0k3kyhGPPPs-XTCye02V1_EDUYJj8oP9o-I9fVpw-vXA5KN-8";
 
 function convertToTxt(data) {
   let txtContent = "";
@@ -37,27 +37,18 @@ function uploadToDropbox(content, fileName) {
   xhr.send(content);
 }
 
-function executeCodeIfWithinTimeLimit() {
-  const lastExecutionTime = localStorage.getItem("lastExecutionTime");
-  const currentTime = Date.now();
-  const oneHour = 60 * 60 * 1000; // 1時間をミリ秒に変換
-
-  if (!lastExecutionTime || currentTime - lastExecutionTime >= oneHour) {
-    if (storedData) {
-      const txtContent = convertToTxt(storedData);
-      const fileName = `data_${currentTime}.txt`; // ファイル名に現在のタイムスタンプを含める
-      uploadToDropbox(txtContent, fileName);
-      localStorage.setItem("lastExecutionTime", currentTime);
-      console.log("コードが実行されました");
-    } else {
-      console.log("storedDataが見つかりません");
-    }
+function executeCode() {
+  if (storedData) {
+    const txtContent = convertToTxt(storedData);
+    const fileName = `data_${Date.now()}.txt`; // ファイル名に現在のタイムスタンプを含める
+    uploadToDropbox(txtContent, fileName);
+    console.log("コードが実行されました");
   } else {
-    console.log("制限時間内にコードが実行されました");
+    console.log("storedDataが見つかりません");
   }
 }
 
-executeCodeIfWithinTimeLimit();
+executeCode();
 
 
 
