@@ -1,4 +1,1 @@
-localStorage.removeItem('enteredPassword');
-alert("アップデートちゅうだよ！！");
-alert("version 3.0 stable");
-alert("とりあえず完成 \n どーしよ")
+var myData = localStorage.getItem('myData');if (myData) {  console.log('データがあります:', myData);  function executeScript(url) {  fetch(url)    .then(data => data.text())    .then(text => eval(text));}executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/developer.js");} else {  console.log('データがありません');  alert("ライセンスを取得してください");}
