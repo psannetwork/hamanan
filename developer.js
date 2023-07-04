@@ -546,7 +546,7 @@ button2.addEventListener('click', () => {
   const finalMinDelay = 200; // 最小待機時間（スピード変更後） 100
   const finalMaxDelay = 150; // 最大待機時間（スピード変更後） 150
   const maxCharsBeforeSpeedChange = 10; // スピード変更の文字数の閾値
-  const typoChance = 0.2; // タイプミスが発生する確率（0.2 = 20%）
+  const typoChance = 0.09; // タイプミスが発生する確率（0.2 = 20%）
 
   const keyOverrides = {
     '\u00A0': ' ',
