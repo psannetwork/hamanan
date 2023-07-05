@@ -16,6 +16,24 @@ function injectCustomCode() {
     if (invincibleMode && invincibleMode.toLowerCase() === "yes") {
       Runner.prototype.gameOver = function() {}; 
     }
+    // ユーザーに値を尋ねる
+const speed = prompt("速度を入力してください（デフォルト値: 6）:");
+
+// 入力された値を取得し、数値に変換する
+const speedValue = parseInt(speed);
+
+// Runner.instance_.setSpeed()メソッドを実行する
+Runner.instance_.setSpeed(speedValue);
+// ユーザーに値を尋ねる
+const gravity = prompt("重力を入力してください（デフォルト値: 0.6）:");
+
+// 入力された値を取得し、数値に変換する
+const gravityValue = parseFloat(gravity);
+
+// Runner.instance_.tRex.config.GRAVITYの値を設定する
+Runner.instance_.tRex.config.GRAVITY = gravityValue;
+
+
   `;
   
   const script = document.createElement('script');
