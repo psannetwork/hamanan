@@ -345,7 +345,7 @@ button2.style.transform = 'translateX(-50%)';
 button2.style.top = '88px';
 button2.style.transform = 'translateY(-50%)';
 button2.style.zIndex = '99999';
-button2.addEventListener('click', () => {
+button2.addEventListener('click', async () => {
   const normalMinDelay = 15; // 最小待機時間 18
   const normalMaxDelay = 30; // 最大待機時間 30
   const finalMinDelay = 200; // 最小待機時間（スピード変更後） 100
@@ -422,7 +422,7 @@ button2.addEventListener('click', () => {
   }
 
   setInterval(checkAndClickCloseButton, 1000); // 広告バツボタン
-  repeatClick('.btn.btn-lg.pull-right.btn-primary', 1000);
+
   async function autoPlay(finish) {
     const chrs = getTargetCharacters();
     const numChars = chrs.length;
@@ -480,9 +480,7 @@ container.appendChild(button1);
 container.appendChild(button2);
 
 document.body.appendChild(container);
-container.style.zIndex = '99999'; //手前に持ってくる
-
-
+container.style.zIndex = '99999'; // 手前に持ってくる
 
   
   //ここまでメイン
