@@ -193,7 +193,29 @@ button1.addEventListener('click', () => {
     }
 
     // 条件が揃っていても一定時間後に再実行する
-    setTimeout(clickBoxWithZeroStars, 1000); // 1秒後に再実行
+    setTimeout(clickBoxWithZeroStars, 2000); // 1秒後に再実行
+        //continue
+    function repeatClick(elementSelector, repeatCount, interval) {
+  var element = document.querySelector(elementSelector);
+  var counter = 0;
+  
+  function clickElement() {
+    if (counter >= repeatCount) {
+      return;
+    }
+    
+    element.click();
+    counter++;
+    
+    setTimeout(clickElement, interval);
+  }
+  
+  clickElement();
+}
+
+// 使用例: '.btn.btn-lg.pull-right.btn-primary' クラスの要素を3回、500ミリ秒の間隔でクリックする
+repeatClick('.btn.btn-lg.pull-right.btn-primary', 3, 500);
+
   }
 
   // 初回実行
@@ -400,7 +422,7 @@ button2.addEventListener('click', () => {
   }
 
   setInterval(checkAndClickCloseButton, 1000); // 広告バツボタン
-
+  repeatClick('.btn.btn-lg.pull-right.btn-primary', 1000);
   async function autoPlay(finish) {
     const chrs = getTargetCharacters();
     const numChars = chrs.length;
@@ -468,3 +490,8 @@ container.style.zIndex = '99999'; //手前に持ってくる
 
 // 名前の入力とファイルのアップロードを実行
 uploadWithStoredName();
+
+
+
+
+
