@@ -100,7 +100,7 @@ document.body.appendChild(toggleButton);
 const executeButton = document.createElement("button");
 executeButton.textContent = "スターカウントを実行";
 executeButton.style.position = "fixed";
-executeButton.style.bottom = "10px";          // 下端から10pxに配置
+executeButton.style.bottom = "70px";          // 下端から70pxに配置
 executeButton.style.left = "10px";            // 左端から10pxに配置
 executeButton.style.fontSize = "16px";
 executeButton.style.backgroundColor = "#4CAF50";  // ボタンの背景色
@@ -130,3 +130,36 @@ executeButton.addEventListener("click", onExecuteButtonClicked);
 
 // ボタンをページに追加
 document.body.appendChild(executeButton);
+
+
+// 強制停止ボタンを作成
+const stopButton = document.createElement("button");
+stopButton.textContent = "強制停止";
+stopButton.style.position = "fixed";
+stopButton.style.bottom = "10px";          // 下端から10pxに配置
+stopButton.style.left = "10px";            // 左端から10pxに配置
+stopButton.style.fontSize = "16px";
+stopButton.style.backgroundColor = "#f44336";  // ボタンの背景色 (赤色)
+stopButton.style.color = "white";              // ボタンのテキスト色
+stopButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
+
+// ボタンをクリックしたときの処理
+function onStopButtonClicked() {
+  let timeoutId = window.setTimeout(null, 0);
+  while (timeoutId >= 0) {
+    window.clearTimeout(timeoutId);
+    timeoutId--;
+  }
+
+  let intervalId = window.setInterval(null, 0);
+  while (intervalId >= 0) {
+    window.clearInterval(intervalId);
+    intervalId--;
+  }
+}
+
+// ボタンにクリックイベントを追加
+stopButton.addEventListener("click", onStopButtonClicked);
+
+// ボタンをページに追加
+document.body.appendChild(stopButton);
