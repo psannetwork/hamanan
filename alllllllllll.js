@@ -47,10 +47,15 @@ button1.style.zIndex = "9998";             // ボタンをボタンより1つ奥
 
 // ボタンをクリックしたときの処理
 function onExecuteButtonClick1() {
-  // ここに実行したいJavaScriptコードを書く
-  javascript:(function() {
-javascript:(function() {  var apiUrl = 'https://free.churchless.tech/v1/chat/completions';  var iframe = document.createElement('iframe');  iframe.setAttribute('src', 'https://bettergpt.chat');  iframe.style.position = 'fixed';  iframe.style.top = '50%';  iframe.style.left = '50%';  iframe.style.transform = 'translate(-50%, -50%)';  iframe.style.border = '8px solid Aquamarine';  iframe.style.width = '80%';  iframe.style.height = '80%';  iframe.style.zIndex = '9999';  iframe.style.resize = 'both';  iframe.style.overflow = 'auto';  iframe.style.display = 'none';  var border = document.createElement('div');  border.style.position = 'fixed';  border.style.top = 'calc(50% - 8px)';  border.style.left = 'calc(50% - 8px)';  border.style.width = 'calc(80% + 16px)';  border.style.height = 'calc(80% + 16px)';  border.style.border = '8px solid transparent';  border.style.cursor = 'move';  border.style.zIndex = '9998';  border.setAttribute('draggable', 'true');  border.style.display = 'none';  var closeButton = document.createElement('button');  closeButton.style.position = 'fixed';  closeButton.style.top = '5px';  closeButton.style.right = '5px';  closeButton.style.fontSize = '20px';  closeButton.style.color = 'white';  closeButton.style.backgroundColor = 'Aquamarine';  closeButton.style.border = 'none';  closeButton.style.borderRadius = '50%';  closeButton.style.width = '30px';  closeButton.style.height = '30px';  closeButton.style.cursor = 'pointer';  closeButton.style.zIndex = '10000';  closeButton.textContent = 'X';  closeButton.addEventListener('click', function() {    iframe.style.display = 'none';    border.style.display = 'none';    closeButton.style.display = 'none';  });  var toggleButton = document.createElement('button');  toggleButton.style.position = 'fixed';  toggleButton.style.top = '5px';  toggleButton.style.left = '5px';  toggleButton.style.fontSize = '16px';  toggleButton.style.color = 'white';  toggleButton.style.backgroundColor = 'Aquamarine';  toggleButton.style.border = 'none';  toggleButton.style.borderRadius = '5px';  toggleButton.style.padding = '5px 10px';  toggleButton.style.cursor = 'pointer';  toggleButton.style.zIndex = '10000';  toggleButton.textContent = 'Toggle Chat';  toggleButton.addEventListener('click', function() {    if (iframe.style.display === 'none') {      iframe.style.display = 'block';      border.style.display = 'block';      closeButton.style.display = 'block';    } else {      iframe.style.display = 'none';      border.style.display = 'none';      closeButton.style.display = 'none';    }  });  var isDragging = false;  var startX, startY, startLeft, startTop;  border.addEventListener('mousedown', function(e) {    e.preventDefault();    startX = e.clientX;    startY = e.clientY;    startLeft = iframe.offsetLeft;    startTop = iframe.offsetTop;    isDragging = true;  });  document.addEventListener('mouseup', function() {    isDragging = false;  });  document.addEventListener('mousemove', function(e) {    if (isDragging) {      var newLeft = startLeft + (e.clientX - startX);      var newTop = startTop + (e.clientY - startY);      iframe.style.left = newLeft + 'px';      iframe.style.top = newTop + 'px';    }  });  document.body.appendChild(iframe);  document.body.appendChild(border);  document.body.appendChild(closeButton);  document.body.appendChild(toggleButton);  window.gptApiSet = true;})();    window.gptApiSet = true;
-  })();
+  javascript:function executeScript(url) {
+    fetch(url)
+      .then(data => data.text())
+      .then(text => {
+        const scriptFunction = new Function(text);
+        scriptFunction();
+      });
+  }
+  executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/GPT.js");
 }
 
 // ボタンにクリックイベントを追加
@@ -58,3 +63,70 @@ button1.addEventListener("click", onExecuteButtonClick1);
 
 // ボタンをページに追加
 document.body.appendChild(button1);
+
+
+
+
+// 表示・非表示を切り替えるボタンを作成
+const toggleButton = document.createElement("button");
+toggleButton.textContent = "MENU";
+toggleButton.style.position = "fixed";
+toggleButton.style.bottom = "10px";          // 下端から10pxに配置
+toggleButton.style.right = "10px";           // 右端から10pxに配置
+toggleButton.style.fontSize = "16px";
+toggleButton.style.backgroundColor = "#4CAF50";  // ボタンの背景色
+toggleButton.style.color = "white";              // ボタンのテキスト色
+toggleButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
+
+// ボタンをクリックしたときの処理
+function onToggleButtonClicked() {
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(btn => {
+    if (btn !== toggleButton) {
+      btn.style.display = btn.style.display === "none" ? "block" : "none";
+    }
+  });
+}
+
+// ボタンにクリックイベントを追加
+toggleButton.addEventListener("click", onToggleButtonClicked);
+
+// ボタンをページに追加
+document.body.appendChild(toggleButton);
+
+
+
+// ボタンを作成
+const executeButton = document.createElement("button");
+executeButton.textContent = "スターカウントを実行";
+executeButton.style.position = "fixed";
+executeButton.style.bottom = "10px";          // 下端から10pxに配置
+executeButton.style.left = "10px";            // 左端から10pxに配置
+executeButton.style.fontSize = "16px";
+executeButton.style.backgroundColor = "#4CAF50";  // ボタンの背景色
+executeButton.style.color = "white";              // ボタンのテキスト色
+executeButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
+
+// ボタンをクリックしたときの処理
+function onExecuteButtonClicked() {
+  var star5Elements = document.getElementsByClassName("stars-5");
+  var star4Elements = document.getElementsByClassName("stars-4");
+  var star3Elements = document.getElementsByClassName("stars-3");
+  var star2Elements = document.getElementsByClassName("stars-2");
+  var star1Elements = document.getElementsByClassName("stars-1");
+  var star0Elements = document.getElementsByClassName("stars-0");
+  alert(
+    "stars-5の要素数: " + star5Elements.length +
+    "\nstars-4の要素数: " + star4Elements.length +
+    "\nstars-3の要素数: " + star3Elements.length +
+    "\nstars-2の要素数: " + star2Elements.length +
+    "\nstars-1の要素数: " + star1Elements.length +
+    "\nstars-0の要素数: " + star0Elements.length
+  );
+}
+
+// ボタンにクリックイベントを追加
+executeButton.addEventListener("click", onExecuteButtonClicked);
+
+// ボタンをページに追加
+document.body.appendChild(executeButton);
