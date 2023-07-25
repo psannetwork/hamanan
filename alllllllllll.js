@@ -1,25 +1,26 @@
 // ボタンを作成
-const button = document.createElement("button");
-button.textContent = "クリックして実行";
-button.style.padding = "10px";
-button.style.fontSize = "16px";
-button.style.backgroundColor = "#4CAF50";  // ボタンの背景色
-button.style.color = "white";              // ボタンのテキスト色
-button.style.position = "fixed";           // ボタンの位置を固定
-button.style.top = "70%";                  // 上端を画面の中央に配置
-button.style.left = "50%";                 // 左端を画面の中央に配置
-button.style.transform = "translate(-50%, -50%)";  // 中央揃え
-button.style.zIndex = "9999";             // ボタンを最前面に
+const button5 = document.createElement("button");
+button5.textContent = "about:black";
+button5.style.padding = "10px";
+button5.style.fontSize = "16px";
+button5.style.backgroundColor = "#4CAF50";  // ボタンの背景色
+button5.style.color = "white";              // ボタンのテキスト色
+button5.style.position = "fixed";           // ボタンの位置を固定
+button5.style.top = "70%";                  // 上端を画面の中央に配置
+button5.style.left = "50%";                 // 左端を画面の中央に配置
+button5.style.transform = "translate(-50%, -50%)";  // 中央揃え
+button5.style.zIndex = "9999";             // ボタンを最前面に
 
 // ボタンをクリックしたときの処理
-function onExecuteButtonClick() {
+function onExecuteButtonClick5() {
 (function () {var url = prompt("Paste the link you want to be embedded into an about:blank page.\n(INCLUDE https://)", "https://example.com"); var urlObj = new window.URL(window.location.href); win = window.open(); win.document.body.style.margin = "0"; win.document.body.style.height = "100vh"; var iframe = win.document.createElement("iframe"); iframe.style.border = "none"; iframe.style.width = "100%"; iframe.style.height = "100%"; iframe.style.margin = "0"; iframe.referrerpolicy = "no-referrer"; iframe.allow = "fullscreen"; iframe.src = url.toString(); win.document.body.appendChild(iframe); })(); }
 
 // ボタンにクリックイベントを追加
-button.addEventListener("click", onExecuteButtonClick);
+// ボタンにクリックイベントを追加
+button5.addEventListener("click", onExecuteButtonClick5);
 
 // ボタンをページに追加
-document.body.appendChild(button);
+document.body.appendChild(button5);
 
 
 
