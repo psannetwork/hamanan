@@ -150,3 +150,10 @@ injectCustomCode();
   // キーボードのイベントを監視
   window.addEventListener('keydown', onKeyPress);
 })();
+
+
+
+
+
+
+javascript:// iキーが押されたときに実行する関数function onIKeyPressed() {  // 走行距離を計算して更新  const distanceRan = parseFloat(score) / Runner.instance_.distanceMeter.config.COEFFICIENT;  Runner.instance_.distanceRan = distanceRan;  // ジャンプ速度を設定  Runner.instance_.tRex.setJumpVelocity(parseFloat(jumpVelocity));  // ゲームの速度を設定  Runner.instance_.setSpeed(speedValue);  // 重力を設定  Runner.instance_.tRex.config.GRAVITY = gravityValue;}// キー入力を監視してiキーが押されたら関数を実行document.addEventListener("keydown", function(event) {  if (event.keyCode === 73) { // 73はiキーのキーコード    onIKeyPressed();  }});
