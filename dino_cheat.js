@@ -112,3 +112,41 @@ function checkPassword() {
 
 checkPassword();
 injectCustomCode();
+
+
+
+
+
+
+(function () {
+  // 音声ファイルのURL
+  const soundURL =
+    'https://github.com/hirotomoki12345/hamanan/raw/main/y2meta.com%20-%20Super%20Mario%20Maker%202%20-%20Superball%20Flower%20theme%20%F0%9F%8E%B5%20(128%20kbps).mp3';
+
+  let audio = null;
+
+  function playAudio() {
+    if (!audio) {
+      audio = new Audio(soundURL);
+      audio.loop = true;
+      audio.play();
+    } else if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
+  function onKeyPress(event) {
+    // スペースキーが押された場合
+    if (event.code === 'Space') {
+      // 音が再生されていない場合は音を再生
+      if (!audio || audio.paused) {
+        playAudio();
+      }
+    }
+  }
+
+  // キーボードのイベントを監視
+  window.addEventListener('keydown', onKeyPress);
+})();
