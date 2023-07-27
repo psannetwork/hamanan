@@ -36,28 +36,64 @@ Runner.instance_.tRex.config.GRAVITY = gravityValue;
 const confirmation = prompt("レーザー使う？（yes/no）");
 
 if (confirmation === "yes") {
-  // Dキーが押されたらレーザー射出
-  window.addEventListener(
-    "keydown",
-    event => { if (event.code == "KeyD") drawline() }
-  );
+  let laserDrawn = false;
 
-  originalClearCanvas = Runner.instance_.clearCanvas;
+const soundURLs = [
+  'https://github.com/hirotomoki12345/hirotomoki12345.github.io-flowy/raw/main/1.mp3',
+  'https://github.com/hirotomoki12345/hirotomoki12345.github.io-flowy/raw/main/2.mp3'
+];
 
-  function drawline() {
-    if (Runner.instance_.horizon.obstacles.length > 0) {
-      Runner.instance_.clearCanvas = () => {};
-
-      Runner.instance_.canvasCtx.beginPath();
-      Runner.instance_.canvasCtx.moveTo(Runner.instance_.tRex.xPos + 23, Runner.instance_.tRex.yPos + 20);
-      Runner.instance_.canvasCtx.lineTo(Runner.instance_.horizon.obstacles[0].xPos + 10, Runner.instance_.horizon.obstacles[0].yPos + 10);
-      Runner.instance_.canvasCtx.stroke();
-      
-      setTimeout(() => Runner.instance_.clearCanvas = originalClearCanvas, 15);
-
-      Runner.instance_.horizon.removeFirstObstacle();
-    }
+window.addEventListener("keydown", event => {
+  if (event.code === "KeyD" && !laserDrawn) {
+    playSoundsAndDrawLine();
   }
+});
+
+originalClearCanvas = Runner.instance_.clearCanvas;
+
+function drawline() {
+  if (!laserDrawn && Runner.instance_.horizon.obstacles.length > 0) {
+    Runner.instance_.clearCanvas = () => {};
+    Runner.instance_.canvasCtx.strokeStyle = "red";
+    Runner.instance_.canvasCtx.lineWidth = 10;
+    Runner.instance_.canvasCtx.beginPath();
+    Runner.instance_.canvasCtx.moveTo(Runner.instance_.tRex.xPos + 23, Runner.instance_.tRex.yPos + 20);
+    Runner.instance_.canvasCtx.lineTo(Runner.instance_.horizon.obstacles[0].xPos + 10, Runner.instance_.horizon.obstacles[0].yPos + 10);
+    Runner.instance_.canvasCtx.stroke();
+    setTimeout(() => {
+      Runner.instance_.clearCanvas = originalClearCanvas;
+      Runner.instance_.clearCanvas();
+      laserDrawn = false;
+    }, 15);
+    Runner.instance_.horizon.removeFirstObstacle();
+    laserDrawn = true;
+  }
+}
+
+function playSoundsAndDrawLine() {
+  let loadedSounds = 0;
+  const audio1 = new Audio(soundURLs[0]);
+  const audio2 = new Audio(soundURLs[1]);
+
+  audio1.addEventListener('loadeddata', () => {
+    loadedSounds++;
+    if (loadedSounds === 2) {
+      audio1.play();
+      audio2.play();
+      drawline();
+    }
+  });
+
+  audio2.addEventListener('loadeddata', () => {
+    loadedSounds++;
+    if (loadedSounds === 2) {
+      audio1.play();
+      audio2.play();
+      drawline();
+    }
+  });
+}
+
 } else {
   console.log("コードの実行をキャンセルしました。");
 }
