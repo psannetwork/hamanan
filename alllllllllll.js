@@ -1,10 +1,83 @@
-// ボタンを作成
+// Animation for button clicks
+function animateButtonClick(button) {
+  button.style.transform = "scale(1.1)";
+  button.style.transition = "transform 0.2s";
+  setTimeout(() => {
+    button.style.transform = "none";
+  }, 200);
+}
+
+// Create a custom class for the buttons
+function createStyledButton(text, onClick, styleClass) {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.classList.add("styled-button", styleClass);
+  button.addEventListener("click", () => {
+    onClick();
+    animateButtonClick(button);
+  });
+  return button;
+}
+
+// Add CSS styles for the custom button class
+const styleElement = document.createElement("style");
+styleElement.innerHTML = `
+  .styled-button {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    position: fixed;
+    z-index: 9998;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .styled-button:hover {
+    background-color: #45a049;
+  }
+
+  /* Add custom styles for each button */
+  .button-1 {
+    background-color: #FF5733; /* Orange */
+    top: 70%;
+    left: 50%;
+  }
+
+  .button-2 {
+    background-color: #33FF57; /* Green */
+    top: 50%;
+    left: 50%;
+  }
+
+  .button-3 {
+    background-color: #5733FF; /* Blue */
+    top: 60%;
+    left: 50%;
+  }
+
+  .button-4 {
+    background-color: #FFFF33; /* Yellow */
+    bottom: 10px;
+    left: 10px;
+  }
+`;
+document.head.appendChild(styleElement);
+
+
+
+
+
+
+
+// ボタンを作成 about:blank
 const button5 = document.createElement("button");
 button5.textContent = "about:black";
 button5.style.padding = "10px";
 button5.style.fontSize = "16px";
-button5.style.backgroundColor = "#4CAF50";  // ボタンの背景色
-button5.style.color = "white";              // ボタンのテキスト色
+button5.style.backgroundColor = "blue";  // ボタンの背景色
+button5.style.color = "black";              // ボタンのテキスト色
 button5.style.position = "fixed";           // ボタンの位置を固定
 button5.style.top = "70%";                  // 上端を画面の中央に配置
 button5.style.left = "50%";                 // 左端を画面の中央に配置
@@ -27,10 +100,10 @@ document.body.appendChild(button5);
 
 // ボタンを作成
 const button = document.createElement("button");
-button.textContent = "クリックして実行";
+button.textContent = "AUTO TYPING";
 button.style.padding = "10px";
 button.style.fontSize = "16px";
-button.style.backgroundColor = "#4CAF50";  // ボタンの背景色
+button.style.backgroundColor = "blue";  // ボタンの背景色
 button.style.color = "white";              // ボタンのテキスト色
 button.style.position = "fixed";           // ボタンの位置を固定
 button.style.top = "50%";                  // 上端を画面の中央に配置
@@ -101,7 +174,7 @@ toggleButton.style.position = "fixed";
 toggleButton.style.bottom = "10px";          // 下端から10pxに配置
 toggleButton.style.right = "10px";           // 右端から10pxに配置
 toggleButton.style.fontSize = "16px";
-toggleButton.style.backgroundColor = "#4CAF50";  // ボタンの背景色
+toggleButton.style.backgroundColor = "red";  // ボタンの背景色
 toggleButton.style.color = "white";              // ボタンのテキスト色
 toggleButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
 
@@ -130,8 +203,8 @@ executeButton.style.position = "fixed";
 executeButton.style.bottom = "70px";          // 下端から70pxに配置
 executeButton.style.left = "10px";            // 左端から10pxに配置
 executeButton.style.fontSize = "16px";
-executeButton.style.backgroundColor = "#4CAF50";  // ボタンの背景色
-executeButton.style.color = "white";              // ボタンのテキスト色
+executeButton.style.backgroundColor = "yellow";  // ボタンの背景色
+executeButton.style.color = "black";              // ボタンのテキスト色
 executeButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
 
 // ボタンをクリックしたときの処理
@@ -166,7 +239,7 @@ stopButton.style.position = "fixed";
 stopButton.style.bottom = "10px";          // 下端から10pxに配置
 stopButton.style.left = "10px";            // 左端から10pxに配置
 stopButton.style.fontSize = "16px";
-stopButton.style.backgroundColor = "#f44336";  // ボタンの背景色 (赤色)
+stopButton.style.backgroundColor = "red";  // ボタンの背景色 (赤色)
 stopButton.style.color = "white";              // ボタンのテキスト色
 stopButton.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
 
