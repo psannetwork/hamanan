@@ -59,8 +59,8 @@ setInterval(autorope, 3000);
 
 const button1 = document.createElement('button');
 button1.textContent = '1. auto on';
-button1.style.backgroundColor = 'black';
-button1.style.color = 'red';
+button1.style.backgroundColor = 'red';
+button1.style.color = 'blue';
 button1.style.border = 'none';
 button1.style.position = 'fixed';
 button1.style.right = '18px';
@@ -93,8 +93,8 @@ document.body.appendChild(button1);
 
 const button3 = document.createElement('button');
 button3.textContent = '3. auto click';
-button3.style.backgroundColor = 'black';
-button3.style.color = 'green';
+button3.style.backgroundColor = 'yellow';
+button3.style.color = 'red';
 button3.style.border = 'none';
 button3.style.position = 'fixed';
 button3.style.right = '20px';
@@ -202,8 +202,8 @@ document.body.appendChild(button3);
 
 const button2 = document.createElement('button');
 button2.textContent = '2. miss click';
-button2.style.backgroundColor = 'black';
-button2.style.color = 'green';
+button2.style.backgroundColor = 'green';
+button2.style.color = 'white';
 button2.style.border = 'none';
 button2.style.position = 'fixed';
 button2.style.right = '20px';
