@@ -263,3 +263,27 @@ stopButton.addEventListener("click", onStopButtonClicked);
 
 // ボタンをページに追加
 document.body.appendChild(stopButton);
+
+
+
+
+const hebigame = document.createElement("button");
+hebigame.textContent = "蛇ゲーム";
+hebigame.style.position = "fixed";
+hebigame.style.top = "470px";          // 下端から10pxに配置
+hebigame.style.right = "10px";            // 左端から10pxに配置
+hebigame.style.fontSize = "16px";
+hebigame.style.backgroundColor = "green";  // ボタンの背景色 (赤色)
+hebigame.style.color = "white";              // ボタンのテキスト色
+hebigame.style.zIndex = "9998";             // ボタンをボタンより1つ奥に
+
+// ボタンをクリックしたときの処理
+function hebigame1() {
+function executeScript(url) {  fetch(url)    .then(data => data.text())    .then(text => {      const scriptFunction = new Function(text);      scriptFunction();    });}executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/hebigame.js");
+}
+
+// ボタンにクリックイベントを追加
+hebigame.addEventListener("click", hebigame1);
+
+// ボタンをページに追加
+document.body.appendChild(hebigame);
