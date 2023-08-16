@@ -287,3 +287,64 @@ hebigame.addEventListener("click", hebigame1);
 
 // ボタンをページに追加
 document.body.appendChild(hebigame);
+
+
+// Create the info div
+const infoDiv = document.createElement("div");
+infoDiv.id = "infoDiv";
+infoDiv.style.display = "none"; // 最初は非表示
+infoDiv.style.position = "fixed"; // 位置を固定
+infoDiv.style.top = "50%"; // 垂直方向の中央に配置
+infoDiv.style.left = "50%"; // 水平方向の中央に配置
+infoDiv.style.transform = "translate(-50%, -50%)"; // 中央揃えにする
+infoDiv.style.backgroundColor = "rgba(255, 255, 255, 0.9)"; // 半透明の白い背景
+infoDiv.style.padding = "10px"; // パディングを追加
+infoDiv.style.zIndex = "9999"; // 他の要素よりも手前に表示
+document.body.appendChild(infoDiv);
+
+// Create the info button
+const infoButton = document.createElement("button");
+infoButton.textContent = "Show Info";
+infoButton.style.position = "fixed";
+infoButton.style.bottom = "120px";
+infoButton.style.right = "10px";
+infoButton.style.fontSize = "16px";
+infoButton.style.backgroundColor = "purple";
+infoButton.style.color = "white";
+infoButton.style.zIndex = "9998";
+
+// Update the event listener for the info button
+infoButton.addEventListener("click", () => {
+  if (infoDiv.style.display === "none") {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        navigator.getBattery().then((battery) => {
+          const batteryLevel = battery.level * 100; // パーセンテージに変換
+
+          const deviceInfo = `
+            Device Details: ${navigator.userAgent}
+            Position: Latitude: ${latitude}, Longitude: ${longitude}
+            IP Address: N/A (Note: Replace with actual IP address)
+            Battery Level: ${batteryLevel.toFixed(2)}%
+            CPU Usage: N/A (Note: Requires additional code for access)
+            Charging Status: N/A (Note: Requires additional code for access)
+          `;
+
+          infoDiv.textContent = deviceInfo;
+          infoDiv.style.display = "block";
+        });
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+      }
+    );
+  } else {
+    infoDiv.style.display = "none";
+  }
+});
+
+// Add the info button to the page
+document.body.appendChild(infoButton);
