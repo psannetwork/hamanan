@@ -1,3 +1,17 @@
+function clickContinuously() {
+  const continueButton = document.querySelector('.btn.btn-lg.pull-right.btn-primary');
+  
+  if (continueButton) {
+    continueButton.click();
+  }
+}
+
+// 1秒ごとにクリック処理を実行
+setInterval(clickContinuously, 1000);
+
+
+
+
 function navID() {
   const exitLessonElement = document.querySelector('.menu-btn[aria-label="exit lesson"]');
 
