@@ -375,3 +375,44 @@ container.appendChild(button2);
 
 document.body.appendChild(container);
 container.style.zIndex = '99999'; //手前に持ってくる
+
+
+
+
+
+
+// ボタンを作成
+var devModeButton = document.createElement('button');
+devModeButton.textContent = 'Dev Mode ボタン';
+devModeButton.style.position = 'fixed';
+devModeButton.style.bottom = '50px';
+devModeButton.style.left = '50%';
+devModeButton.style.transform = 'translateX(-50%)';
+devModeButton.style.zIndex = '99999'; // 最前面に持ってくる
+document.body.appendChild(devModeButton);
+
+var isScriptLoaded = false; // スクリプトがロードされているかどうかのフラグ
+var devModeActive = false; // Devモードがアクティブかどうかのフラグ
+
+// ボタンがクリックされたときの処理
+devModeButton.addEventListener('click', function () {
+  if (devModeActive) {
+    // Devモードがアクティブな場合、非表示にする
+    devModeButton.style.display = 'none';
+    devModeActive = false;
+  } else {
+    // Devモードが非アクティブな場合
+    if (!isScriptLoaded) {
+      // スクリプトがロードされていない場合はロード
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/gh/FogNetwork/Vapor/vapor.min.js';
+      document.body.appendChild(script);
+      isScriptLoaded = true;
+    }
+    // ボタンを表示し、Devモードをアクティブにする
+    devModeButton.style.display = 'block';
+    devModeActive = true;
+  }
+});
+
+// キ
