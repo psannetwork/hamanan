@@ -12,13 +12,27 @@ setInterval(clickContinuously, 1000);
 
 
 
-function navID() {
-  const exitLessonElement = document.querySelector('.menu-btn[aria-label="exit lesson"]');
+// クリックする関数を定義
+function clickElement() {
+  var element = document.querySelector('.nav-icon'); // クリックする要素の取得
+  var excludedElement1 = document.querySelector('.boxed-line'); // 排除する要素1が存在するか確認
+  var excludedElement2 = document.querySelector('.token'); // 排除する要素2が存在するか確認
 
-  if (exitLessonElement) {
-    exitLessonElement.click();
+  if (element && !(excludedElement1 || excludedElement2)) {
+    var event = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    element.dispatchEvent(event);
   }
-}  //boss skip
+}
+
+// 1秒ごとに実行するインターバルを設定
+setInterval(clickElement, 1000);
+
+
+
 
 
 function checkAndExecute() {
