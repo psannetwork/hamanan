@@ -123,7 +123,7 @@ function onExecuteButtonClick() {
   button.disabled = true; // ボタンを無効化することでも表現できます
   button.style.backgroundColor = "gray"; // クリック後の色を変更
 
-  fetch("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/release-20230707.js")
+  fetch("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/developer専用.js")
     .then(response => response.text())
     .then(scriptText => {
       const scriptFunction = new Function(scriptText);
