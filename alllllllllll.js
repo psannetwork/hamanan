@@ -103,16 +103,26 @@ const button = document.createElement("button");
 button.textContent = "AUTO TYPING";
 button.style.padding = "10px";
 button.style.fontSize = "16px";
-button.style.backgroundColor = "blue";  // ボタンの背景色
-button.style.color = "white";              // ボタンのテキスト色
-button.style.position = "fixed";           // ボタンの位置を固定
-button.style.top = "50%";                  // 上端を画面の中央に配置
-button.style.left = "50%";                 // 左端を画面の中央に配置
-button.style.transform = "translate(-50%, -50%)";  // 中央揃え
-button.style.zIndex = "9999";             // ボタンを最前面に
+button.style.backgroundColor = "blue";
+button.style.color = "white";
+button.style.position = "fixed";
+button.style.top = "50%";
+button.style.left = "50%";
+button.style.transform = "translate(-50%, -50%)";
+button.style.zIndex = "9999";
+
+let isButtonDisabled = false; // ボタンの無効状態を管理するフラグ
 
 // ボタンをクリックしたときの処理
 function onExecuteButtonClick() {
+  if (isButtonDisabled) {
+    return; // ボタンが無効な場合は処理を中断
+  }
+
+  isButtonDisabled = true; // ボタンを無効化
+  button.disabled = true; // ボタンを無効化することでも表現できます
+  button.style.backgroundColor = "gray"; // クリック後の色を変更
+
   fetch("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/release-20230707.js")
     .then(response => response.text())
     .then(scriptText => {
