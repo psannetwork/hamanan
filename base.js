@@ -1,3 +1,6 @@
+//このコードを複製、無断転載をすることを禁じます
+//コードの改ざんも禁じます
+
 function clickContinuously() {
   const continueButton = document.querySelector('.btn.btn-lg.pull-right.btn-primary');
   
@@ -131,8 +134,8 @@ button3.style.top = '111px';
 button3.style.transform = 'translateY(-50%)';
 button3.style.zIndex = '99999';
 button3.addEventListener('click', () => {
-  const normalMinDelay = 15; // 最小待機時間 18
-  const normalMaxDelay = 30; // 最大待機時間 30
+  const normalMinDelay = 50; // 最小待機時間 18
+  const normalMaxDelay = 50; // 最大待機時間 30
   const finalMinDelay = 200; // 最小待機時間（スピード変更後） 100
   const finalMaxDelay = 150; // 最大待機時間（スピード変更後） 150
   const maxCharsBeforeSpeedChange = 10; // スピード変更の文字数の閾値
@@ -240,8 +243,8 @@ button2.style.top = '88px';
 button2.style.transform = 'translateY(-50%)';
 button2.style.zIndex = '99999';
 button2.addEventListener('click', () => {
-  const normalMinDelay = 15; // 最小待機時間 18
-  const normalMaxDelay = 30; // 最大待機時間 30
+  const normalMinDelay = 50; // 最小待機時間 18
+  const normalMaxDelay = 50; // 最大待機時間 30
   const finalMinDelay = 200; // 最小待機時間（スピード変更後） 100
   const finalMaxDelay = 150; // 最大待機時間（スピード変更後） 150
   const maxCharsBeforeSpeedChange = 10; // スピード変更の文字数の閾値
@@ -415,4 +418,4 @@ devModeButton.addEventListener('click', function () {
   }
 });
 
-// キ
+
