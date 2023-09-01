@@ -1,3 +1,7 @@
+alert("コードの改ざんを禁止します。その他policy違反も厳重に対処します。");
+
+
+
 // Animation for button clicks
 function animateButtonClick(button) {
   button.style.transform = "scale(1.1)";
