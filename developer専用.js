@@ -425,7 +425,7 @@ adblocker.style.border = 'none';
 adblocker.style.position = 'fixed';
 adblocker.style.right = '20px';
 adblocker.style.transform = 'translateX(-50%)';
-adblocker.style.top = '88px'; // Set the top position as needed
+adblocker.style.top = '135px'; // Set the top position as needed
 adblocker.style.transform = 'translateY(-50%)';
 adblocker.style.zIndex = '99999';
 
