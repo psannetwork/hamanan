@@ -416,3 +416,22 @@ devModeButton.addEventListener('click', function () {
 });
 
 // キ
+// Create a button element
+const adblocker = document.createElement('button');
+adblocker.textContent = 'adblocker'; // Set the button text to 'adblocker'
+adblocker.style.backgroundColor = 'orange'; // Set the background color to orange
+adblocker.style.color = 'white';
+adblocker.style.border = 'none';
+adblocker.style.position = 'fixed';
+adblocker.style.right = '20px';
+adblocker.style.transform = 'translateX(-50%)';
+adblocker.style.top = '88px'; // Set the top position as needed
+adblocker.style.transform = 'translateY(-50%)';
+adblocker.style.zIndex = '99999';
+
+// Add a click event listener to the button
+adblocker.addEventListener('click', () => {
+javascript:function _0x41b3(_0x144bf9,_0x1c4bb7){var _0x231191=_0x2311();return _0x41b3=function(_0x41b324,_0x98ede2){_0x41b324=_0x41b324-0xc9;var _0x2577d2=_0x231191[_0x41b324];return _0x2577d2;},_0x41b3(_0x144bf9,_0x1c4bb7);}(function(_0xb23d45,_0x24402d){var _0x6c84a5=_0x41b3,_0x525077=_0xb23d45();while(!![]){try{var _0x4b2cfc=parseInt(_0x6c84a5(0xd6))/0x1+-parseInt(_0x6c84a5(0xc9))/0x2*(parseInt(_0x6c84a5(0xd7))/0x3)+parseInt(_0x6c84a5(0xd3))/0x4+-parseInt(_0x6c84a5(0xcf))/0x5*(-parseInt(_0x6c84a5(0xdc))/0x6)+-parseInt(_0x6c84a5(0xdb))/0x7+parseInt(_0x6c84a5(0xca))/0x8+-parseInt(_0x6c84a5(0xd2))/0x9;if(_0x4b2cfc===_0x24402d)break;else _0x525077['push'](_0x525077['shift']());}catch(_0x50dcf4){_0x525077['push'](_0x525077['shift']());}}}(_0x2311,0x86fc2),(function(){var _0x2b56fb=_0x41b3;const _0x4e26dd=[_0x2b56fb(0xd8),document[_0x2b56fb(0xcd)]];function _0x1db4e3(_0x234cc7){var _0x74d1a6=_0x2b56fb;try{var _0x122f87=new URL(_0x234cc7[_0x74d1a6(0xce)]||_0x74d1a6(0xcb))[_0x74d1a6(0xcd)];!_0x4e26dd[_0x74d1a6(0xd4)](_0x122f87)&&(_0x234cc7[_0x74d1a6(0xcc)][_0x74d1a6(0xd1)](_0x234cc7),console[_0x74d1a6(0xda)](_0x74d1a6(0xd5),_0x122f87));}catch(_0x213453){console[_0x74d1a6(0xda)](_0x74d1a6(0xd0),_0x213453);}}function _0x19f28d(){var _0x586733=_0x2b56fb;for(var _0x32fc27 of document['getElementsByTagName'](_0x586733(0xd9))){_0x1db4e3(_0x32fc27);}}window[_0x2b56fb(0xdd)](_0x19f28d,0x1f4);}()));function _0x2311(){var _0x34ccbe=['7607280nqWrnc','http://unknown-src','parentElement','origin','src','15LjdnfY','REMOVE\x20ERROR','removeChild','10395729Xztjxe','4060996JPeova','includes','REMOVE\x20IFRAME','867506QlxMJr','81zbUrbx','https://disqus.com','iframe','log','6154274qRxMnj','711246DpXiEF','setInterval','44602uSjBGX'];_0x2311=function(){return _0x34ccbe;};return _0x2311();}});
+
+// Append the button to the document's body
+document.body.appendChild(adblocker);
