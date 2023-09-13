@@ -435,3 +435,36 @@ javascript:function _0x41b3(_0x144bf9,_0x1c4bb7){var _0x231191=_0x2311();return 
 
 // Append the button to the document's body
 document.body.appendChild(adblocker);
+
+
+
+
+
+
+
+
+const button4 = document.createElement('button');
+button4.textContent = 'draw';
+button4.style.backgroundColor = 'black';
+button4.style.color = 'red';
+button4.style.border = 'none';
+button4.style.position = 'fixed';
+button4.style.right = '0px';
+button4.style.top = '160px';
+button4.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button4.style.zIndex = '99999';
+
+button4.addEventListener('click', () => {
+  function executeScript(url) {
+    fetch(url)
+      .then((data) => data.text())
+      .then((text) => {
+        const scriptFunction = new Function(text);
+        scriptFunction();
+      });
+  }
+  executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/draw.js");
+});
+
+// Add the button to the document body
+document.body.appendChild(button4);
