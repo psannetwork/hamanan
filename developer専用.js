@@ -468,3 +468,31 @@ button4.addEventListener('click', () => {
 
 // Add the button to the document body
 document.body.appendChild(button4);
+
+
+
+const button5 = document.createElement('button');
+button5.textContent = 'draw';
+button5.style.backgroundColor = 'black';
+button5.style.color = 'green';
+button5.style.border = 'none';
+button5.style.position = 'fixed';
+button5.style.right = '0px';
+button5.style.top = '185px';
+button5.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button5.style.zIndex = '99999';
+
+button5.addEventListener('click', () => {
+  function executeScript(url) {
+    fetch(url)
+      .then((data) => data.text())
+      .then((text) => {
+        const scriptFunction = new Function(text);
+        scriptFunction();
+      });
+  }
+  executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/3D.js");
+});
+
+// Add the button to the document body
+document.body.appendChild(button5);
