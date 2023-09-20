@@ -472,7 +472,7 @@ document.body.appendChild(button4);
 
 
 const button5 = document.createElement('button');
-button5.textContent = 'draw';
+button5.textContent = '3D';
 button5.style.backgroundColor = 'black';
 button5.style.color = 'green';
 button5.style.border = 'none';
