@@ -23,7 +23,7 @@ image.onerror = () => {
 
 // テキスト要素の作成
 const text = document.createElement('div');
-text.textContent = 'This code is written by p.';
+text.textContent = 'This code is written by p. ver 3.0';
 text.style.color = 'red';
 text.style.fontSize = '14px';
 text.style.position = 'fixed';
