@@ -85,7 +85,7 @@ button1.style.height = '50px';
 
 // ボタン1のクリックイベントの追加
 button1.addEventListener('click', () => {
-  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/cheatcode.js')
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/developer専用.js')
     .then(response => response.text())
     .then(data => {
       console.log('ボタン1がクリックされました');
@@ -100,7 +100,7 @@ button1.addEventListener('click', () => {
 
 // ボタン要素2の作成
 const button2 = document.createElement('button');
-button2.textContent = 'devmode';
+button2.textContent = 'draw';
 button2.style.backgroundColor = 'green';
 button2.style.color = 'white';
 button2.style.position = 'fixed';
@@ -114,7 +114,7 @@ button2.style.height = '50px';
 
 // ボタン2のクリックイベントの追加
 button2.addEventListener('click', () => {
-  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/lately.js')
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/draw.js')
     .then(response => response.text())
     .then(data => {
       console.log('ボタン2がクリックされました');
@@ -143,7 +143,7 @@ button3.style.height = '50px';
 
 // ボタン3のクリックイベントの追加
 button3.addEventListener('click', () => {
-  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/dino_cheat.js')
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/GPT.js')
     .then(response => response.text())
     .then(data => {
       console.log('ボタン3がクリックされました');
@@ -157,7 +157,7 @@ button3.addEventListener('click', () => {
 
 // ボタン要素4の作成
 const button4 = document.createElement('button');
-button4.textContent = 'Stop Timers';
+button4.textContent = 'Stop';
 button4.style.backgroundColor = 'orange';
 button4.style.color = 'white';
 button4.style.position = 'fixed';
