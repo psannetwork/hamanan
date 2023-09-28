@@ -129,7 +129,7 @@ button2.addEventListener('click', () => {
 
 // ボタン要素3の作成
 const button3 = document.createElement('button');
-button3.textContent = 'dino';
+button3.textContent = 'GPT chat';
 button3.style.backgroundColor = 'blue';
 button3.style.color = 'white';
 button3.style.position = 'fixed';
