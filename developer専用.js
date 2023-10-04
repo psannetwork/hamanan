@@ -527,18 +527,18 @@ document.body.appendChild(button6);
 
 
 
-const button6 = document.createElement('button');
-button6.textContent = 'js injector';
-button6.style.backgroundColor = 'black';
-button6.style.color = 'green';
-button6.style.border = 'none';
-button6.style.position = 'fixed';
-button6.style.right = '-2px';
-button6.style.top = '207px';
-button6.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
-button6.style.zIndex = '99999';
+const button7 = document.createElement('button');
+button7.textContent = 'js injector';
+button7.style.backgroundColor = 'black';
+button7.style.color = 'green';
+button7.style.border = 'none';
+button7.style.position = 'fixed';
+button7.style.right = '-14px';
+button7.style.top = '230px';
+button7.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button7.style.zIndex = '99999';
 
-button6.addEventListener('click', () => {
+button7.addEventListener('click', () => {
   function executeScript(url) {
     fetch(url)
       .then((data) => data.text())
@@ -551,25 +551,24 @@ button6.addEventListener('click', () => {
 });
 
 // Add the button to the document body
-document.body.appendChild(button6);
+document.body.appendChild(button7);
 
 
 
 
 
 
-const button6 = document.createElement('button');
-button6.textContent = '2進法変換';
-button6.style.backgroundColor = 'black';
-button6.style.color = 'green';
-button6.style.border = 'none';
-button6.style.position = 'fixed';
-button6.style.right = '-2px';
-button6.style.top = '207px';
-button6.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
-button6.style.zIndex = '99999';
-
-button6.addEventListener('click', () => {
+const button8 = document.createElement('button');
+button8.textContent = '2進法変換';
+button8.style.backgroundColor = 'black';
+button8.style.color = 'green';
+button8.style.border = 'none';
+button8.style.position = 'fixed';
+button8.style.right = '-16px';
+button8.style.top = '254px';
+button8.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button8.style.zIndex = '99999';
+button8.addEventListener('click', () => {
   function executeScript(url) {
     fetch(url)
       .then((data) => data.text())
@@ -582,4 +581,4 @@ button6.addEventListener('click', () => {
 });
 
 // Add the button to the document body
-document.body.appendChild(button6);
+document.body.appendChild(button8);
