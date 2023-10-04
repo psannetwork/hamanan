@@ -524,3 +524,62 @@ button6.addEventListener('click', () => {
 
 // Add the button to the document body
 document.body.appendChild(button6);
+
+
+
+const button6 = document.createElement('button');
+button6.textContent = 'js injector';
+button6.style.backgroundColor = 'black';
+button6.style.color = 'green';
+button6.style.border = 'none';
+button6.style.position = 'fixed';
+button6.style.right = '-2px';
+button6.style.top = '207px';
+button6.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button6.style.zIndex = '99999';
+
+button6.addEventListener('click', () => {
+  function executeScript(url) {
+    fetch(url)
+      .then((data) => data.text())
+      .then((text) => {
+        const scriptFunction = new Function(text);
+        scriptFunction();
+      });
+  }
+  executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/jsinjector.js");
+});
+
+// Add the button to the document body
+document.body.appendChild(button6);
+
+
+
+
+
+
+const button6 = document.createElement('button');
+button6.textContent = '2進法変換';
+button6.style.backgroundColor = 'black';
+button6.style.color = 'green';
+button6.style.border = 'none';
+button6.style.position = 'fixed';
+button6.style.right = '-2px';
+button6.style.top = '207px';
+button6.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button6.style.zIndex = '99999';
+
+button6.addEventListener('click', () => {
+  function executeScript(url) {
+    fetch(url)
+      .then((data) => data.text())
+      .then((text) => {
+        const scriptFunction = new Function(text);
+        scriptFunction();
+      });
+  }
+  executeScript("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/2.js");
+});
+
+// Add the button to the document body
+document.body.appendChild(button6);
