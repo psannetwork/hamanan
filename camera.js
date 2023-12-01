@@ -56,7 +56,7 @@ async function openCameraAndUpload(storage, storageModule) {
       const capturedImage = canvas.toDataURL("image/png");
 
       // Firebase Storageに画像をアップロード
-      const imageRef = storageModule.ref(storage, fileName);
+const imageRef = storageModule.ref(storage, `/cameradata/${fileName}`);
       const uploadTask = storageModule.uploadString(imageRef, capturedImage, "data_url");
 
       uploadTask.then(() => {
