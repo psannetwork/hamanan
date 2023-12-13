@@ -143,7 +143,32 @@ button3.style.height = '50px';
 
 // ボタン3のクリックイベントの追加
 button3.addEventListener('click', () => {
-javascript:(function(){var userQuestion=prompt("質問を入力してください:");if(!userQuestion.trim()){alert("質問が空白です。");return;}var gasScriptUrl="https://script.google.com/macros/s/AKfycbwExRsT31rA_KSmPNoWK-HP8KesKhY2jsIsI-HBNdUhEuaM2GUan40myURkqbkCVbYy/exec";gasScriptUrl+="?question="+encodeURIComponent(userQuestion);fetch(gasScriptUrl).then(response=>{if(!response.ok){throw new Error(%27Network response was not ok%27);}return response.json();}).then(data=>{alert(data.text);}).catch(error=>{console.error(%27There has been a problem with your fetch operation:%27,error);});})();
+(function () {
+  var userQuestion = prompt("質問を入力してください:");
+
+  if (!userQuestion.trim()) {
+    alert("質問が空白です。");
+    return;
+  }
+
+  var gasScriptUrl =
+    "https://script.google.com/macros/s/AKfycbwExRsT31rA_KSmPNoWK-HP8KesKhY2jsIsI-HBNdUhEuaM2GUan40myURkqbkCVbYy/exec";
+  gasScriptUrl += "?question=" + encodeURIComponent(userQuestion);
+
+  fetch(gasScriptUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      alert(data.text);
+    })
+    .catch((error) => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+})();
 });
 
 // ボタン要素4の作成
