@@ -582,3 +582,28 @@ button8.addEventListener('click', () => {
 
 // Add the button to the document body
 document.body.appendChild(button8);
+
+
+
+const button9 = document.createElement('button');
+button9.textContent = '蛇ゲーム';
+button9.style.backgroundColor = 'black';
+button9.style.color = 'green';
+button9.style.border = 'none';
+button9.style.position = 'fixed';
+button9.style.right = '-16px';
+button9.style.top = '278px';
+button9.style.transform = 'translate(-50%, -50%)'; // Combine the two transform properties
+button9.style.zIndex = '99999';
+button9.addEventListener('click', async () => {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/hebigame.js');
+        const scriptText = await response.text();
+        eval(scriptText); // 実行するスクリプトを評価
+    } catch (error) {
+        console.error('スクリプトの取得または実行中にエラーが発生しました:', error);
+    }
+});
+
+// ボタンをドキュメントボディに追加
+document.body.appendChild(button9);
