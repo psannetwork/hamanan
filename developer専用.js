@@ -607,3 +607,24 @@ button9.addEventListener('click', async () => {
 
 // ボタンをドキュメントボディに追加
 document.body.appendChild(button9);
+
+
+
+// ボタンを作成
+var reloadButton = document.createElement('button');
+reloadButton.textContent = 'Stop'; // ボタンに表示するテキスト
+reloadButton.style.backgroundColor = 'red'; // ボタンの背景色
+reloadButton.style.color = 'white'; // ボタンのテキスト色
+reloadButton.style.border = 'none'; // ボタンの境界線をなくす
+reloadButton.style.position = 'fixed'; // ボタンを固定位置に設定
+reloadButton.style.right = '20px'; // 画面右からの位置
+reloadButton.style.bottom = '20px'; // 画面下からの位置
+reloadButton.style.zIndex = '99999'; // ボタンを前面に表示
+
+// ボタンがクリックされたときの処理
+reloadButton.addEventListener('click', function() {
+  location.reload(); // ページをリロードする
+});
+
+// ボタンをドキュメントに追加
+document.body.appendChild(reloadButton);
