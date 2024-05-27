@@ -628,3 +628,22 @@ reloadButton.addEventListener('click', function() {
 
 // ボタンをドキュメントに追加
 document.body.appendChild(reloadButton);
+
+
+function AI() {
+  fetch('https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/AI/AI.js')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(script => {
+      eval(script);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+AI();
