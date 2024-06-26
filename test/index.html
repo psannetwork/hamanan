@@ -31,6 +31,7 @@
                 "単語2",
             ];
             let touchedCount = 0;
+            let textIndex = 0;
 
             class Text {
                 constructor(text, x, y, speed) {
@@ -131,15 +132,7 @@
             }
 
             const heart = new Heart();
-            const texts = messages.map(
-                (msg, index) =>
-                    new Text(
-                        msg,
-                        index % 2 === 0 ? -100 : canvas.width + 100,
-                        Math.random() * canvas.height,
-                        index % 2 === 0 ? 2 : -2,
-                    ),
-            );
+            const texts = [];
 
             let arrowLeft = false;
             let arrowRight = false;
@@ -161,6 +154,22 @@
                 requestAnimationFrame(animate);
             }
 
+            function addText() {
+                if (textIndex < messages.length) {
+                    const msg = messages[textIndex];
+                    const newText = new Text(
+                        msg,
+                        textIndex % 2 === 0 ? -100 : canvas.width + 100,
+                        Math.random() * canvas.height,
+                        textIndex % 2 === 0 ? 2 : -2,
+                    );
+                    texts.push(newText);
+                    textIndex++;
+                    setTimeout(addText, 800); // 0.8秒後に次のテキストを追加
+                }
+            }
+
+            addText();
             animate();
 
             window.addEventListener("keydown", (e) => {
