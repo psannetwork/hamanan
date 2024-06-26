@@ -57,6 +57,7 @@
             ];
             let touchedCount = 0;
             let textIndex = 0;
+            let alreadyAlert = false; // すでに"finish"を表示したかどうかを管理するフラグ
 
             class Text {
                 constructor(text, x, y, speed) {
@@ -170,12 +171,21 @@
 
                 heart.draw();
                 heart.update();
+                let allTextsFinished = true; // すべてのテキストが終了したかどうかを管理するフラグ
 
                 texts.forEach((text) => {
                     text.draw();
                     text.update();
                     text.checkCollision(heart);
+                    if (!text.targetReached) {
+                        allTextsFinished = false; // まだテキストが終了していないものがあればフラグをfalseにする
+                    }
                 });
+
+                if (allTextsFinished && texts.length > 0 && !alreadyAlert) {
+                    alreadyAlert = true;
+                    console.log("finish");
+                }
 
                 requestAnimationFrame(animate);
             }
