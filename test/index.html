@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Undertale Special Thanks</title>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+                background-color: black;
+            }
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const messages = [
+                "ありがとう",
+                "感謝",
+                "お疲れ様",
+                "単語1",
+                "単語2",
+            ];
+            let touchedCount = 0;
+
+            class Text {
+                constructor(text, x, y, speed) {
+                    this.text = text;
+                    this.x = x;
+                    this.y = y;
+                    this.speed = speed;
+                    this.color = "white";
+                    this.angle = 0;
+                    this.rotated = false;
+                    this.targetReached = false;
+                    this.directionSet = false;
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+                    ctx.fillStyle = this.color;
+                    ctx.font = "30px Arial";
+                    ctx.fillText(
+                        this.text,
+                        -ctx.measureText(this.text).width / 2,
+                        0,
+                    );
+                    ctx.restore();
+                }
+
+                update() {
+                    if (!this.targetReached) {
+                        this.x += this.speed;
+                        if (
+                            (this.speed > 0 && this.x >= canvas.width - 100) ||
+                            (this.speed < 0 && this.x <= 100)
+                        ) {
+                            this.targetReached = true;
+                            this.speed = 0;
+                            setTimeout(() => {
+                                this.rotated = true;
+                            }, 1000); // 一時停止の時間（1秒）
+                        }
+                    } else if (this.rotated && !this.directionSet) {
+                        this.angle += 0.1;
+                        if (this.angle >= Math.PI * 2) {
+                            this.angle = 0;
+                            this.directionSet = true;
+                            // ハートの方向を計算
+                            const dx = heart.x - this.x;
+                            const dy = heart.y - this.y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+                            this.speedX = (dx / distance) * 2;
+                            this.speedY = (dy / distance) * 2;
+                        }
+                    } else if (this.directionSet) {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                    }
+                }
+
+                checkCollision(heart) {
+                    const dx = this.x - heart.x;
+                    const dy = this.y - heart.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 30) {
+                        this.color = "yellow";
+                        touchedCount++;
+                    }
+                }
+            }
+
+            class Heart {
+                constructor() {
+                    this.x = canvas.width / 2;
+                    this.y = canvas.height - 50;
+                    this.size = 20;
+                    this.speed = 5;
+                    this.symbol = "❤";
+                }
+
+                draw() {
+                    ctx.fillStyle = "red";
+                    ctx.font = "30px Arial";
+                    ctx.fillText(this.symbol, this.x - 10, this.y + 10);
+                }
+
+                update() {
+                    if (arrowLeft && this.x > 0) {
+                        this.x -= this.speed;
+                    } else if (arrowRight && this.x < canvas.width) {
+                        this.x += this.speed;
+                    }
+                    if (arrowUp && this.y > 0) {
+                        this.y -= this.speed;
+                    } else if (arrowDown && this.y < canvas.height) {
+                        this.y += this.speed;
+                    }
+                }
+            }
+
+            const heart = new Heart();
+            const texts = messages.map(
+                (msg, index) =>
+                    new Text(
+                        msg,
+                        index % 2 === 0 ? -100 : canvas.width + 100,
+                        Math.random() * canvas.height,
+                        index % 2 === 0 ? 2 : -2,
+                    ),
+            );
+
+            let arrowLeft = false;
+            let arrowRight = false;
+            let arrowUp = false;
+            let arrowDown = false;
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                heart.draw();
+                heart.update();
+
+                texts.forEach((text) => {
+                    text.draw();
+                    text.update();
+                    text.checkCollision(heart);
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") arrowLeft = true;
+                if (e.key === "ArrowRight") arrowRight = true;
+                if (e.key === "ArrowUp") arrowUp = true;
+                if (e.key === "ArrowDown") arrowDown = true;
+            });
+
+            window.addEventListener("keyup", (e) => {
+                if (e.key === "ArrowLeft") arrowLeft = false;
+                if (e.key === "ArrowRight") arrowRight = false;
+                if (e.key === "ArrowUp") arrowUp = false;
+                if (e.key === "ArrowDown") arrowDown = false;
+            });
+        </script>
+    </body>
+</html>
