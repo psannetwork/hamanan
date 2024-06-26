@@ -33,27 +33,6 @@
                 "感謝",
                 "お疲れ様",
                 "単語1",
-                "単語2",
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-                "単語2",
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-                "単語2",
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-                "単語2",
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-                "単語2",
             ];
             let touchedCount = 0;
             let textIndex = 0;
@@ -185,6 +164,23 @@
                 if (allTextsFinished && texts.length > 0 && !alreadyAlert) {
                     alreadyAlert = true;
                     console.log("finish");
+
+                    setTimeout(function () {
+                        console.log("5s");
+                        ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
+
+                        const thankYouText = new Text(
+                            "Thank you",
+                            canvas.width / 2,
+                            canvas.height / 2,
+                            0,
+                        );
+                        texts.push(thankYouText);
+
+                        setTimeout(function () {
+                            texts.splice(texts.indexOf(thankYouText), 1);
+                        }, 5000); // 5秒後に"Thank you"を消去する
+                    }, 5000);
                 }
 
                 requestAnimationFrame(animate);
@@ -201,7 +197,7 @@
                     );
                     texts.push(newText);
                     textIndex++;
-                    setTimeout(addText, 800); // 0.8秒後に次のテキストを追加
+                    setTimeout(addText, 1000); // 0.8秒後に次のテキストを追加
                 }
             }
 
