@@ -17,24 +17,24 @@
     </head>
     <body>
         <canvas id="canvas"></canvas>
+        <div
+            id="score"
+            style="
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                color: white;
+                font-size: 18px;
+            "
+        ></div>
         <script>
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            const messages = [
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-                "単語2",
-                "ありがとう",
-                "感謝",
-                "お疲れ様",
-                "単語1",
-            ];
-            let touchedCount = 0;
+            const messages = ["ありがとう", "感謝", "お疲れ様", "単語1"];
+            let touchedWords = []; // 触れた単語を管理する配列
             let textIndex = 0;
             let alreadyAlert = false; // すでに"finish"を表示したかどうかを管理するフラグ
 
@@ -49,6 +49,7 @@
                     this.rotated = false;
                     this.targetReached = false;
                     this.directionSet = false;
+                    this.touched = false; // 単語がハートに触れたかどうかを管理するフラグ
                 }
 
                 draw() {
@@ -101,9 +102,11 @@
                     const dx = this.x - heart.x;
                     const dy = this.y - heart.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 30) {
+                    if (distance < 30 && !this.touched) {
+                        // 単語がハートに触れておらず、かつ距離が近い場合
                         this.color = "yellow";
-                        touchedCount++;
+                        this.touched = true; // 触れた単語としてマーク
+                        touchedWords.push(this.text); // 触れた単語を配列に追加
                     }
                 }
             }
@@ -179,11 +182,36 @@
 
                         setTimeout(function () {
                             texts.splice(texts.indexOf(thankYouText), 1);
+                            scoresshow();
                         }, 5000); // 5秒後に"Thank you"を消去する
                     }, 5000);
                 }
 
                 requestAnimationFrame(animate);
+            }
+
+            function scoresshow() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
+
+                // 触れた単語の一覧を表示するための文字列を生成
+                const touchedWordsString =
+                    touchedWords.length > 0 ? touchedWords.join(", ") : "なし";
+
+                const scoreText = new Text(
+                    "触れた単語数: " +
+                        touchedWords.length +
+                        " (" +
+                        touchedWordsString +
+                        ")",
+                    canvas.width / 2,
+                    canvas.height / 2,
+                    0,
+                );
+                texts.push(scoreText);
+
+                setTimeout(function () {
+                    texts.splice(texts.indexOf(scoreText), 1);
+                }, 5000); // 5秒後にスコア表示を消去する
             }
 
             function addText() {
@@ -197,7 +225,7 @@
                     );
                     texts.push(newText);
                     textIndex++;
-                    setTimeout(addText, 1000); // 0.8秒後に次のテキストを追加
+                    setTimeout(addText, 1000); // 1秒後に次のテキストを追加
                 }
             }
 
