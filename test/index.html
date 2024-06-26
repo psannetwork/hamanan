@@ -51,7 +51,7 @@
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
                     ctx.fillStyle = this.color;
-                    ctx.font = "30px Arial";
+                    ctx.font = "50px Arial";
                     ctx.fillText(
                         this.text,
                         -ctx.measureText(this.text).width / 2,
@@ -84,6 +84,7 @@
                             const distance = Math.sqrt(dx * dx + dy * dy);
                             this.speedX = (dx / distance) * 5; // スピードを増加
                             this.speedY = (dy / distance) * 5; // スピードを増加
+                            this.angle = Math.atan2(dy, dx);
                         }
                     } else if (this.directionSet) {
                         this.x += this.speedX;
@@ -106,14 +107,14 @@
                 constructor() {
                     this.x = canvas.width / 2;
                     this.y = canvas.height - 50;
-                    this.size = 20;
-                    this.speed = 5;
+                    this.size = 30; // ハートの大きさを20に変更
+                    this.speed = 4;
                     this.symbol = "❤";
                 }
 
                 draw() {
                     ctx.fillStyle = "red";
-                    ctx.font = "30px Arial";
+                    ctx.font = `${this.size}px Arial`; // フォントサイズをハートの大きさに応じて設定
                     ctx.fillText(this.symbol, this.x - 10, this.y + 10);
                 }
 
