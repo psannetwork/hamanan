@@ -228,9 +228,10 @@
                 }
             }
 
-            addText();
-            animate();
-
+            function part1() {
+                addText();
+                animate();
+            }
             window.addEventListener("keydown", (e) => {
                 if (e.key === "ArrowLeft") arrowLeft = true;
                 if (e.key === "ArrowRight") arrowRight = true;
@@ -240,10 +241,9 @@
 
             window.addEventListener("keyup", (e) => {
                 if (e.key === "ArrowLeft") arrowLeft = false;
-                if (e.key === "ArrowRight") arrowRight = false;
-                if (e.key === "ArrowUp") arrowUp = false;
-                if (e.key === "ArrowDown") arrowDown = false;
+                if (e.key === "ArrowRight") arrowDown = false;
             });
         </script>
     </body>
 </html>
+ハートの操作は、function heartstart()を実行したら動かせるようにして
