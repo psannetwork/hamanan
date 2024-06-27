@@ -314,6 +314,8 @@
                 addText(messages, "horizontal");
             }
             function starts() {
+                document.getElementById("startButton").style.display = "none"; // ボタンを非表示にする
+
                 // 初期化関数の呼び出し
                 startHeartMovement();
                 startTextDisplay1(); // 縦表示のテキストを開始する
@@ -332,5 +334,6 @@
             }
         </script>
         <script src="finalmessages.js"></script>
+        <button id="startButton" onclick="starts();">Click to Start</button>
     </body>
 </html>
