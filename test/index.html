@@ -33,11 +33,15 @@
         <canvas id="canvas"></canvas>
         <div id="score"></div>
         <script>
+            // Canvasとコンテキストの取得
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
+
+            // キャンバスのサイズをウィンドウサイズに合わせる
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
+            // タッチした単語を格納する配列
             const messages1 = [
                 "メッセージ1",
                 "メッセージ2",
@@ -57,34 +61,37 @@
             let textIndex1 = 0;
             let textIndex = 0;
             let alreadyAlert = false; // すでに"finish"を表示したかどうかを管理するフラグ
-
+            let perfects = false;
+            // テキストオブジェクトの定義
             class Text {
                 constructor(text, x, y, speed, direction = "horizontal") {
                     this.text = text;
                     this.x = x;
                     this.y = y;
                     this.speed = speed;
-                    this.direction = direction; // 追加: 方向を指定するプロパティ
+                    this.direction = direction;
                     this.color = "white";
                     this.angle = 0;
                     this.rotated = false;
                     this.targetReached = false;
                     this.directionSet = false;
-                    this.touched = false; // 単語がハートに触れたかどうかを管理するフラグ
+                    this.touched = false;
                 }
 
+                // テキストの描画
                 draw() {
                     ctx.save();
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.angle);
                     ctx.fillStyle = this.color;
                     ctx.font = "50px Arial";
-                    ctx.textAlign = "center"; // 中央揃えに設定
-                    ctx.textBaseline = "middle"; // 上下中央揃えに設定
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
                     ctx.fillText(this.text, 0, 0);
                     ctx.restore();
                 }
 
+                // テキストの更新
                 update() {
                     if (!this.targetReached) {
                         if (this.direction === "horizontal") {
@@ -98,7 +105,7 @@
                                 this.speed = 0;
                                 setTimeout(() => {
                                     this.rotated = true;
-                                }, 1000); // 一時停止の時間（1秒）
+                                }, 1000);
                             }
                         } else if (this.direction === "vertical") {
                             this.y -= this.speed;
@@ -107,7 +114,7 @@
                                 this.speed = 0;
                                 setTimeout(() => {
                                     this.rotated = true;
-                                }, 1000); // 一時停止の時間（1秒）
+                                }, 1000);
                             }
                         }
                     } else if (this.rotated && !this.directionSet) {
@@ -115,12 +122,11 @@
                         if (this.angle >= Math.PI * 2) {
                             this.angle = 0;
                             this.directionSet = true;
-                            // ハートの方向を計算
                             const dx = heart.x - this.x;
                             const dy = heart.y - this.y;
                             const distance = Math.sqrt(dx * dx + dy * dy);
-                            this.speedX = (dx / distance) * 10; // スピードを増加
-                            this.speedY = (dy / distance) * 10; // スピードを増加
+                            this.speedX = (dx / distance) * 10;
+                            this.speedY = (dy / distance) * 10;
                             this.angle = Math.atan2(dy, dx);
                         }
                     } else if (this.directionSet) {
@@ -129,48 +135,48 @@
                     }
                 }
 
+                // ハートとの衝突判定
                 checkCollision(heart) {
                     const dx = this.x - heart.x;
                     const dy = this.y - heart.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < 30 && !this.touched) {
-                        // 単語がハートに触れておらず、かつ距離が近い場合
                         this.color = "yellow";
-                        this.touched = true; // 触れた単語としてマーク
-                        touchedWords.push(this.text); // 触れた単語を配列に追加
+                        this.touched = true;
+                        touchedWords.push(this.text);
                     }
                 }
             }
 
+            // ハートオブジェクトの定義
             class Heart {
                 constructor() {
                     this.x = canvas.width / 2;
                     this.y = canvas.height - 50;
-                    this.size = 30; // ハートの大きさを20に変更
+                    this.size = 30;
                     this.speed = 4;
                     this.symbol = "❤";
                 }
 
+                // ハートの描画
                 draw() {
                     ctx.fillStyle = "red";
-                    ctx.font = `${this.size}px Arial`; // フォントサイズをハートの大きさに応じて設定
+                    ctx.font = `${this.size}px Arial`;
                     ctx.fillText(this.symbol, this.x - 10, this.y + 10);
                 }
 
+                // ハートの移動
                 update() {
-                    if (arrowLeft && this.x > 0) {
-                        this.x -= this.speed;
-                    } else if (arrowRight && this.x < canvas.width) {
+                    if (arrowLeft && this.x > 0) this.x -= this.speed;
+                    else if (arrowRight && this.x < canvas.width)
                         this.x += this.speed;
-                    }
-                    if (arrowUp && this.y > 0) {
-                        this.y -= this.speed;
-                    } else if (arrowDown && this.y < canvas.height) {
+                    if (arrowUp && this.y > 0) this.y -= this.speed;
+                    else if (arrowDown && this.y < canvas.height)
                         this.y += this.speed;
-                    }
                 }
             }
 
+            // インスタンスの生成と初期化
             const heart = new Heart();
             const texts = [];
 
@@ -179,22 +185,24 @@
             let arrowUp = false;
             let arrowDown = false;
 
+            // アニメーション関数
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 heart.draw();
                 heart.update();
-                let allTextsFinished = true; // すべてのテキストが終了したかどうかを管理するフラグ
+                let allTextsFinished = true;
 
                 texts.forEach((text) => {
                     text.draw();
                     text.update();
                     text.checkCollision(heart);
                     if (!text.targetReached) {
-                        allTextsFinished = false; // まだテキストが終了していないものがあればフラグをfalseにする
+                        allTextsFinished = false;
                     }
                 });
 
+                // 全てのテキストが表示され、メッセージが終了した後の処理
                 if (
                     allTextsFinished &&
                     texts.length > 0 &&
@@ -202,12 +210,8 @@
                     textIndex >= messages.length
                 ) {
                     alreadyAlert = true;
-                    console.log("finish");
-
-                    setTimeout(function () {
-                        console.log("5s");
-                        ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
-
+                    setTimeout(() => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
                         const thankYouText = new Text(
                             "Thank you",
                             canvas.width / 2,
@@ -215,37 +219,39 @@
                             0,
                         );
                         texts.push(thankYouText);
-
-                        setTimeout(function () {
+                        setTimeout(() => {
                             texts.splice(texts.indexOf(thankYouText), 1);
                             scoresshow();
-                        }, 5000); // 5秒後に"Thank you"を消去する
+                        }, 5000);
                     }, 5000);
                 }
 
                 requestAnimationFrame(animate);
             }
 
+            // スコア表示関数
             function scoresshow() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 const scoreDiv = document.getElementById("score");
                 scoreDiv.innerHTML = "タッチした文字<br>";
 
-                // 触れた単語の一覧を表示するための文字列を生成
                 if (touchedWords.length > 0) {
                     touchedWords.forEach((word) => {
                         scoreDiv.innerHTML += `${word}<br>`;
                     });
                 } else {
                     scoreDiv.innerHTML = `お見事！<br>どこかで扉がひらいたようだ...`;
+                    perfects = true;
                 }
 
-                setTimeout(function () {
-                    scoreDiv.innerHTML = ""; // スコア表示を消去する
-                }, 5000); // 5秒後にスコア表示を消去する
+                setTimeout(() => {
+                    scoreDiv.innerHTML = "";
+                    animateMovingTexts();
+                }, 5000);
             }
 
+            // テキスト追加関数
             function addText(messages, direction = "horizontal") {
                 if (direction === "vertical") {
                     if (textIndex1 < messages.length) {
@@ -254,14 +260,14 @@
                             msg,
                             Math.random() * canvas.width,
                             canvas.height + 100,
-                            5, // スピードを増加
+                            5,
                             direction,
                         );
                         texts.push(newText);
                         textIndex1++;
-                        setTimeout(() => addText(messages, direction), 1000); // 1秒後に次のテキストを追加
+                        setTimeout(() => addText(messages, direction), 1000);
                     } else {
-                        setTimeout(() => startTextDisplay(messages), 1000); // messages1が終わったらmessagesの表示を開始
+                        setTimeout(() => startTextDisplay(messages), 1000);
                     }
                 } else {
                     if (textIndex < messages.length) {
@@ -270,16 +276,17 @@
                             msg,
                             textIndex % 2 === 0 ? -100 : canvas.width + 100,
                             Math.random() * canvas.height,
-                            textIndex % 2 === 0 ? 5 : -5, // スピードを増加
+                            textIndex % 2 === 0 ? 5 : -5,
                             direction,
                         );
                         texts.push(newText);
                         textIndex++;
-                        setTimeout(() => addText(messages, direction), 1000); // 1秒後に次のテキストを追加
+                        setTimeout(() => addText(messages, direction), 1000);
                     }
                 }
             }
 
+            // ハートの移動イベント設定
             function startHeartMovement() {
                 window.addEventListener("keydown", (e) => {
                     if (e.key === "ArrowLeft") arrowLeft = true;
@@ -296,17 +303,21 @@
                 });
             }
 
+            // テキストの縦表示開始関数
             function startTextDisplay1() {
                 addText(messages1, "vertical");
             }
 
+            // テキストの横表示開始関数
             function startTextDisplay() {
                 addText(messages, "horizontal");
             }
 
+            // 初期化関数の呼び出し
             startHeartMovement();
-            startTextDisplay1();
-            animate();
+            startTextDisplay1(); // 縦表示のテキストを開始する
+            animate(); // アニメーションを開始する
         </script>
+        <script src="finalmessages.js"></script>
     </body>
 </html>
