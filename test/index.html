@@ -32,6 +32,7 @@
     <body>
         <canvas id="canvas"></canvas>
         <div id="score"></div>
+
         <script>
             // Canvasとコンテキストの取得
             const canvas = document.getElementById("canvas");
@@ -312,11 +313,23 @@
             function startTextDisplay() {
                 addText(messages, "horizontal");
             }
-
-            // 初期化関数の呼び出し
-            startHeartMovement();
-            startTextDisplay1(); // 縦表示のテキストを開始する
-            animate(); // アニメーションを開始する
+            function starts() {
+                // 初期化関数の呼び出し
+                startHeartMovement();
+                startTextDisplay1(); // 縦表示のテキストを開始する
+                animate(); // アニメーションを開始する
+                playAudio();
+            }
+            // MP3ファイルのパス
+            const audioFile = "bgms.mp3";
+            const audio = new Audio(audioFile);
+            function playAudio() {
+                audio.play();
+            }
+            function stopAudio() {
+                audio.pause();
+                audio.currentTime = 0;
+            }
         </script>
         <script src="finalmessages.js"></script>
     </body>
