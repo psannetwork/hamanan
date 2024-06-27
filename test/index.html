@@ -228,25 +228,29 @@
                 }
             }
 
-            addText();
+            function startHeartMovement() {
+                window.addEventListener("keydown", (e) => {
+                    if (e.key === "ArrowLeft") arrowLeft = true;
+                    if (e.key === "ArrowRight") arrowRight = true;
+                    if (e.key === "ArrowUp") arrowUp = true;
+                    if (e.key === "ArrowDown") arrowDown = true;
+                });
+
+                window.addEventListener("keyup", (e) => {
+                    if (e.key === "ArrowLeft") arrowLeft = false;
+                    if (e.key === "ArrowRight") arrowRight = false;
+                    if (e.key === "ArrowUp") arrowUp = false;
+                    if (e.key === "ArrowDown") arrowDown = false;
+                });
+            }
+
+            function startTextDisplay() {
+                addText();
+            }
+
+            //startHeartMovement();
+            //startTextDisplay();
             animate();
-
-            window.addEventListener("keydown", (e) => {
-                if (e.key === "ArrowLeft") arrowLeft = true;
-                if (e.key === "ArrowRight") arrowRight = true;
-                if (e.key === "ArrowUp") arrowUp = true;
-                if (e.key === "ArrowDown") arrowDown = true;
-            });
-
-            window.addEventListener("keyup", (e) => {
-                if (e.key === "ArrowLeft") arrowLeft = false;
-                if (e.key === "ArrowRight") arrowRight = false;
-                if (e.key === "ArrowUp") arrowUp = false;
-                if (e.key === "ArrowDown") arrowDown = false;
-            });
         </script>
     </body>
 </html>
-
-文字の動かし始めの関数を追加する
-function part1() で文字の生成
