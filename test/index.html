@@ -38,17 +38,33 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
+            const messages1 = [
+                "メッセージ1",
+                "メッセージ2",
+                "メッセージ3",
+                "メッセージ1",
+                "メッセージ2",
+                "メッセージ3",
+                "メッセージ1",
+                "メッセージ2",
+                "メッセージ3",
+                "メッセージ1",
+                "メッセージ2",
+                "メッセージ3",
+            ];
             const messages = ["ありがとう", "感謝", "お疲れ様", "単語1"];
             let touchedWords = []; // 触れた単語を管理する配列
+            let textIndex1 = 0;
             let textIndex = 0;
             let alreadyAlert = false; // すでに"finish"を表示したかどうかを管理するフラグ
 
             class Text {
-                constructor(text, x, y, speed) {
+                constructor(text, x, y, speed, direction = "horizontal") {
                     this.text = text;
                     this.x = x;
                     this.y = y;
                     this.speed = speed;
+                    this.direction = direction; // 追加: 方向を指定するプロパティ
                     this.color = "white";
                     this.angle = 0;
                     this.rotated = false;
@@ -71,16 +87,28 @@
 
                 update() {
                     if (!this.targetReached) {
-                        this.x += this.speed;
-                        if (
-                            (this.speed > 0 && this.x >= canvas.width - 100) ||
-                            (this.speed < 0 && this.x <= 100)
-                        ) {
-                            this.targetReached = true;
-                            this.speed = 0;
-                            setTimeout(() => {
-                                this.rotated = true;
-                            }, 1000); // 一時停止の時間（1秒）
+                        if (this.direction === "horizontal") {
+                            this.x += this.speed;
+                            if (
+                                (this.speed > 0 &&
+                                    this.x >= canvas.width - 100) ||
+                                (this.speed < 0 && this.x <= 100)
+                            ) {
+                                this.targetReached = true;
+                                this.speed = 0;
+                                setTimeout(() => {
+                                    this.rotated = true;
+                                }, 1000); // 一時停止の時間（1秒）
+                            }
+                        } else if (this.direction === "vertical") {
+                            this.y -= this.speed;
+                            if (this.y <= 100) {
+                                this.targetReached = true;
+                                this.speed = 0;
+                                setTimeout(() => {
+                                    this.rotated = true;
+                                }, 1000); // 一時停止の時間（1秒）
+                            }
                         }
                     } else if (this.rotated && !this.directionSet) {
                         this.angle += 0.1;
@@ -167,7 +195,12 @@
                     }
                 });
 
-                if (allTextsFinished && texts.length > 0 && !alreadyAlert) {
+                if (
+                    allTextsFinished &&
+                    texts.length > 0 &&
+                    !alreadyAlert &&
+                    textIndex >= messages.length
+                ) {
                     alreadyAlert = true;
                     console.log("finish");
 
@@ -213,18 +246,37 @@
                 }, 5000); // 5秒後にスコア表示を消去する
             }
 
-            function addText() {
-                if (textIndex < messages.length) {
-                    const msg = messages[textIndex];
-                    const newText = new Text(
-                        msg,
-                        textIndex % 2 === 0 ? -100 : canvas.width + 100,
-                        Math.random() * canvas.height,
-                        textIndex % 2 === 0 ? 5 : -5, // スピードを増加
-                    );
-                    texts.push(newText);
-                    textIndex++;
-                    setTimeout(addText, 1000); // 1秒後に次のテキストを追加
+            function addText(messages, direction = "horizontal") {
+                if (direction === "vertical") {
+                    if (textIndex1 < messages.length) {
+                        const msg = messages[textIndex1];
+                        const newText = new Text(
+                            msg,
+                            Math.random() * canvas.width,
+                            canvas.height + 100,
+                            5, // スピードを増加
+                            direction,
+                        );
+                        texts.push(newText);
+                        textIndex1++;
+                        setTimeout(() => addText(messages, direction), 1000); // 1秒後に次のテキストを追加
+                    } else {
+                        setTimeout(() => startTextDisplay(messages), 1000); // messages1が終わったらmessagesの表示を開始
+                    }
+                } else {
+                    if (textIndex < messages.length) {
+                        const msg = messages[textIndex];
+                        const newText = new Text(
+                            msg,
+                            textIndex % 2 === 0 ? -100 : canvas.width + 100,
+                            Math.random() * canvas.height,
+                            textIndex % 2 === 0 ? 5 : -5, // スピードを増加
+                            direction,
+                        );
+                        texts.push(newText);
+                        textIndex++;
+                        setTimeout(() => addText(messages, direction), 1000); // 1秒後に次のテキストを追加
+                    }
                 }
             }
 
@@ -244,12 +296,16 @@
                 });
             }
 
-            function startTextDisplay() {
-                addText();
+            function startTextDisplay1() {
+                addText(messages1, "vertical");
             }
 
-            //startHeartMovement();
-            //startTextDisplay();
+            function startTextDisplay() {
+                addText(messages, "horizontal");
+            }
+
+            startHeartMovement();
+            startTextDisplay1();
             animate();
         </script>
     </body>
