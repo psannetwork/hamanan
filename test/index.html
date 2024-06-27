@@ -9,24 +9,29 @@
                 margin: 0;
                 overflow: hidden;
                 background-color: black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
             }
             canvas {
                 display: block;
+            }
+            #score {
+                color: white;
+                font-size: 24px;
+                text-align: center;
+                white-space: pre-line;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         </style>
     </head>
     <body>
         <canvas id="canvas"></canvas>
-        <div
-            id="score"
-            style="
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                color: white;
-                font-size: 18px;
-            "
-        ></div>
+        <div id="score"></div>
         <script>
             const canvas = document.getElementById("canvas");
             const ctx = canvas.getContext("2d");
@@ -58,11 +63,9 @@
                     ctx.rotate(this.angle);
                     ctx.fillStyle = this.color;
                     ctx.font = "50px Arial";
-                    ctx.fillText(
-                        this.text,
-                        -ctx.measureText(this.text).width / 2,
-                        0,
-                    );
+                    ctx.textAlign = "center"; // 中央揃えに設定
+                    ctx.textBaseline = "middle"; // 上下中央揃えに設定
+                    ctx.fillText(this.text, 0, 0);
                     ctx.restore();
                 }
 
@@ -193,24 +196,20 @@
             function scoresshow() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height); // 画面をクリア
 
-                // 触れた単語の一覧を表示するための文字列を生成
-                const touchedWordsString =
-                    touchedWords.length > 0 ? touchedWords.join(", ") : "なし";
+                const scoreDiv = document.getElementById("score");
+                scoreDiv.innerHTML = "タッチした文字<br>";
 
-                const scoreText = new Text(
-                    "触れた単語数: " +
-                        touchedWords.length +
-                        " (" +
-                        touchedWordsString +
-                        ")",
-                    canvas.width / 2,
-                    canvas.height / 2,
-                    0,
-                );
-                texts.push(scoreText);
+                // 触れた単語の一覧を表示するための文字列を生成
+                if (touchedWords.length > 0) {
+                    touchedWords.forEach((word) => {
+                        scoreDiv.innerHTML += `${word}<br>`;
+                    });
+                } else {
+                    scoreDiv.innerHTML = "お見事！";
+                }
 
                 setTimeout(function () {
-                    texts.splice(texts.indexOf(scoreText), 1);
+                    scoreDiv.innerHTML = ""; // スコア表示を消去する
                 }, 5000); // 5秒後にスコア表示を消去する
             }
 
