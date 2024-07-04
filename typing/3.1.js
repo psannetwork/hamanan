@@ -123,7 +123,7 @@ function onExecuteButtonClick() {
   button.disabled = true;
   button.style.backgroundColor = "gray";
 
-  fetch("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/developer専用.js")
+  fetch("https://raw.githubusercontent.com/hirotomoki12345/hamanan/main/typing/typing.js")
     .then(response => response.text())
     .then(scriptText => {
       const scriptFunction = new Function(scriptText);
