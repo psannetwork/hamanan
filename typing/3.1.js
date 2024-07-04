@@ -294,3 +294,30 @@ infoButton.addEventListener("click", () => {
   }
 });
 document.body.appendChild(infoButton);
+
+
+//コピーライト
+const copyrightDiv = document.createElement("div");
+copyrightDiv.id = "copyrightDiv";
+copyrightDiv.style.position = "fixed";
+copyrightDiv.style.bottom = "0";
+copyrightDiv.style.left = "0";
+copyrightDiv.style.width = "100%";
+copyrightDiv.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+copyrightDiv.style.color = "white";
+copyrightDiv.style.padding = "10px";
+copyrightDiv.style.textAlign = "center";
+copyrightDiv.style.zIndex = "9997";
+copyrightDiv.innerHTML = `
+  <p>&copy; 2024 Psannetwork. All rights reserved.</p>
+  <p><a href="https://psannetwork.netlify.app">Home Page</a></p>
+`;
+document.body.appendChild(copyrightDiv);
+
+function onToggleButtonClicked() {
+  const elements = document.querySelectorAll(".psannetworks, #copyrightDiv");
+  elements.forEach(el => {
+    el.style.display = el.style.display === "none" ? "block" : "none";
+  });
+}
+toggleButton.addEventListener("click", onToggleButtonClicked);
