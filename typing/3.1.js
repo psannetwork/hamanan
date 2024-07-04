@@ -335,11 +335,35 @@ newButton.style.right = "10px";
 newButton.style.fontSize = "16px";
 newButton.style.backgroundColor = "orange";
 newButton.style.color = "white";
-newButton.style.zIndex = "9997"; // Ensure it's in front of other elements but behind MENU
+newButton.style.zIndex = "9997"; 
 
 newButton.addEventListener("click", () => {
-  // Add any specific functionality here if needed
-  alert("New Button Clicked!");
+const newDiv = document.createElement("div");
+newDiv.style.position = "fixed";
+newDiv.style.top = "10px";
+newDiv.style.right = "10px"; 
+newDiv.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+newDiv.style.padding = "20px";
+newDiv.style.zIndex = "9998"; 
+newDiv.innerHTML = `
+  <p>This is a new DIV element!</p>
+  <p>You can place additional content here.</p>
+  <button id="closeButton" style="position: absolute; top: 5px; right: 5px; cursor: pointer;">✗</button>
+`;
+
+const existingDiv = document.getElementById("newDiv");
+if (existingDiv) {
+  existingDiv.remove();
+}
+
+newDiv.id = "newDiv";
+document.body.appendChild(newDiv);
+
+const closeButton = newDiv.querySelector("#closeButton");
+closeButton.addEventListener("click", () => {
+  newDiv.remove();
+});
+
 });
 
 document.body.appendChild(newButton);
