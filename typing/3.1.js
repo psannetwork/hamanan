@@ -147,9 +147,9 @@ toggleButton.style.color = "white";
 toggleButton.style.zIndex = "9998";
 
 function onToggleButtonClicked() {
-  const buttons = document.querySelectorAll("button.psannetworks");
-  buttons.forEach(btn => {
-    btn.style.display = btn.style.display === "none" ? "block" : "none";
+  const elements = document.querySelectorAll(".psannetworks, #copyrightDiv");
+  elements.forEach(el => {
+    el.style.display = el.style.display === "none" ? "block" : "none";
   });
 }
 toggleButton.addEventListener("click", onToggleButtonClicked);
@@ -321,3 +321,25 @@ function onToggleButtonClicked() {
   });
 }
 toggleButton.addEventListener("click", onToggleButtonClicked);
+
+
+
+
+
+const newButton = document.createElement("button");
+newButton.textContent = "NEW BUTTON";
+newButton.classList.add("psannetworks");
+newButton.style.position = "fixed";
+newButton.style.bottom = "80px";
+newButton.style.right = "10px";
+newButton.style.fontSize = "16px";
+newButton.style.backgroundColor = "orange";
+newButton.style.color = "white";
+newButton.style.zIndex = "9997"; // Ensure it's in front of other elements but behind MENU
+
+newButton.addEventListener("click", () => {
+  // Add any specific functionality here if needed
+  alert("New Button Clicked!");
+});
+
+document.body.appendChild(newButton);
