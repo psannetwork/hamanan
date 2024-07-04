@@ -335,35 +335,59 @@ newButton.style.right = "10px";
 newButton.style.fontSize = "16px";
 newButton.style.backgroundColor = "orange";
 newButton.style.color = "white";
-newButton.style.zIndex = "9997"; 
+newButton.style.zIndex = "9997";
 
 newButton.addEventListener("click", () => {
-const newDiv = document.createElement("div");
-newDiv.style.position = "fixed";
-newDiv.style.top = "10px";
-newDiv.style.right = "10px"; 
-newDiv.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
-newDiv.style.padding = "20px";
-newDiv.style.zIndex = "9998"; 
-newDiv.innerHTML = `
-  <p>This is a new DIV element!</p>
-  <p>You can place additional content here.</p>
-  <button id="closeButton" style="position: absolute; top: 5px; right: 5px; cursor: pointer;">✗</button>
-`;
+  const newDiv = document.createElement("div");
+  newDiv.style.position = "fixed";
+  newDiv.style.top = "10px";
+  newDiv.style.right = "10px";
+  newDiv.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+  newDiv.style.padding = "20px";
+  newDiv.style.zIndex = "9998";
+  newDiv.innerHTML = `
+    <input type="text" placeholder="テキストを入力してください" id="inputText">
+    <button id="fetchButton">データ取得</button>
+    <div id="result"></div>
+    <button id="closeButton">閉じる</button>
+  `;
 
-const existingDiv = document.getElementById("newDiv");
-if (existingDiv) {
-  existingDiv.remove();
-}
+  const existingDiv = document.getElementById("newDiv");
+  if (existingDiv) {
+    existingDiv.remove();
+  }
 
-newDiv.id = "newDiv";
-document.body.appendChild(newDiv);
+  newDiv.id = "newDiv";
+  document.body.appendChild(newDiv);
 
-const closeButton = newDiv.querySelector("#closeButton");
-closeButton.addEventListener("click", () => {
-  newDiv.remove();
-});
+  const fetchButton = document.getElementById("fetchButton");
+  fetchButton.addEventListener("click", () => {
+    const texter = document.getElementById("inputText").value.trim();
+    const resultDiv = document.getElementById("result");
 
+    if (texter) {
+      const url = `https://script.google.com/macros/s/AKfycbwEFF-V0jBJGcMFC_dbKTGzY-HeiUvF3QKFv_ETfTRFO1qwszYriL3_HjsalvFEm0sK/exec?text=${texter}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const responseNo = data.responseno;
+          resultDiv.textContent = `responseno の値は: ${responseNo}`;
+        })
+        .catch(error => {
+          console.error('データを取得できませんでした:', error);
+          resultDiv.textContent = 'データを取得できませんでした';
+        });
+    } else {
+      alert('テキストが入力されていません');
+    }
+  });
+
+  const closeButton = document.getElementById("closeButton");
+  closeButton.addEventListener("click", () => {
+    newDiv.remove();
+  });
 });
 
 document.body.appendChild(newButton);
+
