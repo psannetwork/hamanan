@@ -11,3 +11,4 @@ sleep 5
 lxc exec $CONTAINER_NAME -- bash -c "useradd -m $USER_NAME && echo '$USER_NAME:$USER_PASS' | chpasswd && usermod -aG sudo $USER_NAME"
 
 lxc exec $CONTAINER_NAME -- su - $USER_NAME
+lxc exec $CONTAINER_NAME -- sudo bash
