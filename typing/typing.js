@@ -121,7 +121,7 @@ button3.addEventListener('click', () => {
   const normalMaxDelay = 30;
   const finalMinDelay = 200;
   const finalMaxDelay = 150;
-  const maxCharsBeforeSpeedChange = 10;
+  const maxCharsBeforeSpeedChange = 25;
 
   const keyOverrides = {
     '\u00A0': ' ',
@@ -229,7 +229,7 @@ button2.addEventListener('click', () => {
   const normalMaxDelay = 30;
   const finalMinDelay = 200;
   const finalMaxDelay = 150;
-  const maxCharsBeforeSpeedChange = 10;
+  const maxCharsBeforeSpeedChange = 25;
   const typoChance = 0.09;
 
   const keyOverrides = {
