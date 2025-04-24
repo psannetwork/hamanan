@@ -117,8 +117,8 @@ button3.style.zIndex = '99999';
 button3.addEventListener('click', () => {
   disableButton(button3);
   
-  const normalMinDelay = 15;
-  const normalMaxDelay = 30;
+  const normalMinDelay = 50;
+  const normalMaxDelay = 50;
   const finalMinDelay = 200;
   const finalMaxDelay = 150;
   const maxCharsBeforeSpeedChange = 25;
@@ -225,8 +225,8 @@ button2.style.zIndex = '99999';
 button2.addEventListener('click', () => {
   disableButton(button2);
 
-  const normalMinDelay = 15;
-  const normalMaxDelay = 30;
+  const normalMinDelay = 50;
+  const normalMaxDelay = 50;
   const finalMinDelay = 200;
   const finalMaxDelay = 150;
   const maxCharsBeforeSpeedChange = 25;
